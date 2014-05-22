@@ -1,0 +1,37 @@
+
+.myrow{
+	width:1280px;
+	height:60px; 
+	background-image:url(../img/rooter.png);
+	}
+
+#forms {
+    
+    padding: 400px 20px 20px 20px;
+    
+}
+
+#mainFrame{
+	background-image:url("../img/mc2.jpg");
+	height:650px;
+	width:1290px;    
+}
+.layoutForm {
+    /*border: 1px solid #5C6264;*/
+    padding: 10px 5px 5px;
+}
+
+#theisName{
+	padding:50px 10px 10px 10px;
+}
+
+#loginBtn{
+	
+}
+#regisBtn{
+	
+}
+.inputText{
+	width:129px;
+	height:80px;
+}

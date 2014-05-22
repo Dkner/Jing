@@ -1,0 +1,841 @@
+.musicShowSize{
+	width:100px;
+	height:100px;
+	margin-top:200px;
+	}
+
+#leftFrame{
+	/*float:left;*/
+	margin:0px 10px 10px 10px;
+	/*border:1px solid #0F3;*/
+	background-color:white;
+}
+
+#commentBtn{
+	position:relative;
+	float:left;
+	top:400px;
+	}
+#rightFrame{
+	background-image:url(../img/rightframe.png);
+    height: 600px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 400px;
+	}
+#headBackgroundImage{
+	background-image:url(../img/chairs.jpg);
+	height:200px;
+	width:400px;
+	//margin:0px 10px 0px 10px;
+	}
+#userNickName{
+	margin: 0 10px 10px 50px;
+	}
+.historyGroup{
+	border:1px dotted #FCF;
+	
+	}
+.historyEach{
+	border: 1px dotted #FFCCFF;
+    height: 50px;
+    padding: 20px 0;
+    width: 300px;
+	}
+.songImag{
+	width:40px;
+	height:40px;
+	background-image:url(../img/face2.jpg);
+	position:relative;
+	float:left;
+	}
+.singerAndName{
+	float: left;
+    height: 40px;
+    position: relative;
+    width: 220px;
+	}
+
+.ImageOperation{
+	width:40px;
+	height:40px;
+	position:relative;
+	float:left;
+	}
+	
+.ImageHateOperation{
+	background-image:url(../img/bin.png);
+	}
+.ImageLoveOperation{
+	background-image:url(../img/heart.png);
+	}
+
+#testButton{
+	border-top:100px;
+	margin: 100px;
+	}
+
+#footer{
+	/*border:1px solid #0F0;*/
+	}
+	
+#scheLabel{
+	height:40px;
+	}
+	
+#MusicPlayer{
+
+	}
+#audioCtl
+{
+	
+	width:200px;
+	height:20px;
+	}
+	
+#musicLove{
+	background-image:url(../img/playerIconsLove0.png);
+	float:left;
+	position:relative;
+	left:100px;
+	-moz-animation:myfirst 2s; /* Firefox */
+	-moz-animation-delay: 0.5s;
+	-moz-animation-iteration-count: infinite;
+	-moz-animation-direction: alternate;
+	}
+	
+#musicHate{
+	background-image:url(../img/playerIconsDelete0.png);
+	float:left;
+	position:relative;
+	left:200px;
+	animation:myfirst 5s;
+	-moz-animation:myfirst 4s; /* Firefox */
+	-moz-animation-delay: 1.2s;
+	-moz-animation-iteration-count: infinite;
+	/*-moz-animation-direction: alternate;*/
+	}
+	
+	
+	
+#musicCirPlay{
+	animation: 6s ease 2s alternate none infinite myfirst;
+    background-image: url("../img/playerIconsLoop0.png");
+    float: left;
+    left: 200px;
+    position: relative;
+	}
+	
+#musicChange{
+	background-image: url("../img/playerIconsCut0.png");
+    float: left;
+    left: 300px;
+    position: relative;
+	/*-moz-animation:myfirst 5s;  Firefox */
+	/*-moz-animation-delay: 2s;
+	-moz-animation-iteration-count: infinite;
+	-moz-animation-direction: alternate;*/
+	}
+	
+#MusicPlayer{
+	background-image:url(../img/cd_qlx.jpg);
+	float: left;
+    height: 250px;
+    left: 265px;
+    margin-top: 100px;
+	margin-bottom:50px;
+    position: relative;
+    width: 250px;
+	-moz-animation:mysecond 8s; /* Firefox */
+	/*-moz-animation-delay: 0s;*/
+	-moz-animation-iteration-count: infinite;
+	}
+#songName{
+	 float: left;
+    margin-bottom: 50px;
+    margin-left: 100px;
+    margin-top: 400px;
+    position: relative;
+	}
+	
+.actionImg{
+	position:relative;
+	float:left;
+	left:30px;
+	}
+#musicConBtn{
+	background-image:url(../img/playCtlPlay.png);
+	margin:100px;
+	width:50px;
+	height:50px;
+	}	
+#extendAndControl{
+	height:40px;
+	}	
+#extenfFunc{
+	float:left;
+	position:relative;
+	left:20px;
+	}	
+	
+#actionLabelForm{
+	background-image:url(../img/gnsBg.jpg);
+	height:50px;
+	width:1256px;
+	}
+
+#remindInfo{
+	position:relative;
+	float:left;
+	left:100px;
+	margin: 10px 200px;
+	}
+#control{
+	border:1px solid black;
+	float:right;
+	position:relative;
+	right:20px;
+	}	
+	
+	
+	
+	
+
+#logOut{
+	float:right;
+	position:relative;
+	right:20px;
+	}
+	
+#search{
+	float:left;
+	position:relative;
+	left:400px;
+	
+	}
+
+#setting{
+	float:right;
+	position:relative;
+	right:50px;
+	}
+
+.personalInfo{
+    padding: 0px 36px;
+	}
+	
+.showMenu{
+	width:300px;
+	height:30px;
+	}
+.showSecondMenu{
+	width:150px;
+	height:20px;
+	background-color::#6CF;
+	 margin: 5px 0 0 10px;
+	}
+#inputSentence{
+	width: 307px;
+    height: 27px;
+	}
+.menuForm{
+	}
+	
+#loveLabels{
+	border:1px thin black;
+	}
+.loveLabelEach{
+	background-image:url(../img/label.png);
+	height:30px;
+	width:60px;
+	/*border:1px solid black;*/
+	float:left;
+	margin: 10px;
+	}
+.labelText{
+	color:#333;
+	float:left;
+	}
+.labelRemove{
+	float:left;
+	position:relative;
+	right:5px;
+	top:5px;
+	}	
+.labelClick{
+	border:1px thin black;
+	width:50px;
+	height:20px;
+	position:relative;
+	float:left;
+	left:10px;
+	}
+	
+.saveOrcCanBtn{
+	margin: 0 10px;
+	}	
+	
+	
+#commentFrame{
+	background-image: url("../img/commentframe5.png");
+	/*border: 1px solid #0000FF;*/
+    height: 590px;
+    margin: 50px 400px;
+    padding: 10px 0;
+    /*top: 30px;*/
+    width: 500px;
+	position:relative;
+	}
+	
+	
+.commentDiv{
+	height:60px;
+	width:450px;
+	background-color:#FFFFFF;;
+	margin:10px 10px;
+	
+	}	
+#headComment{
+	height: 180px;
+	}
+
+#closeCommentBtn{
+	float: right;
+    position: relative;
+    right: 10px;
+	}
+#scoresAndTagsDiv{
+	/*border:1px solid black;*/
+	float: left;
+    height: 200px;
+    left: 20px;
+    position: relative;
+    right: 30px;
+    top: 20px;
+    width: 350px;
+	}
+#albumImg{
+	width:100px;
+	height:100px;
+	background-image:url(../img/head.jpg);
+	position:relative;
+	float:left;
+	}
+	
+#scoresAndTagsDiv{
+	background-image: url("../img/iron.png");
+	float: left;
+    height: 175px;
+    left: 40px;
+    position: relative;
+    width: 320px;
+	}	
+#scoreStars{
+	margin-top:50px;
+	height:50px;
+	}
+#tagGroups{
+	background-image: url("../img/white.png");
+	/*border:1px solid blue;*/
+	height: 130px;
+    width: 320px;
+	}
+.tagList{
+	/*background-image: url("../img/label.png");*/
+    /*border: 1px solid #FFFF00;*/
+	color: rgb(83, 64, 64);
+    float: left;
+    height: 30px;
+    margin: 20px 20px 0;
+    position: relative;
+    width: 60px;
+	}
+#commentTextArea{
+	height: 40px;
+    margin-left: 10px;
+    width: 449px;
+	}	
+	
+	@keyframes myfirst
+{
+0%   {background:red;}
+25%  {background:yellow;}
+50%  {background:blue;}
+100% {background:green;}
+}
+
+@-moz-keyframes myfirst /* Firefox */
+{
+0%   {-moz-transform:rotate(90deg);}
+25%  {-moz-transform:rotate(180deg);}
+50%  {-moz-transform:rotate(330deg);}
+100% {-moz-transform:rotate(360deg);}
+}
+@-moz-keyframes mysecond /* Firefox */
+{
+0.0%   {-moz-transform:rotate(0deg);}
+0.2777%   {-moz-transform:rotate(1deg);}
+0.5554%   {-moz-transform:rotate(2deg);}
+0.8331%   {-moz-transform:rotate(3deg);}
+1.1108%   {-moz-transform:rotate(4deg);}
+1.3885%   {-moz-transform:rotate(5deg);}
+1.6662%   {-moz-transform:rotate(6deg);}
+1.9439%   {-moz-transform:rotate(7deg);}
+2.2216%   {-moz-transform:rotate(8deg);}
+2.4993%   {-moz-transform:rotate(9deg);}
+2.777%   {-moz-transform:rotate(10deg);}
+3.0547%   {-moz-transform:rotate(11deg);}
+3.3324%   {-moz-transform:rotate(12deg);}
+3.6101%   {-moz-transform:rotate(13deg);}
+3.8878%   {-moz-transform:rotate(14deg);}
+4.1655%   {-moz-transform:rotate(15deg);}
+4.4432%   {-moz-transform:rotate(16deg);}
+4.7209%   {-moz-transform:rotate(17deg);}
+4.9986%   {-moz-transform:rotate(18deg);}
+5.2763%   {-moz-transform:rotate(19deg);}
+5.554%   {-moz-transform:rotate(20deg);}
+5.8317%   {-moz-transform:rotate(21deg);}
+6.1094%   {-moz-transform:rotate(22deg);}
+6.3871%   {-moz-transform:rotate(23deg);}
+6.6648%   {-moz-transform:rotate(24deg);}
+6.9425%   {-moz-transform:rotate(25deg);}
+7.2202%   {-moz-transform:rotate(26deg);}
+7.4979%   {-moz-transform:rotate(27deg);}
+7.7756%   {-moz-transform:rotate(28deg);}
+8.0533%   {-moz-transform:rotate(29deg);}
+8.331%   {-moz-transform:rotate(30deg);}
+8.6087%   {-moz-transform:rotate(31deg);}
+8.8864%   {-moz-transform:rotate(32deg);}
+9.1641%   {-moz-transform:rotate(33deg);}
+9.4418%   {-moz-transform:rotate(34deg);}
+9.7195%   {-moz-transform:rotate(35deg);}
+9.9972%   {-moz-transform:rotate(36deg);}
+10.2749%   {-moz-transform:rotate(37deg);}
+10.5526%   {-moz-transform:rotate(38deg);}
+10.8303%   {-moz-transform:rotate(39deg);}
+11.108%   {-moz-transform:rotate(40deg);}
+11.3857%   {-moz-transform:rotate(41deg);}
+11.6634%   {-moz-transform:rotate(42deg);}
+11.9411%   {-moz-transform:rotate(43deg);}
+12.2188%   {-moz-transform:rotate(44deg);}
+12.4965%   {-moz-transform:rotate(45deg);}
+12.7742%   {-moz-transform:rotate(46deg);}
+13.0519%   {-moz-transform:rotate(47deg);}
+13.3296%   {-moz-transform:rotate(48deg);}
+13.6073%   {-moz-transform:rotate(49deg);}
+13.885%   {-moz-transform:rotate(50deg);}
+14.1627%   {-moz-transform:rotate(51deg);}
+14.4404%   {-moz-transform:rotate(52deg);}
+14.7181%   {-moz-transform:rotate(53deg);}
+14.9958%   {-moz-transform:rotate(54deg);}
+15.2735%   {-moz-transform:rotate(55deg);}
+15.5512%   {-moz-transform:rotate(56deg);}
+15.8289%   {-moz-transform:rotate(57deg);}
+16.1066%   {-moz-transform:rotate(58deg);}
+16.3843%   {-moz-transform:rotate(59deg);}
+16.662%   {-moz-transform:rotate(60deg);}
+16.9397%   {-moz-transform:rotate(61deg);}
+17.2174%   {-moz-transform:rotate(62deg);}
+17.4951%   {-moz-transform:rotate(63deg);}
+17.7728%   {-moz-transform:rotate(64deg);}
+18.0505%   {-moz-transform:rotate(65deg);}
+18.3282%   {-moz-transform:rotate(66deg);}
+18.6059%   {-moz-transform:rotate(67deg);}
+18.8836%   {-moz-transform:rotate(68deg);}
+19.1613%   {-moz-transform:rotate(69deg);}
+19.439%   {-moz-transform:rotate(70deg);}
+19.7167%   {-moz-transform:rotate(71deg);}
+19.9944%   {-moz-transform:rotate(72deg);}
+20.2721%   {-moz-transform:rotate(73deg);}
+20.5498%   {-moz-transform:rotate(74deg);}
+20.8275%   {-moz-transform:rotate(75deg);}
+21.1052%   {-moz-transform:rotate(76deg);}
+21.3829%   {-moz-transform:rotate(77deg);}
+21.6606%   {-moz-transform:rotate(78deg);}
+21.9383%   {-moz-transform:rotate(79deg);}
+22.216%   {-moz-transform:rotate(80deg);}
+22.4937%   {-moz-transform:rotate(81deg);}
+22.7714%   {-moz-transform:rotate(82deg);}
+23.0491%   {-moz-transform:rotate(83deg);}
+23.3268%   {-moz-transform:rotate(84deg);}
+23.6045%   {-moz-transform:rotate(85deg);}
+23.8822%   {-moz-transform:rotate(86deg);}
+24.1599%   {-moz-transform:rotate(87deg);}
+24.4376%   {-moz-transform:rotate(88deg);}
+24.7153%   {-moz-transform:rotate(89deg);}
+24.993%   {-moz-transform:rotate(90deg);}
+25.2707%   {-moz-transform:rotate(91deg);}
+25.5484%   {-moz-transform:rotate(92deg);}
+25.8261%   {-moz-transform:rotate(93deg);}
+26.1038%   {-moz-transform:rotate(94deg);}
+26.3815%   {-moz-transform:rotate(95deg);}
+26.6592%   {-moz-transform:rotate(96deg);}
+26.9369%   {-moz-transform:rotate(97deg);}
+27.2146%   {-moz-transform:rotate(98deg);}
+27.4923%   {-moz-transform:rotate(99deg);}
+27.77%   {-moz-transform:rotate(100deg);}
+28.0477%   {-moz-transform:rotate(101deg);}
+28.3254%   {-moz-transform:rotate(102deg);}
+28.6031%   {-moz-transform:rotate(103deg);}
+28.8808%   {-moz-transform:rotate(104deg);}
+29.1585%   {-moz-transform:rotate(105deg);}
+29.4362%   {-moz-transform:rotate(106deg);}
+29.7139%   {-moz-transform:rotate(107deg);}
+29.9916%   {-moz-transform:rotate(108deg);}
+30.2693%   {-moz-transform:rotate(109deg);}
+30.547%   {-moz-transform:rotate(110deg);}
+30.8247%   {-moz-transform:rotate(111deg);}
+31.1024%   {-moz-transform:rotate(112deg);}
+31.3801%   {-moz-transform:rotate(113deg);}
+31.6578%   {-moz-transform:rotate(114deg);}
+31.9355%   {-moz-transform:rotate(115deg);}
+32.2132%   {-moz-transform:rotate(116deg);}
+32.4909%   {-moz-transform:rotate(117deg);}
+32.7686%   {-moz-transform:rotate(118deg);}
+33.0463%   {-moz-transform:rotate(119deg);}
+33.324%   {-moz-transform:rotate(120deg);}
+33.6017%   {-moz-transform:rotate(121deg);}
+33.8794%   {-moz-transform:rotate(122deg);}
+34.1571%   {-moz-transform:rotate(123deg);}
+34.4348%   {-moz-transform:rotate(124deg);}
+34.7125%   {-moz-transform:rotate(125deg);}
+34.9902%   {-moz-transform:rotate(126deg);}
+35.2679%   {-moz-transform:rotate(127deg);}
+35.5456%   {-moz-transform:rotate(128deg);}
+35.8233%   {-moz-transform:rotate(129deg);}
+36.101%   {-moz-transform:rotate(130deg);}
+36.3787%   {-moz-transform:rotate(131deg);}
+36.6564%   {-moz-transform:rotate(132deg);}
+36.9341%   {-moz-transform:rotate(133deg);}
+37.2118%   {-moz-transform:rotate(134deg);}
+37.4895%   {-moz-transform:rotate(135deg);}
+37.7672%   {-moz-transform:rotate(136deg);}
+38.0449%   {-moz-transform:rotate(137deg);}
+38.3226%   {-moz-transform:rotate(138deg);}
+38.6003%   {-moz-transform:rotate(139deg);}
+38.878%   {-moz-transform:rotate(140deg);}
+39.1557%   {-moz-transform:rotate(141deg);}
+39.4334%   {-moz-transform:rotate(142deg);}
+39.7111%   {-moz-transform:rotate(143deg);}
+39.9888%   {-moz-transform:rotate(144deg);}
+40.2665%   {-moz-transform:rotate(145deg);}
+40.5442%   {-moz-transform:rotate(146deg);}
+40.8219%   {-moz-transform:rotate(147deg);}
+41.0996%   {-moz-transform:rotate(148deg);}
+41.3773%   {-moz-transform:rotate(149deg);}
+41.655%   {-moz-transform:rotate(150deg);}
+41.9327%   {-moz-transform:rotate(151deg);}
+42.2104%   {-moz-transform:rotate(152deg);}
+42.4881%   {-moz-transform:rotate(153deg);}
+42.7658%   {-moz-transform:rotate(154deg);}
+43.0435%   {-moz-transform:rotate(155deg);}
+43.3212%   {-moz-transform:rotate(156deg);}
+43.5989%   {-moz-transform:rotate(157deg);}
+43.8766%   {-moz-transform:rotate(158deg);}
+44.1543%   {-moz-transform:rotate(159deg);}
+44.432%   {-moz-transform:rotate(160deg);}
+44.7097%   {-moz-transform:rotate(161deg);}
+44.9874%   {-moz-transform:rotate(162deg);}
+45.2651%   {-moz-transform:rotate(163deg);}
+45.5428%   {-moz-transform:rotate(164deg);}
+45.8205%   {-moz-transform:rotate(165deg);}
+46.0982%   {-moz-transform:rotate(166deg);}
+46.3759%   {-moz-transform:rotate(167deg);}
+46.6536%   {-moz-transform:rotate(168deg);}
+46.9313%   {-moz-transform:rotate(169deg);}
+47.209%   {-moz-transform:rotate(170deg);}
+47.4867%   {-moz-transform:rotate(171deg);}
+47.7644%   {-moz-transform:rotate(172deg);}
+48.0421%   {-moz-transform:rotate(173deg);}
+48.3198%   {-moz-transform:rotate(174deg);}
+48.5975%   {-moz-transform:rotate(175deg);}
+48.8752%   {-moz-transform:rotate(176deg);}
+49.1529%   {-moz-transform:rotate(177deg);}
+49.4306%   {-moz-transform:rotate(178deg);}
+49.7083%   {-moz-transform:rotate(179deg);}
+49.986%   {-moz-transform:rotate(180deg);}
+50.2637%   {-moz-transform:rotate(181deg);}
+50.5414%   {-moz-transform:rotate(182deg);}
+50.8191%   {-moz-transform:rotate(183deg);}
+51.0968%   {-moz-transform:rotate(184deg);}
+51.3745%   {-moz-transform:rotate(185deg);}
+51.6522%   {-moz-transform:rotate(186deg);}
+51.9299%   {-moz-transform:rotate(187deg);}
+52.2076%   {-moz-transform:rotate(188deg);}
+52.4853%   {-moz-transform:rotate(189deg);}
+52.763%   {-moz-transform:rotate(190deg);}
+53.0407%   {-moz-transform:rotate(191deg);}
+53.3184%   {-moz-transform:rotate(192deg);}
+53.5961%   {-moz-transform:rotate(193deg);}
+53.8738%   {-moz-transform:rotate(194deg);}
+54.1515%   {-moz-transform:rotate(195deg);}
+54.4292%   {-moz-transform:rotate(196deg);}
+54.7069%   {-moz-transform:rotate(197deg);}
+54.9846%   {-moz-transform:rotate(198deg);}
+55.2623%   {-moz-transform:rotate(199deg);}
+55.54%   {-moz-transform:rotate(200deg);}
+55.8177%   {-moz-transform:rotate(201deg);}
+56.0954%   {-moz-transform:rotate(202deg);}
+56.3731%   {-moz-transform:rotate(203deg);}
+56.6508%   {-moz-transform:rotate(204deg);}
+56.9285%   {-moz-transform:rotate(205deg);}
+57.2062%   {-moz-transform:rotate(206deg);}
+57.4839%   {-moz-transform:rotate(207deg);}
+57.7616%   {-moz-transform:rotate(208deg);}
+58.0393%   {-moz-transform:rotate(209deg);}
+58.317%   {-moz-transform:rotate(210deg);}
+58.5947%   {-moz-transform:rotate(211deg);}
+58.8724%   {-moz-transform:rotate(212deg);}
+59.1501%   {-moz-transform:rotate(213deg);}
+59.4278%   {-moz-transform:rotate(214deg);}
+59.7055%   {-moz-transform:rotate(215deg);}
+59.9832%   {-moz-transform:rotate(216deg);}
+60.2609%   {-moz-transform:rotate(217deg);}
+60.5386%   {-moz-transform:rotate(218deg);}
+60.8163%   {-moz-transform:rotate(219deg);}
+61.094%   {-moz-transform:rotate(220deg);}
+61.3717%   {-moz-transform:rotate(221deg);}
+61.6494%   {-moz-transform:rotate(222deg);}
+61.9271%   {-moz-transform:rotate(223deg);}
+62.2048%   {-moz-transform:rotate(224deg);}
+62.4825%   {-moz-transform:rotate(225deg);}
+62.7602%   {-moz-transform:rotate(226deg);}
+63.0379%   {-moz-transform:rotate(227deg);}
+63.3156%   {-moz-transform:rotate(228deg);}
+63.5933%   {-moz-transform:rotate(229deg);}
+63.871%   {-moz-transform:rotate(230deg);}
+64.1487%   {-moz-transform:rotate(231deg);}
+64.4264%   {-moz-transform:rotate(232deg);}
+64.7041%   {-moz-transform:rotate(233deg);}
+64.9818%   {-moz-transform:rotate(234deg);}
+65.2595%   {-moz-transform:rotate(235deg);}
+65.5372%   {-moz-transform:rotate(236deg);}
+65.8149%   {-moz-transform:rotate(237deg);}
+66.0926%   {-moz-transform:rotate(238deg);}
+66.3703%   {-moz-transform:rotate(239deg);}
+66.648%   {-moz-transform:rotate(240deg);}
+66.9257%   {-moz-transform:rotate(241deg);}
+67.2034%   {-moz-transform:rotate(242deg);}
+67.4811%   {-moz-transform:rotate(243deg);}
+67.7588%   {-moz-transform:rotate(244deg);}
+68.0365%   {-moz-transform:rotate(245deg);}
+68.3142%   {-moz-transform:rotate(246deg);}
+68.5919%   {-moz-transform:rotate(247deg);}
+68.8696%   {-moz-transform:rotate(248deg);}
+69.1473%   {-moz-transform:rotate(249deg);}
+69.425%   {-moz-transform:rotate(250deg);}
+69.7027%   {-moz-transform:rotate(251deg);}
+69.9804%   {-moz-transform:rotate(252deg);}
+70.2581%   {-moz-transform:rotate(253deg);}
+70.5358%   {-moz-transform:rotate(254deg);}
+70.8135%   {-moz-transform:rotate(255deg);}
+71.0912%   {-moz-transform:rotate(256deg);}
+71.3689%   {-moz-transform:rotate(257deg);}
+71.6466%   {-moz-transform:rotate(258deg);}
+71.9243%   {-moz-transform:rotate(259deg);}
+72.202%   {-moz-transform:rotate(260deg);}
+72.4797%   {-moz-transform:rotate(261deg);}
+72.7574%   {-moz-transform:rotate(262deg);}
+73.0351%   {-moz-transform:rotate(263deg);}
+73.3128%   {-moz-transform:rotate(264deg);}
+73.5905%   {-moz-transform:rotate(265deg);}
+73.8682%   {-moz-transform:rotate(266deg);}
+74.1459%   {-moz-transform:rotate(267deg);}
+74.4236%   {-moz-transform:rotate(268deg);}
+74.7013%   {-moz-transform:rotate(269deg);}
+74.979%   {-moz-transform:rotate(270deg);}
+75.2567%   {-moz-transform:rotate(271deg);}
+75.5344%   {-moz-transform:rotate(272deg);}
+75.8121%   {-moz-transform:rotate(273deg);}
+76.0898%   {-moz-transform:rotate(274deg);}
+76.3675%   {-moz-transform:rotate(275deg);}
+76.6452%   {-moz-transform:rotate(276deg);}
+76.9229%   {-moz-transform:rotate(277deg);}
+77.2006%   {-moz-transform:rotate(278deg);}
+77.4783%   {-moz-transform:rotate(279deg);}
+77.756%   {-moz-transform:rotate(280deg);}
+78.0337%   {-moz-transform:rotate(281deg);}
+78.3114%   {-moz-transform:rotate(282deg);}
+78.5891%   {-moz-transform:rotate(283deg);}
+78.8668%   {-moz-transform:rotate(284deg);}
+79.1445%   {-moz-transform:rotate(285deg);}
+79.4222%   {-moz-transform:rotate(286deg);}
+79.6999%   {-moz-transform:rotate(287deg);}
+79.9776%   {-moz-transform:rotate(288deg);}
+80.2553%   {-moz-transform:rotate(289deg);}
+80.533%   {-moz-transform:rotate(290deg);}
+80.8107%   {-moz-transform:rotate(291deg);}
+81.0884%   {-moz-transform:rotate(292deg);}
+81.3661%   {-moz-transform:rotate(293deg);}
+81.6438%   {-moz-transform:rotate(294deg);}
+81.9215%   {-moz-transform:rotate(295deg);}
+82.1992%   {-moz-transform:rotate(296deg);}
+82.4769%   {-moz-transform:rotate(297deg);}
+82.7546%   {-moz-transform:rotate(298deg);}
+83.0323%   {-moz-transform:rotate(299deg);}
+83.31%   {-moz-transform:rotate(300deg);}
+83.5877%   {-moz-transform:rotate(301deg);}
+83.8654%   {-moz-transform:rotate(302deg);}
+84.1431%   {-moz-transform:rotate(303deg);}
+84.4208%   {-moz-transform:rotate(304deg);}
+84.6985%   {-moz-transform:rotate(305deg);}
+84.9762%   {-moz-transform:rotate(306deg);}
+85.2539%   {-moz-transform:rotate(307deg);}
+85.5316%   {-moz-transform:rotate(308deg);}
+85.8093%   {-moz-transform:rotate(309deg);}
+86.087%   {-moz-transform:rotate(310deg);}
+86.3647%   {-moz-transform:rotate(311deg);}
+86.6424%   {-moz-transform:rotate(312deg);}
+86.9201%   {-moz-transform:rotate(313deg);}
+87.1978%   {-moz-transform:rotate(314deg);}
+87.4755%   {-moz-transform:rotate(315deg);}
+87.7532%   {-moz-transform:rotate(316deg);}
+88.0309%   {-moz-transform:rotate(317deg);}
+88.3086%   {-moz-transform:rotate(318deg);}
+88.5863%   {-moz-transform:rotate(319deg);}
+88.864%   {-moz-transform:rotate(320deg);}
+89.1417%   {-moz-transform:rotate(321deg);}
+89.4194%   {-moz-transform:rotate(322deg);}
+89.6971%   {-moz-transform:rotate(323deg);}
+89.9748%   {-moz-transform:rotate(324deg);}
+90.2525%   {-moz-transform:rotate(325deg);}
+90.5302%   {-moz-transform:rotate(326deg);}
+90.8079%   {-moz-transform:rotate(327deg);}
+91.0856%   {-moz-transform:rotate(328deg);}
+91.3633%   {-moz-transform:rotate(329deg);}
+91.641%   {-moz-transform:rotate(330deg);}
+91.9187%   {-moz-transform:rotate(331deg);}
+92.1964%   {-moz-transform:rotate(332deg);}
+92.4741%   {-moz-transform:rotate(333deg);}
+92.7518%   {-moz-transform:rotate(334deg);}
+93.0295%   {-moz-transform:rotate(335deg);}
+93.3072%   {-moz-transform:rotate(336deg);}
+93.5849%   {-moz-transform:rotate(337deg);}
+93.8626%   {-moz-transform:rotate(338deg);}
+94.1403%   {-moz-transform:rotate(339deg);}
+94.418%   {-moz-transform:rotate(340deg);}
+94.6957%   {-moz-transform:rotate(341deg);}
+94.9734%   {-moz-transform:rotate(342deg);}
+95.2511%   {-moz-transform:rotate(343deg);}
+95.5288%   {-moz-transform:rotate(344deg);}
+95.8065%   {-moz-transform:rotate(345deg);}
+96.0842%   {-moz-transform:rotate(346deg);}
+96.3619%   {-moz-transform:rotate(347deg);}
+96.6396%   {-moz-transform:rotate(348deg);}
+96.9173%   {-moz-transform:rotate(349deg);}
+97.195%   {-moz-transform:rotate(350deg);}
+97.4727%   {-moz-transform:rotate(351deg);}
+97.7504%   {-moz-transform:rotate(352deg);}
+98.0281%   {-moz-transform:rotate(353deg);}
+98.3158%   {-moz-transform:rotate(354deg);}
+98.5935%   {-moz-transform:rotate(355deg);}
+98.8712%   {-moz-transform:rotate(356deg);}
+99.1500%   {-moz-transform:rotate(357deg);}
+99.4300%   {-moz-transform:rotate(358deg);}
+99.7243%   {-moz-transform:rotate(359deg);}
+99.992%   {-moz-transform:rotate(360deg);}
+}
+
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+0%   {background:red;}
+25%  {background:yellow;}
+50%  {background:blue;}
+100% {background:green;}
+}
+
+@-o-keyframes myfirst /* Opera */
+{
+0%   {background:red;}
+25%  {background:yellow;}
+50%  {background:blue;}
+100% {background:green;}
+}
+
+
+/*search.html*/
+.labelImg{
+	/*background-image:url(../img/NocturneBadge.jpg);*/
+	/*background-image: url("../img/cute.jpg");*/
+    height: 80px;
+    width: 80px;
+	}
+	
+.labelEach{
+	width:100px;
+	height:100px;
+	position:relative;
+	float:left;
+	margin:50px;
+	}
+	
+.searchTag{
+	margin: 20px 10px;
+	}
+
+#changeTagDiv{
+	/*background-image:url(../img/commentframe4.png);*/
+	height: 30px;
+    margin-top: 10px;
+    position: relative;
+    /*border:1px solid blue;*/
+	
+	}
+#changTagLab{
+	 margin: 0 580px;
+	}
+
+#labelGroups{
+	height:400px;
+	margin: 30px 80px 0 130px;
+	}
+	
+	
+	
+	
+#searchTagFrame{
+	background-image:url(../img/blue.png);
+	width:1280px;
+	height:608px;
+	}
+	
+#labelImg0{
+	background-image:url(../img/ClassicalBadge.jpg);
+}
+
+#labelImg1{
+	background-image:url(../img/ClassicalGuitarBadge.jpg);
+}
+
+#labelImg2{
+	background-image:url(../img/ClassicalPeriodBadge.jpg);
+}
+
+#labelImg3{
+	background-image:url(../img/ECertBadge.jpg);
+}
+
+#labelImg4{
+	background-image:url(../img/SM2011122015wVj.jpg);
+}
+
+#labelImg5{
+	background-image:url(../img/FirmBadge.jpg);
+}
+
+#labelImg6{
+	background-image:url(../img/NocturneBadge.jpg);
+}
+
+#labelImg7{
+	background-image:url(../img/SM2011121810EfV.jpg);
+}
+
+#labelImg8{
+	background-image:url(../img/EmocoreBadge.jpg);
+}
+
+#labelBack{
+	background-image:url(../img/labelBack.png);
+}
