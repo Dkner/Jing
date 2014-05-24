@@ -1,6 +1,5 @@
 package com.data.vo;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,12 +17,14 @@ public class User implements java.io.Serializable {
 	private String sex;
 	private String signature;
 	private String mail;
-	private Date birth;
+	private String birth;
 	private Set tagrecords = new HashSet(0);
+	private Set comments = new HashSet(0);
 	private Set favors = new HashSet(0);
 	private Set usertags = new HashSet(0);
+	private Set notices = new HashSet(0);
+	private Set notices_1 = new HashSet(0);
 	private Set friendshipsForU2 = new HashSet(0);
-	private Set calls = new HashSet(0);
 	private Set friendshipsForU1 = new HashSet(0);
 	private Set assesses = new HashSet(0);
 
@@ -42,9 +43,9 @@ public class User implements java.io.Serializable {
 
 	/** full constructor */
 	public User(String userId, String name, String keyword, String sex,
-			String signature, String mail, Date birth, Set tagrecords,
-			Set favors, Set usertags, Set friendshipsForU2, Set calls,
-			Set friendshipsForU1, Set assesses) {
+			String signature, String mail, String birth, Set tagrecords,
+			Set comments, Set favors, Set usertags, Set notices, Set notices_1,
+			Set friendshipsForU2, Set friendshipsForU1, Set assesses) {
 		this.userId = userId;
 		this.name = name;
 		this.keyword = keyword;
@@ -53,10 +54,12 @@ public class User implements java.io.Serializable {
 		this.mail = mail;
 		this.birth = birth;
 		this.tagrecords = tagrecords;
+		this.comments = comments;
 		this.favors = favors;
 		this.usertags = usertags;
+		this.notices = notices;
+		this.notices_1 = notices_1;
 		this.friendshipsForU2 = friendshipsForU2;
-		this.calls = calls;
 		this.friendshipsForU1 = friendshipsForU1;
 		this.assesses = assesses;
 	}
@@ -111,11 +114,11 @@ public class User implements java.io.Serializable {
 		this.mail = mail;
 	}
 
-	public Date getBirth() {
+	public String getBirth() {
 		return this.birth;
 	}
 
-	public void setBirth(Date birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 
@@ -125,6 +128,14 @@ public class User implements java.io.Serializable {
 
 	public void setTagrecords(Set tagrecords) {
 		this.tagrecords = tagrecords;
+	}
+
+	public Set getComments() {
+		return this.comments;
+	}
+
+	public void setComments(Set comments) {
+		this.comments = comments;
 	}
 
 	public Set getFavors() {
@@ -143,20 +154,28 @@ public class User implements java.io.Serializable {
 		this.usertags = usertags;
 	}
 
+	public Set getNotices() {
+		return this.notices;
+	}
+
+	public void setNotices(Set notices) {
+		this.notices = notices;
+	}
+
+	public Set getNotices_1() {
+		return this.notices_1;
+	}
+
+	public void setNotices_1(Set notices_1) {
+		this.notices_1 = notices_1;
+	}
+
 	public Set getFriendshipsForU2() {
 		return this.friendshipsForU2;
 	}
 
 	public void setFriendshipsForU2(Set friendshipsForU2) {
 		this.friendshipsForU2 = friendshipsForU2;
-	}
-
-	public Set getCalls() {
-		return this.calls;
-	}
-
-	public void setCalls(Set calls) {
-		this.calls = calls;
 	}
 
 	public Set getFriendshipsForU1() {

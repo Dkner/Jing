@@ -1,18 +1,10 @@
 //三种搜索的ajax对象
 var search_XmlHttpRequest="";
 	
-function search(search_type){
-	
-		if(get('tagSearchInput').value == "刘青" || get('tagSearchInput').value == "liuqing" || get('tagSearchInput').value == "吴珂" || get('tagSearchInput').value == "wuke"
-			|| get('tagSearchInput').value == "陈安然" || get('tagSearchInput').value == "chenanran" )
-		{
-			surprise();
-			return;
-		}
-	
+function search(){
 		search_XmlHttpRequest=getXmlHttpObject();
 
-		//window.alert(search_type+"  in");
+		//window.alert("in");
 		//怎么判断创建ok
 		if(search_XmlHttpRequest){
 			//通过search_XmlHttpRequest对象发送请求到服务器的某个页面
@@ -26,7 +18,7 @@ function search(search_type){
 			
 			
 			
-			var data =  search_type+"="+get('tagSearchInput').value;					
+			var data =  "input="+get('tagSearchInput').value;					
 			var url="/Jing/jing_servlet";
 			//var data =  "fct=tag&"+search_type+"="+get('tagSearchInput').value;		
 			//var url="/Jing/MusicServiceServlet";
@@ -76,14 +68,8 @@ function search(search_type){
 				
 				alert(get('player').src);
 				
-				//test
-				//get('MusicPlayer').style.backgroundImage.src = "url("+mes_obj[0].coverimg+")";
 				
-				
-				
-				
-				
-				
+				 document.getElementById('player').play();
 				
 				if(mes_obj[0].path != "")
 					get('remindInfo').text = "找到咯";

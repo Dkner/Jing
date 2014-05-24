@@ -36,7 +36,7 @@ public class LoginHandler {
 			list.set_userid(user_id);
 
 			List usertaglist = factory.get_usertagProcess(user_id);
-			List lovesonglist = factory.GetLoveSongListProcess(user_id);
+			//List lovesonglist = factory.GetLoveSongListProcess(user_id);
 			
 			//cookie
 			Cookie namecookie = new Cookie("username", username);
@@ -48,7 +48,7 @@ public class LoginHandler {
 			HttpSession hs = request.getSession(true);
 			hs.setAttribute("username", username);
 			hs.setAttribute("usertag", usertaglist);
-			hs.setAttribute("lovesonglist", lovesonglist);
+			//hs.setAttribute("lovesonglist", lovesonglist);
 			//response.sendRedirect("/Jing/MainView.jsp");
 			out.print("correct");
 			out.flush();

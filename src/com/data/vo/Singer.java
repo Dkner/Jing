@@ -1,6 +1,5 @@
 package com.data.vo;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +13,7 @@ public class Singer implements java.io.Serializable {
 
 	private Integer singerId;
 	private String name;
-	private Date birth;
+	private String birth;
 	private String nationality;
 	private String briefing;
 	private Set favors = new HashSet(0);
@@ -34,8 +33,8 @@ public class Singer implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Singer(String name, Date birth, String nationality, String briefing,
-			Set favors, Set albums, Set songs, Set singerlabels) {
+	public Singer(String name, String birth, String nationality,
+			String briefing, Set favors, Set albums, Set songs, Set singerlabels) {
 		this.name = name;
 		this.birth = birth;
 		this.nationality = nationality;
@@ -64,11 +63,11 @@ public class Singer implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public Date getBirth() {
+	public String getBirth() {
 		return this.birth;
 	}
 
-	public void setBirth(Date birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 

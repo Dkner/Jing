@@ -68,12 +68,15 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 			Assess assess = (Assess)i.next();	
 			result = assess.getLoveorhate();
 			//System.out.println(result);
-			if(result != null && result.equals("1"))
+			if(result != null && result.equals("love"))
 			{
 				lovesonglist.add(assess.getSong());
 			}
 		} 
+		
 		this.printsong_byname(lovesonglist);
+		this.importUrl(lovesonglist);
+		
 		return lovesonglist;
 	}
 	
@@ -104,8 +107,8 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		System.out.println(labelstring);
 		//
 		//lp.set_words(labelstring);
-		return lp.find_songlist_by_words(labelstring, 1);
-		
+		//return lp.find_songlist_by_words(labelstring, 1);
+		return lp.find_songlist_by_input(labelstring, new Filter(4));
 	}
 	
 	/**
@@ -147,7 +150,7 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		if(templist.size() == 0)
 		{
 			System.out.println("该用户未设置标签");
-			return templist;
+			return null;
 		}
 		for (Iterator i = templist.iterator(); i.hasNext();){ 
 			counter++;
@@ -162,8 +165,7 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		System.out.println("随机的标签： "+labelstring);
 		//
 		//lp.set_words(labelstring);
-		Filter filter = new Filter();
-		return lp.find_songlist_by_input(labelstring, filter);
+		return lp.find_songlist_by_input(labelstring, new Filter(4));
 	}
 	
 	/**
@@ -183,8 +185,7 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		}
 		
 		//
-		Filter filter = new Filter();
-		filter.setFilterType(1);
+		Filter filter = new Filter(1);
 		List filterlist = new ArrayList();
 		filterlist.add(song.getId());
 		filter.setFilterCondition(filterlist);
@@ -238,7 +239,8 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 			singerid_chosen = tempsinger_idlist.get(index);
 		//
 		System.out.println("相似歌手："+sid.findById(singerid_chosen).getName());
-		return lp.find_songlist_by_singer(sid.findById(singerid_chosen).getName());
+		//return lp.find_songlist_by_singer(sid.findById(singerid_chosen).getName());
+		return lp.find_songlist_by_input(sid.findById(singerid_chosen).getName(), new Filter(4));
 	}
 	
 	/**
@@ -249,7 +251,7 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 	public final List RecommendSinger_BySong(Song song){
 		
 		Singer singer = song.getSinger();
-		return lp.find_songlist_by_singer(singer.getName());
+		return lp.find_songlist_by_input(song.getSinger().getName(), new Filter(4));
 	}
 	
 	
@@ -363,6 +365,11 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 	public String getSongUrlByName(String songname) {
 		// TODO Auto-generated method stub
 		return this.parser.getSongUrl(songname);
+	}
+
+	public void importUrl(List result) {
+		// TODO Auto-generated method stub
+		this.parser.importUrl(result);
 	}
 }
  

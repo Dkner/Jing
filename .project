@@ -52,6 +52,7 @@
 		</buildCommand>
 	</buildSpec>
 	<natures>
+		<nature>com.genuitec.eclipse.ws.restnature</nature>
 		<nature>com.genuitec.eclipse.ast.deploy.core.deploymentnature</nature>
 		<nature>com.genuitec.eclipse.hibernate.hibernatenature</nature>
 		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>

@@ -89,7 +89,7 @@ public class DJ implements UserInterface{
 	   * @return boolean 找到与否
 	   */
 	public final boolean InputSearchingProcess(String input, CurrentList list){
-		List result = searchservice.find_songlist_by_input(input, new Filter());
+		List result = searchservice.find_songlist_by_input(input, new Filter(4));
 		if(result.size() == 0)
 			return false;
 		

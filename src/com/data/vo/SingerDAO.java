@@ -1,7 +1,6 @@
 package com.data.vo;
 
 import com.connection.dao.BaseHibernateDAO;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import org.hibernate.LockMode;
@@ -26,6 +25,7 @@ public class SingerDAO extends BaseHibernateDAO {
 	private static final Logger log = LoggerFactory.getLogger(SingerDAO.class);
 	// property constants
 	public static final String NAME = "name";
+	public static final String BIRTH = "birth";
 	public static final String NATIONALITY = "nationality";
 	public static final String BRIEFING = "briefing";
 
@@ -94,6 +94,10 @@ public class SingerDAO extends BaseHibernateDAO {
 
 	public List findByName(Object name) {
 		return findByProperty(NAME, name);
+	}
+
+	public List findByBirth(Object birth) {
+		return findByProperty(BIRTH, birth);
 	}
 
 	public List findByNationality(Object nationality) {

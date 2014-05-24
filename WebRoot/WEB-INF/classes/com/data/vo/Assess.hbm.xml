@@ -25,8 +25,8 @@
         <property name="level" type="java.lang.String">
             <column name="level" length="10" />
         </property>
-        <property name="time" type="java.util.Date">
-            <column name="time" length="10" />
+        <property name="time" type="java.lang.String">
+            <column name="time" length="30" />
         </property>
     </class>
 </hibernate-mapping>

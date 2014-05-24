@@ -1,7 +1,5 @@
 package com.data.vo;
 
-import java.util.Date;
-
 /**
  * Assess entity. @author MyEclipse Persistence Tools
  */
@@ -16,7 +14,7 @@ public class Assess implements java.io.Serializable {
 	private String loveorhate;
 	private String comment;
 	private String level;
-	private Date time;
+	private String time;
 
 	// Constructors
 
@@ -32,7 +30,7 @@ public class Assess implements java.io.Serializable {
 
 	/** full constructor */
 	public Assess(User user, Song song, String loveorhate, String comment,
-			String level, Date time) {
+			String level, String time) {
 		this.user = user;
 		this.song = song;
 		this.loveorhate = loveorhate;
@@ -91,11 +89,11 @@ public class Assess implements java.io.Serializable {
 		this.level = level;
 	}
 
-	public Date getTime() {
+	public String getTime() {
 		return this.time;
 	}
 
-	public void setTime(Date time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 

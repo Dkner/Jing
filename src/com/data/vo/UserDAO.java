@@ -1,7 +1,6 @@
 package com.data.vo;
 
 import com.connection.dao.BaseHibernateDAO;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import org.hibernate.LockMode;
@@ -30,6 +29,7 @@ public class UserDAO extends BaseHibernateDAO {
 	public static final String SEX = "sex";
 	public static final String SIGNATURE = "signature";
 	public static final String MAIL = "mail";
+	public static final String BIRTH = "birth";
 
 	public void save(User transientInstance) {
 		log.debug("saving User instance");
@@ -111,6 +111,10 @@ public class UserDAO extends BaseHibernateDAO {
 
 	public List findByMail(Object mail) {
 		return findByProperty(MAIL, mail);
+	}
+
+	public List findByBirth(Object birth) {
+		return findByProperty(BIRTH, birth);
 	}
 
 	public List findAll() {

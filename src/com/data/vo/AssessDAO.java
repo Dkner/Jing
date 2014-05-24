@@ -1,7 +1,6 @@
 package com.data.vo;
 
 import com.connection.dao.BaseHibernateDAO;
-import java.util.Date;
 import java.util.List;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
@@ -27,6 +26,7 @@ public class AssessDAO extends BaseHibernateDAO {
 	public static final String LOVEORHATE = "loveorhate";
 	public static final String COMMENT = "comment";
 	public static final String LEVEL = "level";
+	public static final String TIME = "time";
 
 	public void save(Assess transientInstance) {
 		log.debug("saving Assess instance");
@@ -101,6 +101,10 @@ public class AssessDAO extends BaseHibernateDAO {
 
 	public List findByLevel(Object level) {
 		return findByProperty(LEVEL, level);
+	}
+
+	public List findByTime(Object time) {
+		return findByProperty(TIME, time);
 	}
 
 	public List findAll() {

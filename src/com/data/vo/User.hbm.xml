@@ -25,14 +25,20 @@
         <property name="mail" type="java.lang.String">
             <column name="mail" length="30" not-null="true" />
         </property>
-        <property name="birth" type="java.util.Date">
-            <column name="birth" length="10" />
+        <property name="birth" type="java.lang.String">
+            <column name="birth" length="0" />
         </property>
         <set name="tagrecords" inverse="true">
             <key>
                 <column name="user_id" length="20" not-null="true" />
             </key>
             <one-to-many class="com.data.vo.Tagrecord" />
+        </set>
+        <set name="comments" inverse="true">
+            <key>
+                <column name="user_id" length="20" not-null="true" />
+            </key>
+            <one-to-many class="com.data.vo.Comment" />
         </set>
         <set name="favors" inverse="true">
             <key>
@@ -46,17 +52,25 @@
             </key>
             <one-to-many class="com.data.vo.Usertag" />
         </set>
+        <set name="notices" inverse="true">
+            <key>
+                <column name="user_id" length="20" not-null="true" />
+            </key>
+            <one-to-many class="com.data.vo.Notice" />
+        </set>
+        <set name="notices_1" table="call" catalog="jing">
+            <key>
+                <column name="user_called" length="20" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.data.vo.Notice">
+                <column name="notice_id" not-null="true" />
+            </many-to-many>
+        </set>
         <set name="friendshipsForU2" inverse="true">
             <key>
                 <column name="u2" length="20" not-null="true" />
             </key>
             <one-to-many class="com.data.vo.Friendship" />
-        </set>
-        <set name="calls" inverse="true">
-            <key>
-                <column name="user_id" length="20" not-null="true" />
-            </key>
-            <one-to-many class="com.data.vo.Call" />
         </set>
         <set name="friendshipsForU1" inverse="true">
             <key>

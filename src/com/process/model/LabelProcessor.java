@@ -109,7 +109,7 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 		
 		
 		//
-        this.importUrl(temp);
+        //this.importUrl(temp);
 		return temp;
 	}
 	
@@ -131,7 +131,7 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 		
 		
 		//
-        this.importUrl(temp);
+        //this.importUrl(temp);
 		return temp;
 	}
 	
@@ -157,7 +157,7 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 		
 		
 		//
-        this.importUrl(temp);
+        //this.importUrl(temp);
 		return temp;
 	}
 	
@@ -179,7 +179,7 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 		
 		
 		//
-        this.importUrl(temp);
+        //this.importUrl(temp);
 		return temp;
 	}
 	
@@ -265,7 +265,9 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 		
 		//
 		int match_degree = 1;
-		match_degree = (1+condition_counter)/2;		
+		match_degree = condition_counter/2 + 1;		
+		if(condition_counter>5)
+			match_degree = 3;
 		System.out.println(condition_counter+"match"+match_degree);
 		//依次判断是否为songname/album/singer/label
 		for(int i=0; i<this.condition_counter; i++)
@@ -343,21 +345,7 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 	
 	//使用API导入歌曲的url
 	public void importUrl(List result){
-		SongDAO sd = new SongDAO();
-		Session session = HibernateSessionFactory.getSession();
-		Transaction tst = session.beginTransaction();	
-		
-		for(int i=0; i<result.size(); i++)
-		{		
-			String currentpath = this.getSongUrlByName(((Song)result.get(i)).getName());
-			Song tempsong = new Song();
-			tempsong.setId(((Song)result.get(i)).getId());
-			tempsong.setPath(currentpath);
-			sd.save(tempsong);
-		}
-		
-		tst.commit();
-		session.close();
+		this.parser.importUrl(result);
 	}
 	
 	public CONDITIONTYPE checkInputType(String condition){

@@ -50,34 +50,6 @@ public class jing_servlet extends HttpServlet {
 		response.setStatus(HttpServletResponse.SC_OK);
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("utf-8");
-		//
-		//login
-				if (request.getParameter("username") != null
-						&& request.getParameter("password") != null) {
-					String username = request.getParameter("username");
-					String password = request.getParameter("password");
-					System.out.println(username + " " + password);
-					UserDAO identify = new UserDAO();
-					// 用邮箱登录，验证
-					@SuppressWarnings("rawtypes")
-					List temp = identify.findByMail(username);
-
-					if (temp.size() > 0
-							&& ((User) temp.get(0)).getKeyword().equals(password)) {
-						System.out.println("验证成功");
-						list.set_userid(((User) temp.get(0)).getUserId());
-
-						// session
-						System.out.println("写入session");
-						HttpSession hs = request.getSession(true);
-						hs.setAttribute("username", username);
-						response.sendRedirect("/Jing/test_jsp/TestJsp.jsp");
-					} else {
-						System.out.println("验证错误");
-						response.sendRedirect("/Jing/test_jsp/Login.jsp");
-					}
-
-				}
 		
 		//exit
 		if(request.getParameter("exit") != null)
@@ -239,7 +211,9 @@ public class jing_servlet extends HttpServlet {
 		
 		//
 		if(request.getParameter("input") != null)
-    	{   
+    	{  
+			String input = request.getParameter("input");
+			System.out.println("服务器收到："+input);
 			searchhandler.SearchInput(request, out, list, factory);
     	}
 		

@@ -61,7 +61,7 @@ public class AssessProcessor implements AssessService {
 			//
 			Session session = HibernateSessionFactory.getSession();
 			Transaction tst = session.beginTransaction();
-			Assess newassess = new Assess(tempuser,tempsong,null,null,level,date);
+			Assess newassess = new Assess(tempuser,tempsong,null,null,level,date.toLocaleString());
 			ad.save(newassess);
 			tst.commit();
 			session.close();
@@ -98,7 +98,7 @@ public class AssessProcessor implements AssessService {
 		//
 		Session session = HibernateSessionFactory.getSession();
 		Transaction tst = session.beginTransaction();
-		Assess newassess = new Assess(tempuser,tempsong,null,comment,null,date);
+		Assess newassess = new Assess(tempuser,tempsong,null,comment,null,date.toLocaleString());
 		ad.save(newassess);
 		tst.commit();
 		session.close();
@@ -121,7 +121,7 @@ public class AssessProcessor implements AssessService {
 				System.out.println("已标记");
 				Session session = HibernateSessionFactory.getSession();
 				Transaction tst = session.beginTransaction();
-				assess.setLoveorhate("1");
+				assess.setLoveorhate("love");
 				tst.commit();
 				session.close();
 				return;
@@ -134,8 +134,8 @@ public class AssessProcessor implements AssessService {
 		//
 		Session session = HibernateSessionFactory.getSession();
 		Transaction tst = session.beginTransaction();
-		Assess newassess = new Assess(tempuser,tempsong,"1",null,null,date);
-		ad.save(newassess);
+		Assess newassess = new Assess(tempuser,tempsong,"love",null,null,date.toLocaleString());
+		session.saveOrUpdate(newassess);
 		tst.commit();
 		session.close();
 	}
@@ -157,7 +157,7 @@ public class AssessProcessor implements AssessService {
 				System.out.println("以标记");
 				Session session = HibernateSessionFactory.getSession();
 				Transaction tst = session.beginTransaction();
-				assess.setLoveorhate("-1");
+				assess.setLoveorhate("hate");
 				tst.commit();
 				session.close();
 				return;
@@ -170,7 +170,7 @@ public class AssessProcessor implements AssessService {
 		//
 		Session session = HibernateSessionFactory.getSession();
 		Transaction tst = session.beginTransaction();
-		Assess newassess = new Assess(tempuser,tempsong,"-1",null,null,date);
+		Assess newassess = new Assess(tempuser,tempsong,"hate",null,null,date.toLocaleString());
 		ad.save(newassess);
 		tst.commit();
 		session.close();

@@ -4,13 +4,14 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!doctype html>
 <html>
   <head>
+  	<base href="<%=basePath%>">
+  	
   	<title>JING 你的音乐网站</title>
-    <base href="<%=basePath%>">
     
-    <title>My JSP 'TestJsp.jsp' starting page</title>
+    <title>我的音乐</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 
@@ -43,7 +44,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	
   	$(document).ready(function()
 		{
-			$("#test").click(test);
 			$("#dLabel").dropdown();
 			$("#adLabel").dropdown();
 			$("#settiBtn").click(function(){
@@ -67,6 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$("#dLabel").text(this.text);
 				});
 			$("#randomBtn").click(look);
+			$("#search_btn").click(search);
 			//$(".labelRemove").click(delete_tag(this));
 			
 		});
@@ -86,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		//需要初始化的内容
 		function init()
 		{
-			var player = new musicplayer("");
+			//var player = new musicplayer("");
 			//
 			//alert("cookie中的登陸名："+getCookie('username'));
 			var username=getCookie('username');
@@ -94,58 +95,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			//get('userNickName').text = username;
 			get('remindInfo').text = "欢迎您: "+username+"，           圣诞节快乐！！！";
 		}
-		
-		function presearch(){
-			var searchtype = $.trim($("#dLabel").text());
-			//var searchcontent = $("#tagSearchInput").text();
-			//$("#remindInfo").text = "正在为您搜索: "+searchcontent;
-			if(searchtype == "搜歌曲")
-			{
-				//alert(1);
-				search('name');
-			}
-			if(searchtype == "搜专辑")
-			{
-				search('album');
-			}
-			if(searchtype == "搜标签")
-			{
-				search('tag');
-			}
-		}
-		
-		
-		function test(){
-			window.alert("test");
-		}
-	
-	
-	
+
 		function exit(){
 			//window.alert("exit");
 			window.location.href = "/Jing/jing_servlet?exit=true";
 			
 		}
 
+		function test(){
+			alert("test");
+		}
 		
 </script>
   
-  
-  
-
-<body>
 	<% 
-	request.setCharacterEncoding("UTF-8");
-  	%>
-  
- 	<%
+		request.setCharacterEncoding("UTF-8");
+  	
   		HttpSession hs = request.getSession(true);
   		if(hs.getAttribute("username") == null)
     	{   		
     		response.sendRedirect("/Jing/Login.jsp");
     		return;
     	}    	
-    %>
+    %>  
+  
+
+<body>
 
  	<div>
  	<!-- 标签提示浮窗 -->
@@ -195,9 +170,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       
       <!-- 音乐播放器嵌入 -->
                <div id="control">
-				<!-- 
-  					<audio id="player" src="song/Brenda Lee - Jingle Bell.ogg" controls="controls" autoplay="autoplay"></audio>
-  				 -->	 
+				
+  					<audio id="player" controls="controls" autoplay="autoplay"></audio>
+  				 	 
                </div>
             </div>
             <!--  -->
@@ -217,13 +192,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     				
   						</button>
   						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-   							<li><a class="searchLa" tabindex="-1" >搜歌曲</a></li>
-       						<li><a class="searchLa" tabindex="-1" >搜专辑</a></li>
-      				    	<li><a class="searchLa" tabindex="-1" >搜标签</a></li>
+   							<li><a class="searchLa" tabindex="-1" >搜歌曲</a></li>      						
                    	    </ul>
 					</div>
   				  	<input class="span4" id="tagSearchInput" type="text" placeholder="歌名,专辑,情绪,状态,风格...(用/隔开)" onfocus="firstmatch()" onkeyup="match()"></input>
-                    <button class="btn" data-placement="right" data-toggle="tooltip" title="搜索" onclick="presearch()"><i class="icon-search"></i></button>
+                    <button id="search_btn" class="btn" data-placement="right" data-toggle="tooltip" title="搜索"><i class="icon-search"></i></button>
 				  </div>
                 </div>
              

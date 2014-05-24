@@ -36,9 +36,5 @@ function videoplayer(src){
 	//
 	this.parentdiv=document.getElementById("videodiv");
 	this.parentdiv.appendChild(this.UI);
-	//
-	//this.UI.addEventListener("ended",function(){
-	//		gonext();
-	//});
 	
 }
