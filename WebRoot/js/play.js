@@ -1,4 +1,11 @@
 
+function showComment()
+{
+	$("#commentFrameDiv").show().animate({"top":"-635px"},"500");
+	comment_score(4);
+	//alert("score");
+}
+
 
 function test()
 {
@@ -69,18 +76,11 @@ function cirPlayMusic()
 	
 	loop();
 }
-function showComment()
-{
-	$("#commentFrame").show().animate({"top":"-620px"},"500");
-	$("#closeCommentBtn").show();
-}
+
 function hideComment()
 {
-	//alert("1");
-	$("#commentFrame").hide("slow").css("top","50px");
-	$("#closeCommentBtn").hide();
-	//alert("1");
-	}
+	$("#commentFrameDiv").animate({top:'+=635px'}).hide("slow");
+}
 
 function randomPlay()
 {
@@ -109,7 +109,7 @@ function playOrStop()
 	{
 		$("#musicConBtn").css("background-image","url(./img/playCtlPause.png)");
 		$("#MusicPlayer").css("animation-play-state","paused");
-		
+		$("#MusicPlayer").css("-webkit-animation-play-state","paused");
 		judgeMusicState = false;
 		pause();
 	}
@@ -117,6 +117,7 @@ function playOrStop()
 	{
 		$("#musicConBtn").css("background-image","url(./img/playCtlPlay.png)");
 		$("#MusicPlayer").css("animation-play-state","running");
+		$("#MusicPlayer").css("-webkit-animation-play-state","running");
 		//alert($("#audioCtl").played);
 		//$("#audioCtl").play();
 		judgeMusicState = true;

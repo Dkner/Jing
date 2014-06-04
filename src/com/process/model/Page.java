@@ -8,20 +8,10 @@ import com.data.vo.*;
 
 public class Page {
 	
-	public static int pagesize = 3;
-	public int pagenow;
-	public int pagecount;
-	public int allcount;
-	public String songname = "";
-	public int level = 0;
-	
-	//DAO
-	@SuppressWarnings("rawtypes")
-	private List pagelist = null;
-	private List taglist = null;
-	public Song song;
-	private AssessDAO ad = null;
-	private SongDAO sd = null;
+	private int pagesize;
+	private int pagenow;
+	private int pagecount;
+	private int allcount;
 	
 	
 	public Page()
@@ -29,39 +19,9 @@ public class Page {
 		
 	}
 	
-	public Page(String songname)
-	{
-		this.songname = songname;
-
-		init();
-	}
-	
 	@SuppressWarnings("unchecked")
 	void init()
 	{
-		sd = new SongDAO();
-		ad = new AssessDAO();
-		pagelist = new ArrayList();
-		taglist = new ArrayList();
-		//
-		@SuppressWarnings("rawtypes")
-		List temp = sd.findByName(songname);
-		this.song = (Song)(temp.get(0));
-		taglist.addAll(this.song.getTags());
-		
-		List set = new ArrayList(); 
-		set.addAll(this.song.getAssesses());
-		allcount =  set.size();	
-		for(int k=0; k<allcount; k++)
-		{
-			String templevel = ((Assess)(set.get(k))).getLevel();
-			if(templevel != null)
-			{
-				this.level += Integer.parseInt(templevel);
-			}
-		}
-		if(allcount != 0)
-			this.level = this.level/allcount;
 		
 		
 		if(allcount%pagesize != 0)
@@ -98,74 +58,48 @@ public class Page {
 	   * @param 
 	   * @return
 	   */
-	public final boolean set_pagenow(int n)
+	public final void set_pagenow(int n)
 	{
-		if(n>0 && n<=pagecount)
-		{
-			pagenow = n;
-			set_pagelist();
-			return true;
-		}
-		else
-			return false;
+		pagenow = n;
 	}
 	
-	/**
-	   * function 设置当前歌曲的分页评论
-	   * @param 
-	   * @return
-	   */
-	@SuppressWarnings("unchecked")
-	private final void set_pagelist()
-	{	
-		List temp = new ArrayList();
-		temp.addAll(this.song.getAssesses());
-		
-		if(temp.size() <= (pagenow-1)*pagesize)
+	public final void set_pagesize(int n)
+	{
+		this.pagesize = n;
+	}
+	
+	public final void set_allcount(int n)
+	{
+		this.allcount = n;
+	}
+	
+	public final void set_pagecount()
+	{
+		if(pagesize == 0)
 			return;
-		else
-		{
-			//System.out.println("temp: "+temp.size());
-			this.pagelist.clear();
-			for(int j=(pagenow-1)*pagesize; j<(pagenow-1)*pagesize+pagesize && j<temp.size(); j++)
-			{
-				this.pagelist.add(temp.get(j));
-			}
-		}
-		
-		this.print();
+		if(allcount%pagesize != 0)
+    		pagecount = allcount/pagesize + 1;
+    	else
+    		pagecount = allcount/pagesize;
 	}
 	
-	/**
-	   * function 得到当前歌曲的分页评论评分记录
-	   * @param 
-	   * @return List 分页的评论
-	   */
-	public final List get_pagelist()
+	public final int get_pagenow()
 	{
-		return this.pagelist;
+		return this.pagenow;
 	}
 	
-	/**
-	   * function 得到当前歌曲的标签列表
-	   * @param 
-	   * @return List label
-	   */
-	public final List get_taglist()
+	public final int get_pagesize()
 	{
-		return this.taglist;
+		return this.pagesize;
 	}
 	
-	//后台评论情况输出
-	public void print()
+	public final int get_pagecount()
 	{
-		System.out.println("当前歌曲的评论数: "+this.allcount);
-		System.out.println("当前歌曲: "+this.songname);
-		System.out.println("当前歌曲的标签个数: "+this.taglist.size());
-		for(int i=0; i<this.taglist.size(); i++)
-			System.out.println("标签: "+((Tag)(this.taglist.get(i))).getLabel() );
-		for(int i=0; i<this.pagelist.size(); i++)
-			System.out.println("评论: "+((Assess)(this.pagelist.get(i))).getComment() );
+		return this.pagecount;
+	}
+	
+	public void print_page(){
+		System.out.println("pagenow:"+this.pagenow+"\npagecount:"+this.pagecount+"\npagesize:"+this.pagesize);
 	}
 	
 }

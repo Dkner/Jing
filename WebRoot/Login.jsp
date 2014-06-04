@@ -41,6 +41,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		{
   			$("#loginBtn").click(showLogFrame);
   			$("#regisBtn").click(showRegFrame);
+  			$("#LoginPassword").keydown(function(){
+  				//alert("1");
+				switch(window.event.keyCode){
+				//ENTER
+					case 13:
+					{
+						//alert("2");
+						login();
+						break;
+					}
+					default:
+						break;
+				}
+			});
+  			$("#RegisPassword").keydown(function(){
+				switch(window.event.keyCode){
+				//ENTER
+					case 13:
+					{
+						register();
+						break;
+					}
+					default:
+						break;					
+				}
+			});
+  			
 		});
 			
   
@@ -101,6 +128,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	
   	function login(){	
+  		//alert("3");
   		var data;
 		//跳转到servlet验证	
   		//window.location.href='/Jing/jing_servlet?'+data;		
@@ -116,6 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	
 	function login_callback(){		
+		//alert("4");
 		if(login_XmlHttpRequest.readyState==4){
 			
 			var res = "";
@@ -141,8 +170,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   
   
-  <body>
-  <%
+  
+  	
+  
+ <body>
+ 
+      <%
 		String name = "";
 		String password = "";
   		
@@ -154,74 +187,116 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		}
   		
    %>
-    <!--  <div class="header">Welcome to the jing</div>-->
-    <div id="login_page">
+  	
+ <div id="login_page">
  		<div id="mainFrame" class="myrow">
  			<div id="theisName">
- 				<div class="span4 offset1">
- 					 <img src="./img/jing3.png" /></img>
+ 				<div class="span4 offset6">
+ 				
  				</div>
  			</div>
  			
  			
- 			<div  id="forms" class="row">
- 			<div id="loginDiv" class=" span4 offset3  layoutForm hide" >
- 				<p><strong>欢迎登入</strong></p>
- 			 	<form id="loginForm" class="form-horizontal" action="">
- 			 		<div class="input-prepend">
- 						 <span class="add-on">Email&nbsp;&nbsp;</span>
-  						 <input class="span2" id="LoginEmail" type="text">
-					</div>
-					<div><br></div>
-					<div class="input-prepend">
-						 <span class="add-on">Password</span>
-  						 <input class="span2" id="LoginPassword" type="password">
-  			        </div>
-  			        <div><br></div>
-                    <div class="span2 offset1">
-						<button id="" class="btn btn-info" type="button" onclick="login();">登入</button>
-					</div>
- 			 	</form>	
- 			</div>
+ 		<div  id="forms" class="row">
+ 			<div id="loginDiv" class=" span4 offset3 layoutForm hide" >
+ 			<form id="loginForm" class="form-horizontal" action="">
+  				<div class="control-group">
+   					 <label class="control-label" for="inputEmail">Email</label>
+    				<div class="controls">
+     					 <input type="text" id="LoginEmail" placeholder="Email">
+    				</div>
+  				</div>
+  				<div class="control-group">
+    				<label class="control-label" for="inputPassword">Password</label>
+    				<div class="controls">
+      					<input type="password" id="LoginPassword" placeholder="Password">
+   					 </div>
+  				</div>
+  				<div class="control-group">
+    				<div class="controls">
+     					 <label class="checkbox">
+       						 <input type="checkbox"> Remember me
+      					</label>
+      				<button type="button" class="btn btn-primary" onclick="login();">LOGIN　IN</button>
+    			</div>
+  			</div>
+		</form>
+		</div>
+		<div id="regisDiv" class=" span4 offset8 layoutForm hide">
+ 			<form id="regisForm" class="form-horizontal" action="#">
+  				<div class="control-group">
+   					 <label class="control-label" for="inputEmail">Email</label>
+    				<div class="controls">
+     					 <input type="text" id="RegisEmail" placeholder="Email">
+    				</div>
+  				</div>
+  				<div class="control-group">
+    				<label class="control-label" for="inputPassword">Password</label>
+    				<div class="controls">
+      					<input type="password" id="RegisUserName" placeholder="Password">
+   					 </div>
+  				</div>
+  				<div class="control-group">
+    				<div class="controls">
+      				<button type="button" class="btn btn-success" onclick="register();">REGISTER</button>
+    			</div>
+  			</div>
+		</form>
+		</div>
+<%-- 			<div id="loginDiv" class=" span4 offset3  layoutForm hide" >--%>
+<%-- 				<p><strong>欢迎登录</strong></p>--%>
+<%-- 			 	<form id="loginForm" class="form-horizontal" action="">--%>
+<%-- 			 		<div class="input-prepend">--%>
+<%-- 						 <span class="add-on">Email&nbsp;&nbsp;</span>--%>
+<%--  						 <input class="inputHeight span2 " id="LoginEmail" type="text">--%>
+<%--					</div>--%>
+<%--					<div><br></div>--%>
+<%--					<div class="input-prepend">--%>
+<%--						 <span class="add-on">Password</span>--%>
+<%--  						 <input class="inputHeight span2" id="LoginPassword" type="text">--%>
+<%--  			        </div>--%>
+<%--  			        <div><br></div>--%>
+<%--                    <div class="span2 offset1">--%>
+<%--						<button id="" class="btn btn-info" type="button" onclick="login();">登录</button>--%>
+<%--					</div>--%>
+<%-- 			 	</form>	--%>
+<%-- 			</div>--%>
  			
- 			<div id="regisDiv" class=" span4 offset8 layoutForm hide">
- 				<p><strong>欢迎注册</strong></p>
- 				<form id="regisForm" class="form-horizontal" action="#">
- 					<div class="input-prepend">
- 						 <span class="add-on">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-  						 <input class="span2" id="RegisEmail" type="text"> 						
-					</div>
-					<div><br></div>
-					<div class="input-prepend">
- 						 <span class="add-on">Password</span>
-  						 <input class="span2" id="RegisPassword" type="password"> 
-					</div>
-					<div><br></div>
-					<div class="span2 offset1">
-						<button class="btn btn-primary" type="button" onclick="register();">注册</button>
-					</div>
- 				</form>
- 			</div>
+<%-- 			<div id="regisDiv" class=" span4 offset8 layoutForm hide">--%>
+<%-- 				<p><strong>欢迎注册</strong></p>--%>
+<%-- 				<form id="regisForm" class="form-horizontal" action="#">--%>
+<%-- 					<div class="input-prepend">--%>
+<%-- 						 <span class="add-on">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>--%>
+<%--  						 <input class="span2" id="RegisEmail" type="text">--%>
+<%--					</div>--%>
+<%--					<div><br></div>--%>
+<%--					<div class="input-prepend">--%>
+<%-- 						 <span class="add-on">username</span>--%>
+<%--  						 <input class="span2" id="RegisUserName" type="text"> --%>
+<%--					</div>--%>
+<%--					<div><br></div>--%>
+<%--					<div class="span2 offset1">--%>
+<%--						<button class="btn btn-primary" type="button" onclick="register();">注册</button>--%>
+<%--					</div>--%>
+<%-- 				</form>--%>
+<%-- 			</div>--%>
  		</div>
  		</div>
- 	</div>	
+ 		
  	<div class="span12 footer">
  		<div class="row">
  			<div class="span2 offset6">
- 				<button id="loginBtn" class="btn btn-large" data-toggle="tooltip" data-placement="top" title="登入" ><img class="icon-info-sign"></img></button>
+ 				<div id="loginBtn" class="btn btn-large " data-toggle="tooltip" data-placement="top" title="登录"><img class="icon-info-sign"></img></div>
  			</div>
  			<div class="span2">
- 				<button id="regisBtn" class="btn btn-large" data-toggle="tooltip" data-placement="top"  title="注册"><img class="icon-user"></img></button>
+ 				<div id="regisBtn" class="btn btn-large" data-toggle="tooltip" data-placement="top"  title="注册"><img class="icon-user"></img></div>
  			</div>
  			<div id="forgetPsd" class="span2">
  				<br>
- 				<!-- 
  				<a href="">忘记密码？</a>
- 				 -->
  			</div>
  		</div>
  	</div>
- 	
- 	
-  </body>
+</div>
+</body>
 </html>

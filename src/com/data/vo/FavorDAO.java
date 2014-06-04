@@ -1,7 +1,12 @@
 package com.data.vo;
 
 import com.connection.dao.BaseHibernateDAO;
+
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.hibernate.criterion.Example;
@@ -80,6 +85,32 @@ public class FavorDAO extends BaseHibernateDAO {
 					+ propertyName + "= ?";
 			Query queryObject = getSession().createQuery(queryString);
 			queryObject.setParameter(0, value);
+			return queryObject.list();
+		} catch (RuntimeException re) {
+			log.error("find by property name failed", re);
+			throw re;
+		}
+	}
+	
+	public List findByMultiProperty(Map<String,Object> conditions) {
+		log.debug("finding Favor instance with multiproperty");
+		try {
+			String queryString = "from Favor where ";
+			
+			Set<String> key = conditions.keySet();
+			int size = 0;
+	        for (Map.Entry<String,Object> entry : conditions.entrySet()) {	           
+	            size++;
+	            if(size == key.size())
+	            	queryString = queryString + entry.getKey()  + " = " + entry.getValue();
+	            else
+	            	queryString = queryString + entry.getKey()  + " = " + entry.getValue()+" and ";
+	            
+	        }
+			Query queryObject = getSession().createQuery(queryString);
+//			for (Map.Entry<String,Object> entry : conditions.entrySet()) { 
+//	            queryObject.setParameter(size++, entry.getValue());
+//	        } 
 			return queryObject.list();
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);

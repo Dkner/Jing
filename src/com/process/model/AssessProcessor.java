@@ -2,8 +2,11 @@ package com.process.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -19,6 +22,7 @@ public class AssessProcessor implements AssessService {
 	public SongDAO sd = null;
 	private UsertagDAO utd = null;
 	private LabelDAO ld = null;
+	private SingerDAO sid = null;
 	//
 	
 	public AssessProcessor()
@@ -26,6 +30,7 @@ public class AssessProcessor implements AssessService {
 		ad = new AssessDAO();
 		ud = new UserDAO();
 		sd = new SongDAO();
+		sid = new SingerDAO();
 	}
 	
 	/**
@@ -111,6 +116,9 @@ public class AssessProcessor implements AssessService {
 	   */
 	public final void give_loveassess(String user_id, int song_id)
 	{
+		UserProfileProcessor userprofile = new UserProfileProcessor();
+		userprofile.UserTagProcesing_FOR_CollectSong(user_id, song_id);
+		
 		user = ud.findById(user_id);
 		List temp = new ArrayList();
 		temp.addAll(user.getAssesses());
@@ -147,6 +155,9 @@ public class AssessProcessor implements AssessService {
 	   */
 	public final void give_hateveassess(String user_id, int song_id)
 	{
+		UserProfileProcessor userprofile = new UserProfileProcessor();
+		userprofile.UserTagProcesing_FOR_HateSong(user_id, song_id);
+		
 		user = ud.findById(user_id);
 		List temp = new ArrayList();
 		temp.addAll(user.getAssesses());
@@ -252,7 +263,6 @@ public class AssessProcessor implements AssessService {
 	   */
 	public final boolean customize_usertag(String user_id, String usertag)
 	{
-		//
 		ld = new LabelDAO();
 		ud = new UserDAO();
 		utd = new UsertagDAO();
@@ -281,12 +291,94 @@ public class AssessProcessor implements AssessService {
 			System.out.println("新建usertag");
 			Session session = HibernateSessionFactory.getSession();
 			Transaction tst = session.beginTransaction();
-			Usertag newusertag = new Usertag((Label)(temp.get(0)), ud.findById(user_id));
+			Usertag newusertag = new Usertag((Label)(temp.get(0)), ud.findById(user_id), 30, 0);
 			utd.save(newusertag);
 			tst.commit();
 			session.close();
 			return true;
 		}
 	}
+	
+	/**
+	   * function 收藏艺人
+	   * @param String 基本信息
+	   * @return
+	   */
+	public final boolean collect_singer(String user_id, String singername)
+	{
+		FavorDAO fd = new FavorDAO();
+		SingerDAO sid = new SingerDAO();
+		Singer singer = null;
+		User user = null;
+		if(sid.findByName(singername).size()>0)
+			singer = (Singer) sid.findByName(singername).get(0);
+		else
+		{
+			System.out.println("该歌手不存在");
+			return false;
+		}
+		
+		user = ud.findById(user_id);
+		if(user == null)
+		{
+			System.out.println("该用户不存在");
+			return false;
+		}
+			
+		Map<String,Object> conditions = new HashMap<String,Object>(); 
+	    conditions.put("singer_id", singer.getSingerId());
+	    conditions.put("fans_id", user_id);
+		if(fd.findByMultiProperty(conditions).size()>0)
+		{
+			System.out.println("已经是粉丝了");
+			return false;
+		}
+		
+		System.out.println("新加入粉丝");
+		Session session = HibernateSessionFactory.getSession();
+		Transaction tst = session.beginTransaction();
+		Favor favor = new Favor(user, singer);
+		fd.save(favor);
+		tst.commit();
+		session.close();
+		
+		return true;
+	}
+
+	public List get_RecordsByPage(String user_id, Page page) {
+		// TODO Auto-generated method stub
+		TagrecordDAO td = new TagrecordDAO();
+		page.set_allcount(td.getUserTotalRows(user_id));
+		page.set_pagecount();
+		return td.findPropertyByPage(user_id, page);
+	}
+	
+	public User get_User(String user_id) {
+		// TODO Auto-generated method stub
+		UserDAO ud = new UserDAO();
+		return ud.findById(user_id);
+	}
+
+	public List get_FavorSingerByPage(String usr_id, Page page) {
+		Set temp = ud.findById(usr_id).getFavors();
+		page.set_allcount(temp.size());
+		page.set_pagecount();
+		
+		UserDAO ud = new UserDAO();
+		List<Favor> favors = new ArrayList<Favor>();
+		List singers = new ArrayList();
+		if(temp == null)
+			return singers;
+		favors.addAll(temp);
+		
+		for(int i=(page.get_pagenow()-1)*page.get_pagesize(); i<page.get_pagesize(); i++)
+		{
+			if(i >= favors.size())
+				break;
+			singers.add(favors.get(i).getSinger());
+		}
+		return singers;
+	}
+	
 	
 }

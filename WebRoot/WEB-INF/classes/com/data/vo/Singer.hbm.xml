@@ -22,6 +22,9 @@
         <property name="briefing" type="java.lang.String">
             <column name="briefing" length="30" />
         </property>
+        <property name="picture" type="java.lang.String">
+            <column name="picture" length="80" />
+        </property>
         <set name="favors" inverse="true">
             <key>
                 <column name="singer_id" not-null="true" />

@@ -4,7 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 <html>
   <head>
     <base href="<%=basePath%>">
@@ -140,20 +140,21 @@ function nextorback_callback()
   
   <body>
 
-  	<% 
-  		HttpSession hs = request.getSession(true);
-  		Page currentpage = new Page();
-  		if(hs.getAttribute("page") != null)
-			currentpage = (Page)hs.getAttribute("page");   
-		else
-			return;	
-	%>  
+<%--  	<% --%>
+<%--  		HttpSession hs = request.getSession(true);--%>
+<%--  		Page currentpage = new Page();--%>
+<%--  		if(hs.getAttribute("page") != null)--%>
+<%--			currentpage = (Page)hs.getAttribute("page");   --%>
+<%--		else--%>
+<%--			return;	--%>
+<%--	%>  --%>
         	
 	 <div id="commentDiv">
         	<div id="headComment">
             	<div id="nameAndImg">
         			<div id="albumImg"></div>
-        			<a><%=currentpage.songname%></a>
+        					<a>123</a>
+<%--        			<a><%=currentpage.songname%></a>--%>
         		</div>
                 <div id="scoresAndTagsDiv">
 					<!--*******************************************************************************************************************-->
@@ -166,14 +167,14 @@ function nextorback_callback()
 					</span>
 					<!--*******************************************************************************************************************-->
                     <div id="tagGroups">
-                 <% 
-                 	
-                    for(int i=0; i<currentpage.get_taglist().size()&&i<6; i++) {   	
-   				 %>			
-                    	<div class="tagList"><%=((Tag)(currentpage.get_taglist().get(i))).getLabel().getLabel()%></div>
-                 <%
-                  	}
-                 %>      
+<%--                 <% --%>
+<%--                 	--%>
+<%--                    for(int i=0; i<currentpage.get_taglist().size()&&i<6; i++) {   	--%>
+<%--   				 %>			--%>
+<%--                    	<div class="tagList"><%=((Tag)(currentpage.get_taglist().get(i))).getLabel().getLabel()%></div>--%>
+<%--                 <%--%>
+<%--                  	}--%>
+<%--                 %>      --%>
                     </div>
                 </div>
             </div>
@@ -201,44 +202,64 @@ function nextorback_callback()
             <input id="n_rating" type="hidden" value="">
             </div>
             <!--********************************************************************************************************************************-->
-            <div id="commendGroups">
-            	<div id="" class="">
+            <div id="commendGroups"><!-- 修改地方 -->
+            	<!--<div id="" class="">
                   		<textarea id="comment" type="text" class="large" placeholder="评论"></textarea>
                   		<div class="saveOrcCanBtn">
                      		<button id="###" class="btn" onclick="givecomment()">发送</button>          
                   		</div>        
-           		</div>
+           		</div>-->
+           		<form id="commentForm" class="" action="#">
+                  		<textarea id="commentTextArea"type="text" class="large" placeholder="评论"></textarea>
+                  		<div class="saveOrcCanBtn">
+                     		<button id="###" class="btn btn-info">发送</button>
+                      	 	<button id="###" class="btn">取消</button>
+                  		</div>        
+           		</form>
            		
-           	<%                	
-                for(int i=0; i<currentpage.get_pagelist().size(); i++) {   	
-                	String level = ((Assess)(currentpage.get_pagelist().get(i))).getLevel();
-                	String comment = ((Assess)(currentpage.get_pagelist().get(i))).getComment();
-   			%>	
-            	<div class="commentDiv">
-                	<a class=""><%=((Assess)(currentpage.get_pagelist().get(i))).getUser().getName()%></a>
-                	<a class=""><%=((Assess)(currentpage.get_pagelist().get(i))).getTime()%></a>
-                	
-                <%
-                	if(level != null)
-                	{
-                %>               	               	
-                		<br/>
-                		<a>评分： <%=level%></a>
-                <%	
-                	} 
-                	if(comment != null)
-                	{
-                %>	
-                		<br/>
-                		<a>评论： <%=comment%></a>
-                <%  } %>	
-                
-                </div>	
-                
-            <%
-                 }
-            %>        
-                
+<%--           	<%                	--%>
+<%--                for(int i=0; i<currentpage.get_pagelist().size(); i++) {   	--%>
+<%--                	String level = ((Assess)(currentpage.get_pagelist().get(i))).getLevel();--%>
+<%--                	String comment = ((Assess)(currentpage.get_pagelist().get(i))).getComment();--%>
+<%--   			%>	--%>
+   			<!-- 修改过 -->
+   				<div id="othersComment">
+					<div class="commentDivBox">
+						<a class="">Amy</a>:<a>真好听</a>
+					</div>	
+					<div class="commentDivBox">
+						<a class="">Jack</a>:<p>真难听</p>
+					</div>	
+					<div class="commentDivBox">
+						<a class="">Jackie_9692</a>:<a>歌曲旋律真不错，大爱！！！</a>
+					</div>	
+				</div>
+<%--            	<!-- <div class="commentDiv">--%>
+<%--                	<a class=""><%=((Assess)(currentpage.get_pagelist().get(i))).getUser().getName()%></a>--%>
+<%--                	<a class=""><%=((Assess)(currentpage.get_pagelist().get(i))).getTime()%></a>--%>
+<%--                	--%>
+<%--                <%--%>
+<%--                	if(level != null)--%>
+<%--                	{--%>
+<%--                %>               	               	--%>
+<%--                		<br/>--%>
+<%--                		<a>评分： <%=level%></a>--%>
+<%--                <%	--%>
+<%--                	} --%>
+<%--                	if(comment != null)--%>
+<%--                	{--%>
+<%--                %>	--%>
+<%--                		<br/>--%>
+<%--                		<a>评论： <%=comment%></a>--%>
+<%--                <%  } %>	--%>
+<%--                --%>
+<%--                </div>	--%>
+<%--                --%>
+<%--            <%--%>
+<%--                 }--%>
+<%--            %>        --%>
+<%--                 -->--%>
+
             </div>
             
  
@@ -246,9 +267,9 @@ function nextorback_callback()
      		<a onclick="nextorback('backcommend')"> back </a>&nbsp&nbsp&nbsp&nbsp
      		<a onclick="nextorback('nextcommend')"> next </a>
   		</div>
-     </div>
-     
     
-     
+    
+    
+     </div> 
    </body>
 </html>

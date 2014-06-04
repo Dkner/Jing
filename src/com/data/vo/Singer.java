@@ -16,6 +16,7 @@ public class Singer implements java.io.Serializable {
 	private String birth;
 	private String nationality;
 	private String briefing;
+	private String picture;
 	private Set favors = new HashSet(0);
 	private Set albums = new HashSet(0);
 	private Set songs = new HashSet(0);
@@ -34,11 +35,13 @@ public class Singer implements java.io.Serializable {
 
 	/** full constructor */
 	public Singer(String name, String birth, String nationality,
-			String briefing, Set favors, Set albums, Set songs, Set singerlabels) {
+			String briefing, String picture, Set favors, Set albums, Set songs,
+			Set singerlabels) {
 		this.name = name;
 		this.birth = birth;
 		this.nationality = nationality;
 		this.briefing = briefing;
+		this.picture = picture;
 		this.favors = favors;
 		this.albums = albums;
 		this.songs = songs;
@@ -85,6 +88,14 @@ public class Singer implements java.io.Serializable {
 
 	public void setBriefing(String briefing) {
 		this.briefing = briefing;
+	}
+
+	public String getPicture() {
+		return this.picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 
 	public Set getFavors() {

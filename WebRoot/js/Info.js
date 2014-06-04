@@ -154,12 +154,3 @@ function comment_callback()
 		}
 	}
 }
-
-
-
-function deletetest()
-{
-	alert("delete");
-}
-
-

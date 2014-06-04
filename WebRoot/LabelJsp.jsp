@@ -40,7 +40,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		var pos = searchcontent.lastIndexOf('/');
   		
   		window.parent.document.getElementById("tagSearchInput").value = searchcontent.substr(0,pos+1)+labelchoosed;
-		//window.parent.document.getElementById("tagSearchInput").value = labelchoosed;
+		window.parent.document.getElementById("tagSearchInput").focus();
+		window.parent.document.getElementById("remindInfo").text = labelchoosed;
   	}
   	
   	
@@ -118,7 +119,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		for(int i=0; i<labelstring.size() && i<10; i++) {   	
     %>						
     			 <div class="labelEach">
-        			<div id="" class="labelImg"></div>
+        			<div id="" style="background:url(/songlist/<%=((Label)(labelstring.get(i))).getPicture()%>)" class="labelImg"></div>
                 	<a id=" " class="searchTag" onclick="addtag(this)"><%=((Label)(labelstring.get(i))).getLabel()%></a>
         		</div>	
     <%		  						
@@ -136,8 +137,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		for(int i=0; i<labellist.size(); i++) {   	
     %>						
     			 <div class="labelEach">
-        			<div id="" class="labelImg"></div>
-                	<a id=" " class="searchTag" onclick="addtag(this)"><%=((Label)(labellist.get(i))).getLabel()%></a>
+        			<div id="labelImg1" class="labelImg" style="background:url(/songlist/<%=((Label)(labellist.get(i))).getPicture()%>)"></div><!-- id与图片有关 -->
+                	<div class="searchTag" onclick="addtag(this)"><a class="tagFont"><%=((Label)(labellist.get(i))).getLabel()%></a></div>
         		</div>	
     <%		  						
     		}	    				

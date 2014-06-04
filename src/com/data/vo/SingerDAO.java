@@ -28,6 +28,7 @@ public class SingerDAO extends BaseHibernateDAO {
 	public static final String BIRTH = "birth";
 	public static final String NATIONALITY = "nationality";
 	public static final String BRIEFING = "briefing";
+	public static final String PICTURE = "picture";
 
 	public void save(Singer transientInstance) {
 		log.debug("saving Singer instance");
@@ -108,6 +109,10 @@ public class SingerDAO extends BaseHibernateDAO {
 		return findByProperty(BRIEFING, briefing);
 	}
 
+	public List findByPicture(Object picture) {
+		return findByProperty(PICTURE, picture);
+	}
+
 	public List findAll() {
 		log.debug("finding all Singer instances");
 		try {
@@ -153,4 +158,7 @@ public class SingerDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
+	
+	
+	
 }

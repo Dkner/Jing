@@ -43,7 +43,7 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 	
 	public LabelProcessor(String user_input){
 		this.conditionstring = user_input;
-		this.words = conditionstring.split("\\/");
+		this.words = conditionstring.split("\\+");
 		condition_counter = words.length;
 	}
 	
@@ -63,7 +63,7 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 	public final void set_words(String user_input)
 	{
 		this.conditionstring = user_input;
-		this.words = conditionstring.split("\\/");
+		this.words = conditionstring.split("\\+");
 		condition_counter = words.length;
 	}
 	
@@ -83,7 +83,7 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public final List find_matchlabel(String word)
 	{
-		String[] tempresult = word.split("\\/");
+		String[] tempresult = word.split("\\+");
 		List temp = new ArrayList();
 		
 		//
@@ -105,7 +105,7 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 	{
 		List temp = new ArrayList();
 		temp = sd.findByName(songname);
-		this.printsong_byname(temp);
+		//this.printsong_byname(temp);
 		
 		
 		//
@@ -127,7 +127,7 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 		for (int i = 0; i < tempalbum.size(); i++) {
 			temp.addAll(((Album)tempalbum.get(i)).getSongs());
 		}
-		this.printsong_byname(temp);
+		//this.printsong_byname(temp);
 		
 		
 		//
@@ -153,7 +153,7 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 		for(int i=0; i<temptag.size(); i++){
 			temp.add(((Tag)temptag.get(i)).getSong());
 		}
-		this.printsong_byname(temp);
+		//this.printsong_byname(temp);
 		
 		
 		//
@@ -175,7 +175,7 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 		for (int i = 0; i < tempsinger.size(); i++) {
 			temp.addAll(((Singer)tempsinger.get(i)).getSongs());
 		}
-		this.printsong_byname(temp);
+		//this.printsong_byname(temp);
 		
 		
 		//
@@ -184,7 +184,7 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 	}
 	
 	/**
-	   * function 根据当前的标签条件搜索歌曲列表
+	   * function 根据当前的标签条件搜索歌曲列表(已停用)
 	   * @param int 是否降低匹配精度（1）
 	   * @return List Song
 	   */
@@ -242,23 +242,26 @@ public class LabelProcessor implements WebApiInterface,SearchService {
         	templabel.add(sd.findById(temp));
         }        
         //
-        this.printMap(map);
+        //this.printMap(map);
         System.out.println("匹配结果：");
         this.printsong_byname(templabel);    
         
         
         //
-        this.importUrl(templabel);
+        //this.importUrl(templabel);
 		return templabel;
 	}	
+	
+	
+	
 	
 	/**
 	   * function 根据input搜索歌曲列表
 	   * @param String input, Filter filter
 	   * @return List Song
 	   */
-	@SuppressWarnings({ "rawtypes" })
-	public final List find_songlist_by_input(String input, Filter filter){
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public final List find_songlist_by_input(int match_degree_minus, String input, FilterChain chain, String user_id){
 		this.set_words(input);
 		List result = new ArrayList();
 		List<Integer> idlist = new ArrayList<Integer>();
@@ -268,6 +271,8 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 		match_degree = condition_counter/2 + 1;		
 		if(condition_counter>5)
 			match_degree = 3;
+		
+		match_degree -= match_degree_minus;
 		System.out.println(condition_counter+"match"+match_degree);
 		//依次判断是否为songname/album/singer/label
 		for(int i=0; i<this.condition_counter; i++)
@@ -304,6 +309,15 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 				List<Song> temp = find_songlist_by_label(words[i]);
 				for(int k=0; k<temp.size(); k++)
 					idlist.add(temp.get(k).getId());
+				
+				//usertag weight processing
+				UserDAO ud = new UserDAO();
+				if(ud.findById(user_id) != null)
+				{
+					UserProfileProcessor userprofile = new UserProfileProcessor();
+					userprofile.UserTagProcesing_FOR_Search(user_id, words[i]);
+				}
+					
 				continue;
 			}
 		}
@@ -321,9 +335,13 @@ public class LabelProcessor implements WebApiInterface,SearchService {
       		continue;
       	idlist.add(temp);
       }   
-      //filtering
-      idlist = filter.filtering(idlist);
+      
+      //System.out.println(idlist.size());
+      //过滤
+      idlist = chain.doFilter(idlist);
       //
+      
+      
       for (int i=0; i<idlist.size(); i++) 
       {
     	  Song temp = sd.findById(idlist.get(i));
@@ -331,15 +349,19 @@ public class LabelProcessor implements WebApiInterface,SearchService {
     		  result.add(temp);
       }    
     	  
-      this.printMap(map);
-      System.out.println("匹配结果：");
+      if(result.size() == 0 && match_degree>1)
+      {
+    	  return this.find_songlist_by_input(++match_degree_minus, input, chain, user_id);
+      }
+      
+      
+      //this.printMap(map);
+      System.out.println("\n匹配结果：");
       this.printsong_byname(result);       
       
-      
-      
-      
+         
       //
-      this.importUrl(result);
+      //this.importUrl(result);
 	  return result;
 	}
 	
@@ -388,6 +410,7 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 			System.out.println("未找到歌曲");
 			return;
 		}
+		System.out.println("歌曲数目:"+songlist.size());
 		for (int i = 0; i < songlist.size(); i++) {
 			 System.out.println("id: "+((Song)songlist.get(i)).getId()+"    name："
 					 +((Song)songlist.get(i)).getName());	
@@ -405,11 +428,16 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 	
 	
 	
+	
+	
+	
+	
+	
 	//临时数据导入
 	public void input_song()
 	{
 		
-		File file=new File("D:\\MyEclipse_ide\\.metadata\\.me_tcat\\webapps\\Jing\\Song");
+		File file=new File("J:\\Song");
 		String test[];
 		test=file.list();
 		
@@ -417,37 +445,73 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 		SingerDAO sd = new SingerDAO();
 		SongDAO ss = new SongDAO();
 		
+		Session session = HibernateSessionFactory.getSession();
+		Transaction tst = session.beginTransaction();	
 		for(int i=0;i<test.length;i++)
 		{
 			//System.out.println(test[i]);
-			String Arecord[] = test[i].split("\\-");
-			int sl = Arecord[0].length()-1;
-			String Asinger = Arecord[0].substring(0, sl);
-			int nl = Arecord[1].length()-4;
-			String Asong = Arecord[1].substring(1,nl);
-			System.out.println(Asinger+" "+Asong);
+			//String Arecord[] = test[i].split("\\-");
+			//int sl = Arecord[0].length()-1;
+			//String Asinger = Arecord[0].substring(0, sl);
+			//int nl = Arecord[1].length()-4;
+			//String Asong = Arecord[1].substring(1,nl);
+			int len = test[i].length();
+			String Asong = test[i].substring(0,len-4);
+			System.out.println("song"+i+":"+Asong);
 			
 			
-			List temp = sd.findByName(Asinger);
+			List<Song> temp = ss.findByName(Asong);
 			
-			int id = 1;
+//			int id = 1;
+//			if(temp.size()>0)
+//			{
+//				id = ((Singer)(temp.get(0))).getSingerId();
+//				System.out.println(id);
+//			}
+			
+			//Song tempsong = new Song(sd.findById(id),Asong,"song/"+test[i]);
 			if(temp.size()>0)
 			{
-				id = ((Singer)(temp.get(0))).getSingerId();
-				System.out.println(id);
+				for(int j=0; j<temp.size(); j++)
+				{
+					Song tempsong = temp.get(j);
+					tempsong.setPath("song/"+test[i]);
+					System.out.println("song"+i+":"+test[i]);
+					//Song tempsong = new Song((temp.get(0)).getSinger(), Asong, "song/"+Asong);
+
+					session.saveOrUpdate(tempsong);
+					//ss.save(tempsong);
+				}
 			}
-			
-			Song tempsong = new Song(sd.findById(id),Asong,"song/"+test[i]);
-			
-			Session session = HibernateSessionFactory.getSession();
-			Transaction tst = session.beginTransaction();	
-			ss.save(tempsong);
-			tst.commit();
-			session.close();
-		}	
+		}
+		tst.commit();
+		session.close();
 		
 	}
 
+	public void revicePath(){
+		Session session = HibernateSessionFactory.getSession();
+		Transaction tst = session.beginTransaction();
+		SongDAO ss = new SongDAO();
+		List list = ss.findAll();
+		for(int i=0; i<list.size(); i++)
+		{
+			Song tempsong = (Song) list.get(i);
+			
+			String path = tempsong.getPath();
+			System.out.println(path);
+			if(path.startsWith("http"))
+			{
+				System.out.println("song"+i+",修改path:"+path+"变为null");
+				tempsong.setPath("null");	
+				session.saveOrUpdate(tempsong);
+				//ss.save(tempsong);
+			}
+		}
+		
+		tst.commit();
+		session.close();
+	}
 	
 	
 	@SuppressWarnings("static-access")

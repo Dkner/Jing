@@ -1,0 +1,33 @@
+.indent {
+word-break: break-all;
+}
+a:visited {
+color: #669;
+text-decoration: none;
+}
+a:link {
+color: #37a;
+text-decoration: none;
+}
+a {
+cursor: pointer;
+}
+.cloud1 a {
+font: 12px Arial,Helvetica,sans-serif;
+line-height: 24px;
+}
+.cloud2 a {
+font: 14px bold Arial,Helvetica,sans-serif;
+line-height: 24px;
+}
+.cloud3 a {
+font: 18px Arial,Helvetica,sans-serif;
+line-height: 24px;
+}
+.cloud4 a {
+font: 21px bold Arial,Helvetica,sans-serif;
+line-height: 24px;
+}
+.clearfix {
+zoom: 1;
+}

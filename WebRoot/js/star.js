@@ -13,7 +13,7 @@ function mOut()
 			if(starstate[i]==1)
 			{
 				starstate[i]=0;
-				document.getElementById("star"+(i+1)).src="img/nst.gif";
+				//document.getElementById("star"+(i+1)).src="img/nst.gif";
 			}
 		}
 	}
@@ -24,7 +24,7 @@ function mOut()
 			if(starstate[i]==0)
 			{
 				starstate[i]=1;
-				document.getElementById("star"+(i+1)).src="img/sth.gif";
+				//document.getElementById("star"+(i+1)).src="img/sth.gif";
 			}
 		}
 		for(var i=score; i<5; i++)
@@ -32,7 +32,7 @@ function mOut()
 			if(starstate[i]==1)
 			{
 				starstate[i]=0;
-				document.getElementById("star"+(i+1)).src="img/nst.gif";
+				//document.getElementById("star"+(i+1)).src="img/nst.gif";
 			}
 		}
 	}
@@ -48,7 +48,7 @@ function mOver(x)
 			if(starstate[i]==0)
 			{
 				starstate[i]=1;
-				document.getElementById("star"+(i+1)).src="img/sth.gif";
+				//document.getElementById("star"+(i+1)).src="img/sth.gif";
 			}
 		}
 		
@@ -57,7 +57,7 @@ function mOver(x)
 			if(starstate[i]==1)
 			{
 				starstate[i]=0;
-				document.getElementById("star"+(i+1)).src="img/nst.gif";
+				//document.getElementById("star"+(i+1)).src="img/nst.gif";
 			}
 		}
 	}
@@ -71,7 +71,7 @@ function on_click(x)
 			if(starstate[i]==0)
 			{
 				starstate[i]=1;
-				document.getElementById("star"+(i+1)).src="img/sth.gif";
+				//document.getElementById("star"+(i+1)).src="img/sth.gif";
 			}
 		}
 		
@@ -80,7 +80,7 @@ function on_click(x)
 			if(starstate[i]==1)
 			{
 				starstate[i]=0;
-				document.getElementById("star"+(i+1)).src="img/nst.gif";
+				//document.getElementById("star"+(i+1)).src="img/nst.gif";
 			}
 		}
 	clicked=true;
@@ -91,12 +91,12 @@ function comment_score(x)
 {
 		for(var i=0; i<x; i++)
 		{
-				document.getElementById("star_"+(i+1)).src="img/sth.gif";
+				//document.getElementById("star_"+(i+1)).src="img/sth.gif";
 		}
 		
 		for(var i=x; i<5; i++)
 		{
-				document.getElementById("star_"+(i+1)).src="img/nst.gif";
+				//document.getElementById("star_"+(i+1)).src="img/nst.gif";
 		}
 }
 

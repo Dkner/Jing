@@ -1,10 +1,6 @@
 .ll {
     float: left;
 }
-#rating{
-	width:160px;
-	height:20px;
-}
 body, div, dl, dt, dd, ul, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, blockquote {
     margin: 0;
     padding: 0;
@@ -17,4 +13,10 @@ a:link {
 
 a {
     cursor: pointer;
+}
+#rating {
+    color: #000000;
+    font: bold 18px arial,sans-serif;
+    height: 20px;
+    width: 160px;
 }

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh">
+   <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/play.css" rel="stylesheet" type="text/css">
+	<link href="css/star.css" rel="stylesheet" type="text/css">
+	
+	
+     
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+     <script type="text/javascript" src="js/star.js"></script>
+	<script type="text/javascript" src="js/play.js"></script>
+   	
+  
+   
+    
+    <script type="text/javascript">
+		$(document).ready(function()
+		{
+			$("#test").click(test);
+			$("#dLabel").dropdown();
+			$("#adLabel").dropdown();
+			//add
+			$("#moreLabel").dropdown();
+			$("#settiBtn").click(function(){
+				window.open("findMusic.html");
+				});
+			$("p.showMenu").click(showMenu);
+
+            $(".ImageOperation").click(function(){
+				$(this).parent().remove();
+				});
+			$("p.labelClick").click(function(){
+				$(this).toggleClass("btn-success");
+				
+				});
+			$("#musicConBtn").click(playOrStop);
+			$("#commentBtn").click(showComment);
+			$("#closeCommentBtn").click(hideComment);
+			$(".searchLa").click(function(){
+				$("#dLabel").text(this.text);
+				});
+			$("#randomBtn").click(randomPlay);
+			$("#tagSearchInput").click(showSearchTagFrame);
+			$(".labelRemove").click(function(){
+				$(this).parent().parent().remove();
+				});
+			//$("#tagSearchInput").ondbclick(showSearchTagFrame);
+		});
+			
+   </script>
+</head>
+ <body>
+ 	<div id="maxDiv">
+	
+    	<iframe id="searchTagFrame" class="hide" src="search.html"></iframe>
+		
+ 		<div id="leftFrame">
+  			<div id="topLeftFrame">
+            	<div id="scheLabel" class="">
+					<div class="leftExtendBtn" data-placement="left" data-toggle="tooltip" title="智能匹配与屏蔽" >
+                    	<div class="btn-group dropdown">
+                        	<button class="dropdown-toggle btn-small btn" id="moreLabel" role="button" data-toggle="dropdown"><img class="icon-th-list"></img></button>
+  						<ul class="dropdown-menu"  aria-labelledby="moreLabel">
+                            <li class="divider"></li>
+   							<li><a tabindex="-1" href="">相似艺人</a></li>
+                            <li class="divider"></li>
+       						<li><a tabindex="-1" href="">相似歌曲</a></li>
+                            <li class="divider"></li>
+      				    	<li><a id="randomBtn" tabindex="-1" href="">收藏艺人</a></li>
+							<li class="divider"></li>
+      				    	<li><a id="randomBtn" tabindex="-1" href="">屏蔽艺人</a></li>
+                   	    </ul>
+                        </div>
+					</div>
+                 <div id="logOut" class="rightExtendBtn" data-placement="right" data-toggle="tooltip" title="退出" >
+               		<button class="btn img-circle"><i class="icon-off"></i></button>
+               	</div>
+            </div>
+         
+        	<div id="musicShow" class="row-fluid">
+            	<div id="musicLove" onclick="loveMusic()" class="musicShowSize" data-toggle="tooltip" data-placement="top" title="喜欢"></div>
+               
+                <div id="musicHate" onclick="hateMusic()" class="musicShowSize" data-toggle="tooltip" data-placement="top" title="讨厌"></div>
+                 <div>
+               		 <div id="MusicPlayer" class="" data-toggle="tooltip" data-placement="top" title="play">
+                		<div id="musicConBtn"></div>
+                       
+                	</div>
+                    <a id="songName">happy birhday</a>
+                    <div id="commentBtn" class="icon-comment large"></div>
+                </div>
+                <div id="musicCirPlay" onclick="cirPlayMusic()" class="musicShowSize" data-toggle="tooltip" data-placement="top" title="循环"></div>
+                <div id="musicChange"  onclick="changeMusic()"class="musicShowSize" data-toggle="tooltip" data-placement="top" title="换歌"></div>
+            </div>
+            
+            
+            <div id="extendAndControl">
+					<div class="leftExtendBtn" data-placement="left" data-toggle="tooltip" title="更多功能~" >
+                    	<div class="btn-group dropup">
+                        	<button class="dropdown-toggle btn-small btn" id="adLabel" role="button" data-toggle="dropdown"><img class="icon-plus-sign"></img></button>
+  						<ul class="dropdown-menu"  aria-labelledby="adLabel">
+                            <li class="divider"></li>
+   							<li><a tabindex="-1" href="">红心电台</a></li>
+                            <li class="divider"></li>
+       						<li><a tabindex="-1" href="">智能推荐</a></li>
+                            <li class="divider"></li>
+      				    	<li><a id="randomBtn" tabindex="-1" href="">随便听听</a></li>
+                   	    </ul>
+                        </div>
+					</div>
+      
+                <div id="control">
+                   <audio src="./music/mylove.mp3" controls="controls">
+  						can't play
+				   </audio>
+               </div>
+            </div>
+            
+            <div id="actionLabelForm">
+            	<img id="flyImg" class="actionImg hide " src="./img/actionLa.png"></img>
+            	<!--<img class="actionImg" src="./img/actionLa.png"></img>-->
+                 <a id="remindInfo">happy birhday</a>
+            </div>
+            </div>
+        	
+            <div id="footer">
+                <div id="search">
+                  <div class="input-append dropup">
+  					<div class="btn-group dropdown">
+ 	 					<button class="dropdown-toggle btn" id="dLabel" role="button" 
+						data-toggle="dropdown tooltip" data-placement="right" title="关键字搜索" >搜索
+  						</button>
+					</div>
+  				  	<input class="span4" id="tagSearchInput" type="text" placeholder="^=^">
+                    <button class="btn" data-placement="right" data-toggle="tooltip" title="搜索"><i class="icon-search"></i></button>
+				  </div>
+                </div>
+             
+                <div id="setting" class="rightExtendBtn">
+                	<button id ="settiBtn" class="btn img-circle" data-placement="right" data-toggle="tooltip" title="用户设置" > <i class="icon-user"></i></button>
+                </div>
+            	
+            </div>
+        </div>
+		
+      
+        <div id="commentFrameDiv" class="hide" >
+			<i id="closeCommentBtn" class=" icon-chevron-down "></i>
+			<iframe id="commentFrame" class="img-polaroid" src="comment.html"></iframe>
+		</div>
+ 	</div>
+    	
+</body>
+</html>

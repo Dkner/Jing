@@ -6,34 +6,34 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import com.data.vo.Label;
+import com.data.vo.Tagrecord;
+import com.process.logic.CurrentList;
 import com.process.logic.DJ;
-import com.process.model.CurrentList;
 import com.web.api.UrlParser;
 
 public class SearchHandler {
 
-	public void SearchName(HttpServletRequest request, PrintWriter out, CurrentList list, DJ factory){
+	public void SearchName(HttpServletRequest request, PrintWriter out, DJ factory){
 		String songname = request.getParameter("name");
-		factory.SongnameSearchingProcess(songname, list);
-		
-		//UrlParser parser = new UrlParser();
-		
-		String currentsongname = list.give_currentsongname();
-		@SuppressWarnings("static-access")
-		//String currentpath = parser.getSongUrl(currentsongname);
-		String currentpath = list.give_currentpath();
-		System.out.println("当前列表的歌数："+list.songamount);
+		factory.SongnameSearchingProcess(songname);
+	
+		String currentsongname = factory.give_currentsongname();
+		String currentpath = factory.give_currentpath();
+		String currentlabel = factory.get_currentlabel();
+		String currentsingername = factory.give_currentsingername();
+		System.out.println("当前列表的歌数："+factory.get_songamount());
 
 		//
 		JSONArray jArray = new JSONArray();
 		JSONObject jObject = new JSONObject();
 		jObject.put("path", currentpath);
 		jObject.put("songname", currentsongname);
+		jObject.put("singername", currentsingername);
+		jObject.put("label", currentlabel);
 		jArray.add(jObject);
 		out.print(jArray.toString());
 		//out.print(currentpath);
@@ -41,23 +41,23 @@ public class SearchHandler {
 		out.close();	
 	}
 	
-	public void SearchAlbum(HttpServletRequest request, PrintWriter out, CurrentList list, DJ factory){
+	public void SearchAlbum(HttpServletRequest request, PrintWriter out, DJ factory){
 		String albumname = request.getParameter("album");
-		factory.AlbumSearchingProcess(albumname, list);
+		factory.AlbumSearchingProcess(albumname);
 		
-		//UrlParser parser = new UrlParser();
-		
-		String currentsongname = list.give_currentsongname();
-		@SuppressWarnings("static-access")
-		//String currentpath = parser.getSongUrl(currentsongname);
-		String currentpath = list.give_currentpath();
-		System.out.println("当前列表的歌数："+list.songamount);
+		String currentsongname = factory.give_currentsongname();
+		String currentpath = factory.give_currentpath();
+		String currentlabel = factory.get_currentlabel();
+		String currentsingername = factory.give_currentsingername();
+		System.out.println("当前列表的歌数："+factory.get_songamount());
 
 		//
 		JSONArray jArray = new JSONArray();
 		JSONObject jObject = new JSONObject();
 		jObject.put("path", currentpath);
 		jObject.put("songname", currentsongname);
+		jObject.put("singername", currentsingername);
+		jObject.put("label", currentlabel);
 		jArray.add(jObject);
 		out.print(jArray.toString());
 		//out.print(currentpath);
@@ -65,49 +65,54 @@ public class SearchHandler {
 		out.close();	
 	}
 	
-	public void SearchTag(HttpServletRequest request, PrintWriter out, CurrentList list, DJ factory){
+	public void SearchTag(HttpServletRequest request, PrintWriter out, DJ factory){
 		String tagname = request.getParameter("tag");
 		System.out.println("需要搜索的标签："+tagname);
-		factory.KeywordSearchingProcess(tagname, 0, list);
+		factory.KeywordSearchingProcess(tagname, 0);
 		
-		//UrlParser parser = new UrlParser();
-		
-		String currentsongname = list.give_currentsongname();
-		@SuppressWarnings("static-access")
-		//String currentpath = parser.getSongUrl(currentsongname);
-		String currentpath = list.give_currentpath();
-		System.out.println("当前列表的歌数："+list.songamount);
+		String currentsongname = factory.give_currentsongname();
+		String currentpath = factory.give_currentpath();
+		String currentlabel = factory.get_currentlabel();
+		String currentsingername = factory.give_currentsingername();
+		System.out.println("当前列表的歌数："+factory.get_songamount());
 		//
 		JSONArray jArray = new JSONArray();
 		JSONObject jObject = new JSONObject();
 		jObject.put("path", currentpath);
 		jObject.put("songname", currentsongname);
+		jObject.put("singername", currentsingername);
+		jObject.put("label", currentlabel);
 		jArray.add(jObject);
 		out.print(jArray.toString());
 		out.flush();
 		out.close();	
 	}
 	
-	public void SearchInput(HttpServletRequest request, PrintWriter out, CurrentList list, DJ factory){
+	public void SearchInput(HttpServletRequest request, PrintWriter out, DJ factory){
 		String input = request.getParameter("input");
+		input = input.replace("/", "+");
 		System.out.println("需要搜索的input："+input);
-		factory.InputSearchingProcess(input, list);
+		factory.InputSearchingProcess(input);
 		
-		String currentsongname = list.give_currentsongname();
-		String currentpath = list.give_currentpath();
-		System.out.println("当前列表的歌数："+list.songamount);
+		String currentsongname = factory.give_currentsongname();
+		String currentpath = factory.give_currentpath();
+		String currentlabel = factory.get_currentlabel();
+		String currentsingername = factory.give_currentsingername();
+		System.out.println("当前列表的歌数："+factory.get_songamount());
 		//
 		JSONArray jArray = new JSONArray();
 		JSONObject jObject = new JSONObject();
 		jObject.put("path", currentpath);
 		jObject.put("songname", currentsongname);
+		jObject.put("singername", currentsingername);
+		jObject.put("label", currentlabel);
 		jArray.add(jObject);
 		out.print(jArray.toString());
 		out.flush();
 		out.close();	
 	}
 	
-	public void Match(HttpServletRequest request, PrintWriter out, CurrentList list, DJ factory){
+	public void Match(HttpServletRequest request, PrintWriter out, DJ factory){
 		List resulttag = new ArrayList();
 		String tagname = request.getParameter("match");
 		System.out.println("相关匹配："+tagname);
@@ -138,7 +143,7 @@ public class SearchHandler {
 		}
 	}
 	
-	public void firstMatch(HttpServletRequest request, PrintWriter out, CurrentList list, DJ factory){
+	public void firstMatch(HttpServletRequest request, PrintWriter out, DJ factory){
 		List resulttag = new ArrayList();
 		System.out.println("随机匹配");
 		resulttag = factory.create_randomlabelProcess();

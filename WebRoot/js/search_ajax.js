@@ -2,9 +2,9 @@
 var search_XmlHttpRequest="";
 	
 function search(){
+	$('#remindInfo').text("正在拼命搜索。。。");
 		search_XmlHttpRequest=getXmlHttpObject();
 
-		//window.alert("in");
 		//怎么判断创建ok
 		if(search_XmlHttpRequest){
 			//通过search_XmlHttpRequest对象发送请求到服务器的某个页面
@@ -12,25 +12,9 @@ function search(){
 			//第二个参数指定url,对哪个页面发出ajax请求(本质仍然是http请求)
 			//第三个参数表示 true表示使用异步机制,如果false表示不使用异步
 			
-			
-			
-			
-			
-			
-			
+		
 			var data =  "input="+get('tagSearchInput').value;					
 			var url="/Jing/jing_servlet";
-			//var data =  "fct=tag&"+search_type+"="+get('tagSearchInput').value;		
-			//var url="/Jing/MusicServiceServlet";
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			
 			
 			//打开请求.
@@ -53,36 +37,31 @@ function search(){
 			
 			if(search_XmlHttpRequest.status == 200)
 			{
-				//alert("shit");
-				//var result = search_XmlHttpRequest.responseText;
-				//get('remindInfo').text = result;
-
+		
 				var mes=search_XmlHttpRequest.responseText;
 				//使用 eval函数讲mes字串，转成对应的对象
 				var mes_obj=eval("("+mes+")");
-				get('player').src = mes_obj[0].path;
-				get('songName').text = mes_obj[0].songname;
+				$('#player').attr("src", "/songlist/"+mes_obj[0].path);
+				$('#songName').text(mes_obj[0].songname);
+				$('#singerName').text(mes_obj[0].singername);
 				hideSearchTagFrame();
 				
 				
 				
-				alert(get('player').src);
-				
-				
-				 document.getElementById('player').play();
+				//alert(get('player').src);								
+				start();
 				
 				if(mes_obj[0].path != "")
-					get('remindInfo').text = "找到咯";
+					$("#remindInfo").text("找到咯"); 
 				if($.trim(mes_obj[0].path) == "")
-					get('remindInfo').text = "抱歉，没歌了";
+					$("#remindInfo").text("抱歉，没歌了"); 
 			}
 		}
 	}
 	
 	
 	function surprise(){	
-		//window.alert("surprise");
-		//var player = new videoplayer("song/周杰伦 - 以父之名.ogg");
+		
 		hideSearchTagFrame();
 		showMerryChristmasFrame();
 		get("MerryChristmasFrame").contentWindow.location.reload();

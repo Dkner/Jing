@@ -16,5 +16,8 @@
         <property name="record" type="java.lang.String">
             <column name="record" length="20" not-null="true" />
         </property>
+        <property name="time" type="java.lang.String">
+            <column name="time" length="30" />
+        </property>
     </class>
 </hibernate-mapping>

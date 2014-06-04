@@ -4,12 +4,7 @@
 	function firstmatch()
 	{
 		showSearchTagFrame();
-//		var content = $.trim(get("tagSearchInput").value);
-//		if(content != null)
-//			{
-//				match();
-//				return;
-//			}		
+		
 		firstmatch_XmlHttpRequest=getXmlHttpObject();
 		if(firstmatch_XmlHttpRequest){
 			var data =  "firstmatch=song";
@@ -31,7 +26,7 @@
     			if(res == "yes")
     			{
     				//alert("firstmatch yes");
-    				get('remindInfo').text = "都是精选的标签，走一走，看一看啦";
+    				$('#remindInfo').text("都是精选的标签，走一走，看一看啦");
     				var myiframe = get("searchTagFrame");
 					myiframe.contentWindow.location.reload();
     			}
@@ -46,6 +41,7 @@
 //		var value = get("tagSearchInput").value;
 //		var parten = /^\s*get/ ; 
 //		if(!parten.test(value))
+
 		if(value != "")
 		{
 			match_XmlHttpRequest=getXmlHttpObject();
@@ -67,13 +63,11 @@
 			if(match_XmlHttpRequest.status == 200)
 			{
 				res = match_XmlHttpRequest.responseText;
-				//get('remindInfo').text = result;
-				//if(res == "yes")
-    			//{
-				get('remindInfo').text = "正在为您匹配相关标签...";
+				
+				$('#remindInfo').text("正在为您匹配相关标签...");
     				var myiframe = get("searchTagFrame");
 					myiframe.contentWindow.location.reload();
-    			//}
+    	
 			}
 		}
 		

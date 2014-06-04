@@ -1,0 +1,480 @@
+.primary {
+    background-color:gray;
+    border-bottom: 1px solid #CC5A18;
+    height: 60px;
+	/* text-align:center; */
+}
+#bodyDiv
+{
+	position:relative;
+	width:100%;
+}
+.naviBtns
+{
+	position:relative;
+	float:left;
+	left:300px;
+	padding-top: 10px;
+}
+#recommends
+{
+	background-color: #FFFFFF;
+    clear: both;
+    margin-top: 20px;
+    padding: 0 15px;
+    position: relative;
+}
+.album a:hover img {
+opacity:0.7;
+filter:alpha(opacity=70);
+}
+
+
+
+body {
+	background-color: #EBE3E3;
+	color: rgba(100, 133, 59, 0.97);
+}
+a {
+    text-decoration: none;
+}
+a:hover, a:focus {
+color: #C5C529;
+text-decoration: underline;
+}
+#main .wrapper {
+    margin: 0 auto;
+    max-width: 1104px;
+    min-width: 984px;
+    overflow: hidden;
+    padding: 20px 0 30px;
+    position: relative;
+    width: auto;
+}
+#main .wrapper .section {
+    float: left;
+    margin-right: -332px;
+    width: 100%;
+}
+#main .wrapper .section .container {
+    background-color: #FFFFFF;
+    border: 1px solid #EBEBEB;
+    border-radius: 4px;
+    margin-right: 332px;
+}
+#main .wrapper .sidebar {
+    border-radius: 3px;
+    float: right;
+    width: 302px;
+}
+#personal .wrapper {
+    margin: 0 auto;
+    max-width: 1104px;
+    min-width: 984px;
+    overflow: hidden;
+    padding-bottom: 30px;
+    width: auto;
+}
+.gap {
+    margin: 0 20px;
+}
+.adm_block {
+    height: 250px;
+    overflow: hidden;
+    width: 302px;
+}
+
+
+#albums {
+	background-color: #FFFFFF;
+    clear: both;
+    margin-top: 20px;
+    padding: 0 15px;
+    position: relative;
+}
+#albums h2 {
+    height: 54px;
+    line-height: 54px;
+}
+#albums h2 strong {
+    float: left;
+    font-size: 18px;
+}
+#albums h2 span {
+    color: #FF6600;
+}
+#albums h2 .more {
+    color: #FF6600;
+}
+#albums h2 .action {
+    float: right;
+    overflow: hidden;
+}
+#albums h2 .tab {
+    overflow: hidden;
+}
+#albums h2 .tab li {
+    float: left;
+    position: relative;
+}
+#albums h2 .tab li a {
+    margin: 0 10px;
+}
+#albums h2 .tab li .current, #albums h2 .tab li a:hover {
+    border-bottom: 3px solid #3A3935;
+    text-decoration: none;
+}
+#albums h2 .tab li sup {
+    background: url("http://img.xiami.net/static/img/common/common_icon.png?v=20131227173231") no-repeat scroll -48px -16px rgba(0, 0, 0, 0);
+    display: block;
+    height: 16px;
+    position: absolute;
+    right: 0;
+    top: 4px;
+    width: 16px;
+}
+#albums h2 .tab .fence {
+    color: #EBEBEB;
+}
+.view {
+    clear: both;
+    height: 198px;
+    max-width: 740px;
+    min-width: 620px;
+    overflow: hidden;
+    position: relative;
+}
+.nav {
+    background-image: url(../img/movementPic.png);
+    height: 50px;
+    outline: medium none;
+    position: absolute;
+    top: 100px;
+    width: 25px;
+    z-index: 2;
+}
+.prev {
+    background-position: -25px 0;
+    left: 0;
+}
+.prev:hover {
+    background-position: -25px -50px;
+}
+.next {
+    background-position: 0 0;
+    right: 0;
+}
+.next:hover {
+    background-position: 0 -50px;
+}
+.content_block {
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 2250px;
+    z-index: 1;
+}
+.container
+{
+	width:57%;
+}
+h2
+{
+	font-size:18px;
+}
+.album {
+	position:relative;
+    float: left;
+    margin-right: 10px;
+    width: 140px;
+	
+}
+.image {
+    background-color: #CCCCCC;
+	height:140px;
+	width:140px;
+	position: relative;
+}
+img {
+    border: 0 none;
+    height: 140px;
+    max-width: 100%;
+    vertical-align: middle;
+}
+.imageano
+{
+	background-color: #CCCCCC;
+    height: 100px;
+    position: relative;
+    width: 100px;
+}
+.songwrapper
+{
+	/* background-color:rgb(12,56,124);
+	position:relative;
+	margin-top:10px; */
+}
+.footer
+{
+    border-bottom: 1px solid #CC5A18;
+    height: 100px;
+	margin-top:50px;
+}
+.miniViewCover
+{
+	height:100px;
+	width:100px;
+}
+.albumIntoplayano{
+    background: url("../img/play_icon.png") no-repeat scroll 0 -48px rgba(0, 0, 0, 0);
+    bottom: 35px;
+    cursor: pointer;
+    height: 24px;
+    position: absolute;
+    right: 35px;
+    width: 24px;
+}
+.sortNumber
+{
+	position:relative;
+	float:left;
+	width:50px;
+}
+.info
+{
+	color: #999999;
+    margin: 10px 10px 0 0;
+    text-align: center; 
+}
+.infor
+{
+	color: #999999;
+    margin: 10px 10px 0 0;
+    /* text-align: center; */
+}
+
+#charts {
+    margin-top: 40px;
+    padding: 0 15px 15px;
+	background-color: #FFFFFF;
+}
+#charts h2 {
+    height: 54px;
+    line-height: 54px;
+}
+#charts h2 strong {
+    float: left;
+    font-size: 18px;
+}
+#charts h2 span {
+    color: #FF6600;
+}
+#charts h2 .more {
+    color: #FF6600;
+}
+#charts .content {
+    clear: both;
+}
+#charts .content table {
+    border-collapse: separate;
+    border-top: 1px solid #EBEBEB;
+    table-layout: fixed;
+    width: 100%;
+}
+#charts .content table .song_block {
+    width: 280px;
+}
+#charts .content table .song_block .song {
+    margin-left: 10px;
+   /* overflow: hidden;  */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#charts .content table .song_block .song p {
+    display: inline;
+}
+#charts .content table tr.play .song_block {
+    background: url("http://img.xiami.net/static/img/common/play_chart.gif") no-repeat scroll 10px 8px rgba(0, 0, 0, 0);
+    padding-left: 20px;
+}
+#charts .content table .action_block {
+    vertical-align: top;
+    width: 80px;
+}
+#charts .content table .action_block dl {
+    display: none;
+    margin-top: 15px;
+    position: relative;
+}
+#charts .content table .action_block dt {
+    background: none repeat scroll 0 0 #FEFEFE;
+    border: 1px solid #333333;
+    border-radius: 3px;
+    cursor: pointer;
+    height: 14px;
+    overflow: hidden;
+    width: 30px;
+}
+#charts .content table .action_block .toheart {
+    background: url("http://img.xiami.net/static/img/music/icon.png") no-repeat scroll -6px -127px rgba(0, 0, 0, 0);
+    float: left;
+    height: 12px;
+    margin: 2px 0 0 4px;
+    width: 12px;
+}
+#charts .content table .action_block .todropmenu {
+    background: url("http://img.xiami.net/static/img/music/icon.png") no-repeat scroll -153px -56px rgba(0, 0, 0, 0);
+    float: right;
+    height: 12px;
+    margin: 2px 0 0 2px;
+    width: 10px;
+}
+#charts .content table .action_block dd {
+    display: none;
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 5;
+}
+#charts .content table .action_block ul {
+    background-color: #FFFFFF;
+    border: 1px solid #555555;
+    border-radius: 3px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 5px 0;
+}
+#charts .content table .action_block li a {
+    display: block;
+    font-size: 12px;
+    line-height: 24px;
+    padding: 0 15px 0 5px;
+    width: 65px;
+}
+#charts .content table .action_block li a:hover {
+    background-color: #F5914E;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+#charts .content table .action_block li .icon {
+    background: url("http://img.xiami.net/static/img/music/icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: inline-block;
+    height: 24px;
+    margin-right: 5px;
+    vertical-align: middle;
+    width: 24px;
+}
+#charts .content table .action_block li .tofavourite {
+    background-position: 0 -120px;
+}
+#charts .content table .action_block li a:hover .tofavourite {
+    background-position: 0 -144px;
+}
+#charts .content table .action_block li .todownload {
+    background-position: -72px -120px;
+}
+#charts .content table .action_block li a:hover .todownload {
+    background-position: -72px -144px;
+}
+#charts .content table .action_block li .tocollect {
+    background-position: -24px -120px;
+}
+#charts .content table .action_block li a:hover .tocollect {
+    background-position: -24px -144px;
+}
+#charts .content table .action_block li .toshare {
+    background-position: -48px -120px;
+}
+#charts .content table .action_block li a:hover .toshare {
+    background-position: -48px -144px;
+}
+#charts .content table .user_block {
+    vertical-align: top;
+    width: 40px;
+}
+#charts .content table .user_block p {
+    display: none;
+    margin-top: 8px;
+}
+#charts .content table .user_block p img {
+    border-radius: 4px;
+    height: 30px;
+    width: 30px;
+}
+#charts .content table .common_block p {
+    color: #AAAAAA;
+    line-height: 18px;
+    margin: 5px 0;
+    max-width: 270px;
+    min-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#charts .content table .time_block {
+    color: #AAAAAA;
+    text-align: right;
+    width: 70px;
+}
+
+#charts .content table tr.hover {
+    background-color: #F5F5F5;
+}
+#charts .content table tr.hover .song_block {
+    padding: 0;
+    vertical-align: top;
+}
+ .song {
+    margin: 10px 0 10px 10px;
+}
+
+#charts .content table tr.hover .song_block .image {
+    display: block;
+    margin-right: 10px;
+}
+ .singer {
+    display: block;
+}
+
+#charts .content .loading {
+    background: url("http://img.xiami.net/static/img/common/loading/loading_cd.gif") no-repeat scroll center center rgba(0, 0, 0, 0);
+    height: 383px;
+}
+ .extra {
+    overflow: hidden;
+}
+.extra .toplay i {
+    background: url("../img/play_icon.png") no-repeat scroll -48px -72px rgba(0, 0, 0, 0);
+    display: inline-block;
+    height: 24px;
+    vertical-align: middle;
+    width: 24px;
+}
+.albumIntoplay
+{
+	background: url("../img/play_icon.png") no-repeat scroll 0 -48px rgba(0, 0, 0, 0);
+    bottom: 45px;
+    cursor: pointer;
+    /* display: none; */
+    height: 24px;
+    position: absolute;
+    right: 5px;
+    width: 24px;
+}
+
+.toplay {
+    background-color: #FF6600;
+    border-radius: 4px;
+    color: #FFFFFF;
+    float: right;
+    height: 30px;
+    line-height: 30px;
+    margin: 15px 0 0 10px;
+    padding: 0 10px 0 5px;
+}
+.toplay:hover {
+    background-color: #E55800;
+    text-decoration: none;
+}
+
+

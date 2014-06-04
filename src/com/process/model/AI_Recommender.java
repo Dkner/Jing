@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -58,9 +59,11 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public final List hongxindiantai(String user_id)
 	{
+		SongDAO sd = new SongDAO();
 		String result = "";
+		List<Integer> idlist = new ArrayList();
 		List templist = new ArrayList();
-		List lovesonglist = new ArrayList();
+		List<Song> lovesonglist = new ArrayList();
 		User user = ud.findById(user_id);
 		templist.addAll(user.getAssesses());
 	
@@ -74,9 +77,25 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 			}
 		} 
 		
-		this.printsong_byname(lovesonglist);
-		this.importUrl(lovesonglist);
+		for(int k=0; k<lovesonglist.size(); k++)
+			idlist.add(lovesonglist.get(k).getId());
 		
+		this.printsong_byname(lovesonglist);
+		//this.importUrl(lovesonglist);
+		
+		FilterChain chain = new FilterChain();
+		chain.AddFilter(new Filter(4));
+		chain.AddFilter(new Filter(5));
+		idlist = chain.doFilter(idlist);
+		lovesonglist.clear();
+		
+		for (int i=0; i<idlist.size(); i++) 
+	      {
+	    	  Song temp = sd.findById(idlist.get(i));
+	    	  if(temp != null)
+	    		  lovesonglist.add(temp);
+	      }   
+		this.printsong_byname(lovesonglist);
 		return lovesonglist;
 	}
 	
@@ -85,7 +104,7 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 	   * @param 
 	   * @return List Song
 	   */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ "rawtypes" })
 	public final List suibiantingting()
 	{
 		List number = new ArrayList();
@@ -100,7 +119,7 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 			if(i == condition_counter-1)
 				labelstring += temp.getLabel();
 			else
-				labelstring += temp.getLabel()+"/";
+				labelstring += temp.getLabel()+"+";
 		}
 		
 		this.currentlabel = labelstring;
@@ -108,7 +127,42 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		//
 		//lp.set_words(labelstring);
 		//return lp.find_songlist_by_words(labelstring, 1);
-		return lp.find_songlist_by_input(labelstring, new Filter(4));
+		FilterChain chain = new FilterChain();
+		chain.AddFilter(new Filter(4));
+		chain.AddFilter(new Filter(5));
+		return lp.find_songlist_by_input(0, labelstring, chain, "");
+	} 
+	
+	/**
+	   * function 排行榜
+	   * @param 
+	   * @return List Song
+	   */
+	public final List Recommend_ByRanking(Page page)
+	{
+		SongDAO sd = new SongDAO();
+		page.set_allcount(sd.getTotalRows());
+		page.set_pagecount();
+		List<Song> list = sd.findByPage(page);
+		
+		List<Integer> idlist = new ArrayList<Integer>();
+		for(int k=0; k<list.size(); k++)
+			idlist.add(list.get(k).getId());
+		
+		FilterChain chain = new FilterChain();
+		chain.AddFilter(new Filter(4));
+		chain.AddFilter(new Filter(5));
+		idlist = chain.doFilter(idlist);
+		list.clear();
+		
+		for (int i=0; i<idlist.size(); i++) 
+	      {
+	    	  Song temp = sd.findById(idlist.get(i));
+	    	  if(temp != null)
+	    		  list.add(temp);
+	      }   
+		this.printsong_byname(list);
+		return list;
 	}
 	
 	/**
@@ -143,29 +197,40 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 	{
 		//
 		String labelstring = "";
-		int counter = 0;
+		int counter = 5;
 		List templist = new ArrayList();
 		User user = ud.findById(user_id);
-		templist.addAll(user.getUsertags());
+		UsertagDAO utd = new UsertagDAO();
+		
+		templist = utd.findTopFeature(user_id, counter);
 		if(templist.size() == 0)
 		{
 			System.out.println("该用户未设置标签");
 			return null;
 		}
-		for (Iterator i = templist.iterator(); i.hasNext();){ 
-			counter++;
-			Label temp = ((Usertag)i.next()).getLabel();
-			if(counter == templist.size())
-				labelstring += temp.getLabel();
+		//得到用户排行前五的标签
+		List<Label> labellist = new ArrayList<Label>();
+		for(int i=0; i<templist.size(); i++)
+		{
+			Usertag tag = (Usertag) templist.get(i);
+			labellist.add(tag.getLabel());
+		}
+		for (Iterator<Label> it = labellist.iterator(); it.hasNext();){ 
+			//Label temp = ((Usertag)i.next()).getLabel();
+			counter--;
+			if(counter == 0)
+				labelstring += it.next().getLabel();
 			else
-				labelstring += temp.getLabel()+"/";
+				labelstring += it.next().getLabel()+"+";
+			
 		} 	
 		
 		this.currentlabel = labelstring;
-		System.out.println("随机的标签： "+labelstring);
 		//
-		//lp.set_words(labelstring);
-		return lp.find_songlist_by_input(labelstring, new Filter(4));
+		FilterChain chain = new FilterChain();
+		chain.AddFilter(new Filter(4));
+		chain.AddFilter(new Filter(5));
+		return lp.find_songlist_by_input(0, labelstring, chain, user_id);
 	}
 	
 	/**
@@ -173,24 +238,33 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 	   * @param Song Integer song,tracksnumber
 	   * @return List Song
 	   */
-	public final List RecommendSong_BySong(Song song){
+	@SuppressWarnings("unchecked")
+	public final List RecommendSong_BySong(int songId){
+		Song song = new SongDAO().findById(songId);
+		if(song == null)
+			return null;
 		List<Tag> temp = new ArrayList();
 		temp.addAll(song.getTags());
 		String labelstring = "";
 		for(int i=0; i<temp.size(); i++)
 		{
 			if(i!=0)
-				labelstring += "/";
+				labelstring += "+";
 			labelstring += temp.get(i).getLabel().getLabel();
 		}
 		
+		System.out.println(labelstring);
 		//
+		FilterChain chain = new FilterChain();
 		Filter filter = new Filter(1);
 		List filterlist = new ArrayList();
 		filterlist.add(song.getId());
 		filter.setFilterCondition(filterlist);
+		chain.AddFilter(filter);
+		chain.AddFilter(new Filter(4));
+		chain.AddFilter(new Filter(5));
 		//
-		return lp.find_songlist_by_input(labelstring, filter);
+		return lp.find_songlist_by_input(0, labelstring, chain, "");
 	}
 	
 	/**
@@ -198,23 +272,138 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 	   * @param Singer Integer singer,tracksnumber
 	   * @return List Song
 	   */
-	public final List RecommendSinger_BySinger(Singer singer){
+	public final List RecommendSinger_BySinger(String singername){
+		List<Integer> tempsinger_idlist = new ArrayList<Integer>();
+		tempsinger_idlist = this.RecommendSinger(singername);
+		int index = (Integer) this.create_randomnumber(tempsinger_idlist.size(), 1).get(0);
+		int singerid_chosen = 0;
+		if(index>=0)
+			singerid_chosen = tempsinger_idlist.get(index);
+		//
+		System.out.println("数字:"+singerid_chosen+"\n最后选中的歌手id:"+sid.findById(singerid_chosen).getSingerId());
+		FilterChain chain = new FilterChain();
+		chain.AddFilter(new Filter(4));
+		chain.AddFilter(new Filter(5));
+		return lp.find_songlist_by_input(0, sid.findById(singerid_chosen).getName(), chain, "");
+	}	
+	
+	/**
+	   * function 推荐歌手
+	   * @param Singer user_id
+	   * @return List Song
+	   */
+	public final List RecommendSinger_ByPage(String user_id, Page page){
+		
+		SingerDAO sd = new SingerDAO();
+		page.set_allcount(sd.findAll().size());
+		page.set_pagecount();
+		
+		UserDAO ud = new UserDAO();
+		User user = ud.findById(user_id);
+		List<Integer> tempsinger_idlist = new ArrayList<Integer>();
+		List singers = new ArrayList();
+		List favors = new ArrayList();
+		Set userfavor = user.getFavors();
+		if(user.getFavors() != null && userfavor.size()>0)
+		{
+			favors.addAll(userfavor);
+			if(favors.size()>0)
+			{
+				for(int i=0; i<favors.size(); i++)
+				{
+					Singer singer = ((Favor) favors.get(i)).getSinger();
+					tempsinger_idlist.addAll(this.RecommendSinger(singer.getName()));
+				}
+			}
+		}
+		
+		//随机艺人
+		List<Integer> random_idlist = this.create_randomnumber(sd.findAll().size(), 5);
+		for(int i=0; i<random_idlist.size(); i++)
+		{
+			if(!tempsinger_idlist.contains(random_idlist.get(i)))
+				tempsinger_idlist.add(random_idlist.get(i));
+		}
+		
+		int counter = 0;
+		int j=(page.get_pagenow()-1)*page.get_pagesize(); 
+		//page.print_page();
+		//System.out.println("j:"+j+"\nsize:"+tempsinger_idlist.size());
+		while(j<tempsinger_idlist.size())
+		{
+			int id = tempsinger_idlist.get(j);
+			singers.add(sd.findById(id));
+			counter++;
+			j++;
+			if(counter == page.get_pagesize())
+				break;
+		}
+		
+		return singers;
+	}	
+	
+	public final List RecommendSong_BySingers(String user_id, Page page){
+		
+		SongDAO sd = new SongDAO();
+		List<Integer> idlist = new ArrayList<Integer>();
+		List<Singer> singers = (List<Singer>)this.RecommendSinger_ByPage(user_id, page);
+		
+		List<Song> songs = new ArrayList();
+		for(int i=0; i<singers.size(); i++)
+		{
+			Set temp = singers.get(i).getSongs();
+			if(temp != null)
+				songs.addAll(temp);
+		}
+		
+		for(int k=0; k<songs.size(); k++)
+			idlist.add(songs.get(k).getId());
+		
+		FilterChain chain = new FilterChain();
+		chain.AddFilter(new Filter(4));
+		chain.AddFilter(new Filter(5));
+		
+		idlist = chain.doFilter(idlist);
+		songs.clear();
+		
+		for (int i=0; i<idlist.size(); i++) 
+	      {
+	    	  Song temp = sd.findById(idlist.get(i));
+	    	  if(temp != null)
+	    		  songs.add(temp);
+	      }   
+		
+		return songs;
+	}	
+	
+	//根据一个歌手推荐类似的歌手们
+	public final List RecommendSinger(String singername)
+	{
+		SingerDAO sd = new SingerDAO();
+		List<Singer> singerlist = sd.findByName(singername);
+		Singer singer = null;
+		if(singerlist.size()>0)
+			singer = singerlist.get(0);
+		else
+			return null;
+		
 		List<Integer> tempsinger_idlist = new ArrayList<Integer>();
 		List templabel = new ArrayList();
 		List<Singerlabel> singerlabel = new ArrayList<Singerlabel>();	
 		singerlabel.addAll(singer.getSingerlabels());
-		
+
 		//匹配下限
 		int match_degree = 1;
-		match_degree = (2+singerlabel.size())/2;		
+		match_degree = singerlabel.size()/2 + 1;		
+		//System.out.println(singerlabel.size()+"个标签需要命中"+match_degree+"个");
 		
-		//根据singerlabel找到label
+		//根据singerlabel顺推找到label
 		for(int k=0; k<singerlabel.size(); k++)
 		{
 			Label temp = singerlabel.get(k).getLabel();
 			templabel.addAll(temp.getSingerlabels());
 		}
-		//再根据singer在singerlabel表中的记录反推找到它对应的一个歌手，加入所有相关歌手的id
+		//再根据singerlabel反推找到它对应的一个歌手，加入所有相关歌手的id
 		for(int j=0; j<templabel.size(); j++)
 		{
 			tempsinger_idlist.add(((Singerlabel)templabel.get(j)).getSinger().getSingerId());
@@ -225,37 +414,26 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 			Integer count = map.get(temp); 
 			map.put(temp, (count == null) ? 1 : count + 1); 
 		} 
+		//this.printMap(map);
+		//情况临时的所有歌手id在根据map导入
 		tempsinger_idlist.clear();
 		for (int temp : map.keySet()) 
 		{ 
 			int id = map.get(temp);
-			if(id < match_degree || id == singer.getSingerId())
+			if(id < match_degree || temp == singer.getSingerId())
 				continue;
 			tempsinger_idlist.add(temp);
 		}      
-		int index = (Integer) this.create_randomnumber(tempsinger_idlist.size()-1, 1).get(0);
-		int singerid_chosen = 0;
-		if(index>=0)
-			singerid_chosen = tempsinger_idlist.get(index);
-		//
-		System.out.println("相似歌手："+sid.findById(singerid_chosen).getName());
-		//return lp.find_songlist_by_singer(sid.findById(singerid_chosen).getName());
-		return lp.find_songlist_by_input(sid.findById(singerid_chosen).getName(), new Filter(4));
-	}
-	
-	/**
-	   * function 根据一首歌推荐它的演唱歌手
-	   * @param Song Integer song,tracksnumber
-	   * @return List Song
-	   */
-	public final List RecommendSinger_BySong(Song song){
 		
-		Singer singer = song.getSinger();
-		return lp.find_songlist_by_input(song.getSinger().getName(), new Filter(4));
+		//for(int h=0;h<tempsinger_idlist.size();h++)
+		//	System.out.println("待选歌手id:"+tempsinger_idlist.get(h));
+		
+		return tempsinger_idlist;
 	}
 	
-	
-	
+	public final String get_currentlabel(){
+		return this.currentlabel;
+	}
 	
 	
 	
@@ -294,7 +472,7 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 	
 	/**
 	   * function 生成随机数字，用来随机标签
-	   * @param int 上限（包含边界），随机数字个数
+	   * @param int 上限（不包含边界），随机数字个数
 	   * @return List integers
 	   */
 	public final List create_randomnumber(int uplimit, int amount)
@@ -305,7 +483,7 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		//
 		while(counter<amount)
 		{
-			int label_id_choosed = god.nextInt(uplimit)+1;
+			int label_id_choosed = god.nextInt(uplimit);
 			if(!number.contains(label_id_choosed))
 			{
 				counter++;
@@ -353,6 +531,16 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 	}
 	
 	
+	//打印算法中的匹配命中情况
+	public void printMap(Map<Integer, Integer> map) { 
+		System.out.println("具体匹配情况:");
+		if(map.size() == 0)
+			System.out.println("空");
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) { 
+            System.out.println("id: " + entry.getKey() + "    匹配成功次数: "
+                    + entry.getValue()); 
+        } 
+    } 
 	
 	//打印songlist
 	public void printsong_byname(List songlist) {

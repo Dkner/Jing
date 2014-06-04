@@ -1,6 +1,10 @@
 package com.process.service;
 
+import java.util.List;
+
+import com.data.vo.User;
 import com.process.model.AssessProcessor;
+import com.process.model.Page;
 
 public interface AssessService {
 	
@@ -46,5 +50,17 @@ public interface AssessService {
 	   */
 	public void undo_usertag(String user_id, String usertag);
 	
+	/**
+	   * function 收藏艺人
+	   * @param String user_id,usertag
+	   * @return
+	   */
+	public boolean collect_singer(String user_id, String singername);
 	
+	
+	public List get_RecordsByPage(String user_id, Page page);
+	
+	public User get_User(String user_id);
+	
+	public List get_FavorSingerByPage(String usr_id, Page page);
 }

@@ -2,6 +2,9 @@ package com.data.vo;
 
 import com.connection.dao.BaseHibernateDAO;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.hibernate.criterion.Example;
@@ -142,4 +145,46 @@ public class UsertagDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
+	
+	public List findTopFeature(String user_id, int topN) {
+		try {
+			String queryString = "from Usertag where user_id = "+ user_id +" order by weight desc";
+			
+			
+			Query queryObject = getSession().createQuery(queryString);
+
+			queryObject.setFirstResult(0);
+			queryObject.setMaxResults(topN);
+			
+			return queryObject.list();
+		} catch (RuntimeException re) {
+			log.error("findTopFeature failed", re);
+			throw re;
+		}
+	}
+	
+	public List findByMultiProperty(Map<String,Object> conditions) {
+		log.debug("finding Usertag instance with multiproperty");
+		try {
+			String queryString = "from Usertag where ";
+			
+			Set<String> key = conditions.keySet();
+			int size = 0;
+	        for (Map.Entry<String,Object> entry : conditions.entrySet()) {	           
+	            size++;
+	            if(size == key.size())
+	            	queryString = queryString + entry.getKey()  + " = " + entry.getValue();
+	            else
+	            	queryString = queryString + entry.getKey()  + " = " + entry.getValue()+" and ";
+	            
+	        }
+			Query queryObject = getSession().createQuery(queryString);
+
+			return queryObject.list();
+		} catch (RuntimeException re) {
+			log.error("find by property name failed", re);
+			throw re;
+		}
+	}
+	
 }

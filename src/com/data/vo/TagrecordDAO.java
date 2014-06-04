@@ -1,6 +1,9 @@
 package com.data.vo;
 
 import com.connection.dao.BaseHibernateDAO;
+import com.process.model.Page;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
@@ -25,6 +28,7 @@ public class TagrecordDAO extends BaseHibernateDAO {
 			.getLogger(TagrecordDAO.class);
 	// property constants
 	public static final String RECORD = "record";
+	public static final String TIME = "time";
 
 	public void save(Tagrecord transientInstance) {
 		log.debug("saving Tagrecord instance");
@@ -93,6 +97,10 @@ public class TagrecordDAO extends BaseHibernateDAO {
 		return findByProperty(RECORD, record);
 	}
 
+	public List findByTime(Object time) {
+		return findByProperty(TIME, time);
+	}
+
 	public List findAll() {
 		log.debug("finding all Tagrecord instances");
 		try {
@@ -138,4 +146,47 @@ public class TagrecordDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
+	
+	
+	
+	
+	//按页查找
+
+			@SuppressWarnings("unchecked")
+			public List findPropertyByPage(String user_id, Page page)
+			{
+				try {
+					List<Tagrecord> gifts = new ArrayList<Tagrecord>();
+					String queryString = "from Tagrecord where user_id = "+user_id+" order by time desc";
+
+					Query queryObject = getSession().createQuery(queryString);
+					queryObject.setFirstResult((page.get_pagenow()-1)*page.get_pagesize());
+					queryObject.setMaxResults(page.get_pagesize());
+
+					gifts = queryObject.list();						
+					return gifts;
+				}
+				catch(RuntimeException re) {
+					log.error("find by page failed", re);
+					throw re;
+				}
+
+
+			}
+
+
+
+			//得到总的礼品数
+			public int getUserTotalRows(String user_id)
+			{
+
+				Number c= (Number) getSession().createQuery("select count(*) from Tagrecord where user_id = "+user_id)
+						.uniqueResult();
+
+
+				return c.intValue();
+
+			}
+			
+	
 }

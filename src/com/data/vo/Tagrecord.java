@@ -11,6 +11,7 @@ public class Tagrecord implements java.io.Serializable {
 	private Integer id;
 	private User user;
 	private String record;
+	private String time;
 
 	// Constructors
 
@@ -18,10 +19,17 @@ public class Tagrecord implements java.io.Serializable {
 	public Tagrecord() {
 	}
 
-	/** full constructor */
+	/** minimal constructor */
 	public Tagrecord(User user, String record) {
 		this.user = user;
 		this.record = record;
+	}
+
+	/** full constructor */
+	public Tagrecord(User user, String record, String time) {
+		this.user = user;
+		this.record = record;
+		this.time = time;
 	}
 
 	// Property accessors
@@ -48,6 +56,14 @@ public class Tagrecord implements java.io.Serializable {
 
 	public void setRecord(String record) {
 		this.record = record;
+	}
+
+	public String getTime() {
+		return this.time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
 	}
 
 }

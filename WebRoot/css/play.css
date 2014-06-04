@@ -1,15 +1,41 @@
+#maxDiv{
+	position:relative;
+
+	width:100%;
+}
+.labelImg:hover
+{
+	opacity:0.5;
+	filter:alpha(opacity=70);
+}
+.tagFont
+{
+	font-family:cursive;
+	color:rgb(59, 94, 204);
+}
+.leftExtendBtn
+{
+	position:relative;
+	float:left;
+	left:20px;
+}
+.rightExtendBtn
+{
+	position:relative;
+	float:right;
+	right:20px;
+}
+
+/*above new*/
+#commentForm
+{
+	/*height:60px;*/
+}
 .musicShowSize{
 	width:100px;
 	height:100px;
 	margin-top:200px;
 	}
-	
-#navi{
-	float:right;
-	position:relative;
-	right:70px;
-	margin-top:18px;	
-}
 
 #leftFrame{
 	/*float:left;*/
@@ -18,14 +44,10 @@
 	background-color:white;
 }
 
-#commentBtn{
-	position:relative;
-	float:left;
-	top:400px;
-	}
+
 #rightFrame{
 	background-image:url(../img/rightframe.png);
-    height: 580px;
+    height: 600px;
     position: absolute;
     right: 0;
     top: 0;
@@ -41,12 +63,12 @@
 	margin: 0 10px 10px 50px;
 	}
 .historyGroup{
-	//border:1px dotted #FCF;
+	border:1px dotted #FCF;
 	
 	}
 .historyEach{
-	//border: 1px dotted #FFCCFF;
-    height: 28px;
+	border: 1px dotted #FFCCFF;
+    height: 50px;
     padding: 20px 0;
     width: 300px;
 	}
@@ -90,12 +112,13 @@
 #scheLabel{
 	height:40px;
 	}
+	
 
-#player
+#audioCtl
 {
 	
 	width:200px;
-	height:27px;
+	height:20px;
 	}
 	
 #musicLove{
@@ -104,9 +127,14 @@
 	position:relative;
 	left:100px;
 	-moz-animation:myfirst 2s; /* Firefox */
+	-webkit-animation:myfirst 2s; /* Firefox */
 	-moz-animation-delay: 0.5s;
+	-webkit-animation-delay: 0.5s;
+	
 	-moz-animation-iteration-count: infinite;
+	-webkit-animation-iteration-count: infinite;
 	-moz-animation-direction: alternate;
+	-webkit-animation-direction: alternate;
 	}
 	
 #musicHate{
@@ -116,62 +144,75 @@
 	left:200px;
 	animation:myfirst 5s;
 	-moz-animation:myfirst 4s; /* Firefox */
+	-webkit-animation:myfirst 4s; /* Firefox */
 	-moz-animation-delay: 1.2s;
+	-webkit-animation-delay: 1.2s;
 	-moz-animation-iteration-count: infinite;
+	-webkit-animation-iteration-count: infinite;
 	/*-moz-animation-direction: alternate;*/
 	}
 	
 	
 	
 #musicCirPlay{
-	//animation: 6s ease 2s alternate none infinite myfirst;
-    //background-image: url("../img/playerIconsLoop0.png");
-    //float: left;
-    //left: 200px;
-    //position: relative;
-    animation: 6s ease 2s alternate none infinite myfirst;
+	animation: 6s ease 2s alternate none infinite myfirst;
+	-webkit-animation: 6s ease 2s alternate none infinite myfirst;
     background-image: url("../img/playerIconsLoop0.png");
-    float: right;
+    float: left;
+    left: 400px;
     position: relative;
-    right: 370px;
 	}
 	
 #musicChange{
-	//background-image: url("../img/playerIconsCut0.png");
-    //float: left;
-    //left: 300px;
-    //position: relative;
-    background-image: url("../img/playerIconsCut0.png");
-    float: right;
+	background-image: url("../img/playerIconsCut0.png");
+    float: left;
+    left: 500px;
     position: relative;
-    right: 80px;
 	/*-moz-animation:myfirst 5s;  Firefox */
 	/*-moz-animation-delay: 2s;
 	-moz-animation-iteration-count: infinite;
+	-webkit-animation-iteration-count: infinite;
 	-moz-animation-direction: alternate;*/
 	}
 	
 #MusicPlayer{
-	background-image:url(../img/cd_face.png);
+	background-image:url(../img/cd_qlx.jpg);
+	text-align:center;
 	float: left;
     height: 250px;
-    left: 285px;
+    left: 300px;
     margin-top: 100px;
 	margin-bottom:50px;
     position: relative;
     width: 250px;
 	-moz-animation:mysecond 8s; /* Firefox */
+	-webkit-animation:mysecond 8s;/*Chrome*/
 	/*-moz-animation-delay: 0s;*/
 	-moz-animation-iteration-count: infinite;
+	-webkit-animation-iteration-count: infinite;
 	}
 #songName{
 	float: left;
-    margin-bottom: 50px;
-    margin-left: 100px;
-    margin-top: 400px;
-    position: relative;
+    position:relative;
 	}
-	
+#singerName{
+	float: left;
+	left:20px;
+    position: relative;
+}
+#commentBtn{
+	position:relative;
+	float:left;
+	left:20px;
+	}	
+.informationOfSong
+{
+    margin-bottom: 50px;
+    margin-left: 550px;
+    margin-top: 400px;
+    position: absolute;
+    float:left;
+}
 .actionImg{
 	position:relative;
 	float:left;
@@ -185,6 +226,7 @@
 	}	
 #extendAndControl{
 	height:40px;
+	margin-top:70px;
 	}	
 #extenfFunc{
 	float:left;
@@ -195,7 +237,7 @@
 #actionLabelForm{
 	background-image:url(../img/gnsBg.jpg);
 	height:50px;
-	width:1265px;
+	width:100%;
 	}
 
 #remindInfo{
@@ -205,9 +247,10 @@
 	margin: 10px 200px;
 	}
 #control{
+	//border:1px solid black;
 	float:right;
 	position:relative;
-	right:20px;
+	right:0px;
 	}	
 	
 	
@@ -215,22 +258,18 @@
 	
 
 #logOut{
-	float:right;
-	position:relative;
-	right:20px;
+	
 	}
 	
 #search{
 	float:left;
 	position:relative;
-	left:400px;
-	
+	left:34%;
+	 margin-top: 5px;
 	}
 
 #setting{
-	float:right;
-	position:relative;
-	right:50px;
+	
 	}
 
 .personalInfo{
@@ -284,42 +323,47 @@
 	left:10px;
 	}
 	
-.saveOrcCanBtn{
-	margin: 0 10px;
-	}	
-	
-	
+.saveOrcCanBtn {
+    float: right;
+    margin: 3px 20px;
+}
+#othersComment
+{
+	margin-top:50px;
+}
 #commentFrame{
-	background-image: url("../img/commentframe5.png");
-	/*border: 1px solid #0000FF;*/
+    width:100%;
+	height:100%;
+	}
+#commentFrameDiv
+{
     height: 590px;
-    margin: 50px 400px;
-    padding: 10px 0;
-    /*top: 30px;*/
+    margin-left:50px;
     width: 500px;
 	position:relative;
-	}
+	left:27%;
+}	
 	
-	#commentDiv{
-	background-image: url("../img/commentframe5.png");
+/*-------------------------commentCSS*/	
+#commentDiv{
+	 background-image:url(../img/commentBackground.jpg);
 	 height: 590px;
 	 width: 500px;
 	}
-.commentDiv{
+.commentDivBox{
 	height:60px;
 	width:450px;
 	background-color:#FFFFFF;;
 	margin:10px 10px;
-	
-	}	
+	}
 #headComment{
 	height: 180px;
 	}
 
 #closeCommentBtn{
-	left: 900px;
-    position: absolute;
-    top: 55px;
+	position:absolute;
+	top:50px;
+	right:7px;
 	}
 #scoresAndTagsDiv{
 	/*border:1px solid black;*/
@@ -331,30 +375,20 @@
     top: 20px;
     width: 350px;
 	}
-	
-	
-#nameAndImg
-{
-	 float: left;
-	 position: relative;
-	 margin: 23px;
-	 height: 100px;
-	 width:120px;
-}
-#albumImg{
+#albumImg {
     background-image: url("../img/head.jpg");
-    /*float: left;*/
+    float: left;
     height: 100px;
-    /*margin: 23px;*/
+    left: 5px;
     position: relative;
+    top: 43px;
     width: 100px;
-	}
-	
+}	
 #scoresAndTagsDiv{
-	background-image: url("../img/iron.png");
+	/*background-image: url("../img/iron.png");*/
 	float: left;
     height: 175px;
-    left: 0px;
+    left: 40px;
     position: relative;
     width: 320px;
 	}	
@@ -369,29 +403,22 @@
     width: 320px;
 	}
 .tagList{
-	//background-image: url("../img/label.png");
-	align:center;
+	/*background-image: url("../img/label.png");*/
     /*border: 1px solid #FFFF00;*/
 	color: rgb(83, 64, 64);
     float: left;
     height: 30px;
     margin: 20px 20px 0;
     position: relative;
-    //width: 60px;
+    width: 60px;
 	}
-#commentTextArea{
-	height: 40px;
+#commentTextArea {
+    height: 70px;
     margin-left: 10px;
-    width: 449px;
-	}	
-	
-	@keyframes myfirst
-{
-0%   {background:red;}
-25%  {background:yellow;}
-50%  {background:blue;}
-100% {background:green;}
+    margin-top: 7px;
+    width: 470px;
 }
+	
 
 @-moz-keyframes myfirst /* Firefox */
 {
@@ -400,6 +427,384 @@
 50%  {-moz-transform:rotate(330deg);}
 100% {-moz-transform:rotate(360deg);}
 }
+@-webkit-keyframes myfirst /* Chrome */
+{
+0%   {-webkit-transform:rotate(90deg);}
+25%  {-webkit-transform:rotate(180deg);}
+50%  {-webkit-transform:rotate(330deg);}
+100% {-webkit-transform:rotate(360deg);}
+}
+
+
+
+
+
+@-webkit-keyframes mysecond /* Chrome */
+{
+0.0%   {-webkit-transform:rotate(0deg);}
+0.2777%   {-webkit-transform:rotate(1deg);}
+0.5554%   {-webkit-transform:rotate(2deg);}
+0.8331%   {-webkit-transform:rotate(3deg);}
+1.1108%   {-webkit-transform:rotate(4deg);}
+1.3885%   {-webkit-transform:rotate(5deg);}
+1.6662%   {-webkit-transform:rotate(6deg);}
+1.9439%   {-webkit-transform:rotate(7deg);}
+2.2216%   {-webkit-transform:rotate(8deg);}
+2.4993%   {-webkit-transform:rotate(9deg);}
+2.777%   {-webkit-transform:rotate(10deg);}
+3.0547%   {-webkit-transform:rotate(11deg);}
+3.3324%   {-webkit-transform:rotate(12deg);}
+3.6101%   {-webkit-transform:rotate(13deg);}
+3.8878%   {-webkit-transform:rotate(14deg);}
+4.1655%   {-webkit-transform:rotate(15deg);}
+4.4432%   {-webkit-transform:rotate(16deg);}
+4.7209%   {-webkit-transform:rotate(17deg);}
+4.9986%   {-webkit-transform:rotate(18deg);}
+5.2763%   {-webkit-transform:rotate(19deg);}
+5.554%   {-webkit-transform:rotate(20deg);}
+5.8317%   {-webkit-transform:rotate(21deg);}
+6.1094%   {-webkit-transform:rotate(22deg);}
+6.3871%   {-webkit-transform:rotate(23deg);}
+6.6648%   {-webkit-transform:rotate(24deg);}
+6.9425%   {-webkit-transform:rotate(25deg);}
+7.2202%   {-webkit-transform:rotate(26deg);}
+7.4979%   {-webkit-transform:rotate(27deg);}
+7.7756%   {-webkit-transform:rotate(28deg);}
+8.0533%   {-webkit-transform:rotate(29deg);}
+8.331%   {-webkit-transform:rotate(30deg);}
+8.6087%   {-webkit-transform:rotate(31deg);}
+8.8864%   {-webkit-transform:rotate(32deg);}
+9.1641%   {-webkit-transform:rotate(33deg);}
+9.4418%   {-webkit-transform:rotate(34deg);}
+9.7195%   {-webkit-transform:rotate(35deg);}
+9.9972%   {-webkit-transform:rotate(36deg);}
+10.2749%   {-webkit-transform:rotate(37deg);}
+10.5526%   {-webkit-transform:rotate(38deg);}
+10.8303%   {-webkit-transform:rotate(39deg);}
+11.108%   {-webkit-transform:rotate(40deg);}
+11.3857%   {-webkit-transform:rotate(41deg);}
+11.6634%   {-webkit-transform:rotate(42deg);}
+11.9411%   {-webkit-transform:rotate(43deg);}
+12.2188%   {-webkit-transform:rotate(44deg);}
+12.4965%   {-webkit-transform:rotate(45deg);}
+12.7742%   {-webkit-transform:rotate(46deg);}
+13.0519%   {-webkit-transform:rotate(47deg);}
+13.3296%   {-webkit-transform:rotate(48deg);}
+13.6073%   {-webkit-transform:rotate(49deg);}
+13.885%   {-webkit-transform:rotate(50deg);}
+14.1627%   {-webkit-transform:rotate(51deg);}
+14.4404%   {-webkit-transform:rotate(52deg);}
+14.7181%   {-webkit-transform:rotate(53deg);}
+14.9958%   {-webkit-transform:rotate(54deg);}
+15.2735%   {-webkit-transform:rotate(55deg);}
+15.5512%   {-webkit-transform:rotate(56deg);}
+15.8289%   {-webkit-transform:rotate(57deg);}
+16.1066%   {-webkit-transform:rotate(58deg);}
+16.3843%   {-webkit-transform:rotate(59deg);}
+16.662%   {-webkit-transform:rotate(60deg);}
+16.9397%   {-webkit-transform:rotate(61deg);}
+17.2174%   {-webkit-transform:rotate(62deg);}
+17.4951%   {-webkit-transform:rotate(63deg);}
+17.7728%   {-webkit-transform:rotate(64deg);}
+18.0505%   {-webkit-transform:rotate(65deg);}
+18.3282%   {-webkit-transform:rotate(66deg);}
+18.6059%   {-webkit-transform:rotate(67deg);}
+18.8836%   {-webkit-transform:rotate(68deg);}
+19.1613%   {-webkit-transform:rotate(69deg);}
+19.439%   {-webkit-transform:rotate(70deg);}
+19.7167%   {-webkit-transform:rotate(71deg);}
+19.9944%   {-webkit-transform:rotate(72deg);}
+20.2721%   {-webkit-transform:rotate(73deg);}
+20.5498%   {-webkit-transform:rotate(74deg);}
+20.8275%   {-webkit-transform:rotate(75deg);}
+21.1052%   {-webkit-transform:rotate(76deg);}
+21.3829%   {-webkit-transform:rotate(77deg);}
+21.6606%   {-webkit-transform:rotate(78deg);}
+21.9383%   {-webkit-transform:rotate(79deg);}
+22.216%   {-webkit-transform:rotate(80deg);}
+22.4937%   {-webkit-transform:rotate(81deg);}
+22.7714%   {-webkit-transform:rotate(82deg);}
+23.0491%   {-webkit-transform:rotate(83deg);}
+23.3268%   {-webkit-transform:rotate(84deg);}
+23.6045%   {-webkit-transform:rotate(85deg);}
+23.8822%   {-webkit-transform:rotate(86deg);}
+24.1599%   {-webkit-transform:rotate(87deg);}
+24.4376%   {-webkit-transform:rotate(88deg);}
+24.7153%   {-webkit-transform:rotate(89deg);}
+24.993%   {-webkit-transform:rotate(90deg);}
+25.2707%   {-webkit-transform:rotate(91deg);}
+25.5484%   {-webkit-transform:rotate(92deg);}
+25.8261%   {-webkit-transform:rotate(93deg);}
+26.1038%   {-webkit-transform:rotate(94deg);}
+26.3815%   {-webkit-transform:rotate(95deg);}
+26.6592%   {-webkit-transform:rotate(96deg);}
+26.9369%   {-webkit-transform:rotate(97deg);}
+27.2146%   {-webkit-transform:rotate(98deg);}
+27.4923%   {-webkit-transform:rotate(99deg);}
+27.77%   {-webkit-transform:rotate(100deg);}
+28.0477%   {-webkit-transform:rotate(101deg);}
+28.3254%   {-webkit-transform:rotate(102deg);}
+28.6031%   {-webkit-transform:rotate(103deg);}
+28.8808%   {-webkit-transform:rotate(104deg);}
+29.1585%   {-webkit-transform:rotate(105deg);}
+29.4362%   {-webkit-transform:rotate(106deg);}
+29.7139%   {-webkit-transform:rotate(107deg);}
+29.9916%   {-webkit-transform:rotate(108deg);}
+30.2693%   {-webkit-transform:rotate(109deg);}
+30.547%   {-webkit-transform:rotate(110deg);}
+30.8247%   {-webkit-transform:rotate(111deg);}
+31.1024%   {-webkit-transform:rotate(112deg);}
+31.3801%   {-webkit-transform:rotate(113deg);}
+31.6578%   {-webkit-transform:rotate(114deg);}
+31.9355%   {-webkit-transform:rotate(115deg);}
+32.2132%   {-webkit-transform:rotate(116deg);}
+32.4909%   {-webkit-transform:rotate(117deg);}
+32.7686%   {-webkit-transform:rotate(118deg);}
+33.0463%   {-webkit-transform:rotate(119deg);}
+33.324%   {-webkit-transform:rotate(120deg);}
+33.6017%   {-webkit-transform:rotate(121deg);}
+33.8794%   {-webkit-transform:rotate(122deg);}
+34.1571%   {-webkit-transform:rotate(123deg);}
+34.4348%   {-webkit-transform:rotate(124deg);}
+34.7125%   {-webkit-transform:rotate(125deg);}
+34.9902%   {-webkit-transform:rotate(126deg);}
+35.2679%   {-webkit-transform:rotate(127deg);}
+35.5456%   {-webkit-transform:rotate(128deg);}
+35.8233%   {-webkit-transform:rotate(129deg);}
+36.101%   {-webkit-transform:rotate(130deg);}
+36.3787%   {-webkit-transform:rotate(131deg);}
+36.6564%   {-webkit-transform:rotate(132deg);}
+36.9341%   {-webkit-transform:rotate(133deg);}
+37.2118%   {-webkit-transform:rotate(134deg);}
+37.4895%   {-webkit-transform:rotate(135deg);}
+37.7672%   {-webkit-transform:rotate(136deg);}
+38.0449%   {-webkit-transform:rotate(137deg);}
+38.3226%   {-webkit-transform:rotate(138deg);}
+38.6003%   {-webkit-transform:rotate(139deg);}
+38.878%   {-webkit-transform:rotate(140deg);}
+39.1557%   {-webkit-transform:rotate(141deg);}
+39.4334%   {-webkit-transform:rotate(142deg);}
+39.7111%   {-webkit-transform:rotate(143deg);}
+39.9888%   {-webkit-transform:rotate(144deg);}
+40.2665%   {-webkit-transform:rotate(145deg);}
+40.5442%   {-webkit-transform:rotate(146deg);}
+40.8219%   {-webkit-transform:rotate(147deg);}
+41.0996%   {-webkit-transform:rotate(148deg);}
+41.3773%   {-webkit-transform:rotate(149deg);}
+41.655%   {-webkit-transform:rotate(150deg);}
+41.9327%   {-webkit-transform:rotate(151deg);}
+42.2104%   {-webkit-transform:rotate(152deg);}
+42.4881%   {-webkit-transform:rotate(153deg);}
+42.7658%   {-webkit-transform:rotate(154deg);}
+43.0435%   {-webkit-transform:rotate(155deg);}
+43.3212%   {-webkit-transform:rotate(156deg);}
+43.5989%   {-webkit-transform:rotate(157deg);}
+43.8766%   {-webkit-transform:rotate(158deg);}
+44.1543%   {-webkit-transform:rotate(159deg);}
+44.432%   {-webkit-transform:rotate(160deg);}
+44.7097%   {-webkit-transform:rotate(161deg);}
+44.9874%   {-webkit-transform:rotate(162deg);}
+45.2651%   {-webkit-transform:rotate(163deg);}
+45.5428%   {-webkit-transform:rotate(164deg);}
+45.8205%   {-webkit-transform:rotate(165deg);}
+46.0982%   {-webkit-transform:rotate(166deg);}
+46.3759%   {-webkit-transform:rotate(167deg);}
+46.6536%   {-webkit-transform:rotate(168deg);}
+46.9313%   {-webkit-transform:rotate(169deg);}
+47.209%   {-webkit-transform:rotate(170deg);}
+47.4867%   {-webkit-transform:rotate(171deg);}
+47.7644%   {-webkit-transform:rotate(172deg);}
+48.0421%   {-webkit-transform:rotate(173deg);}
+48.3198%   {-webkit-transform:rotate(174deg);}
+48.5975%   {-webkit-transform:rotate(175deg);}
+48.8752%   {-webkit-transform:rotate(176deg);}
+49.1529%   {-webkit-transform:rotate(177deg);}
+49.4306%   {-webkit-transform:rotate(178deg);}
+49.7083%   {-webkit-transform:rotate(179deg);}
+49.986%   {-webkit-transform:rotate(180deg);}
+50.2637%   {-webkit-transform:rotate(181deg);}
+50.5414%   {-webkit-transform:rotate(182deg);}
+50.8191%   {-webkit-transform:rotate(183deg);}
+51.0968%   {-webkit-transform:rotate(184deg);}
+51.3745%   {-webkit-transform:rotate(185deg);}
+51.6522%   {-webkit-transform:rotate(186deg);}
+51.9299%   {-webkit-transform:rotate(187deg);}
+52.2076%   {-webkit-transform:rotate(188deg);}
+52.4853%   {-webkit-transform:rotate(189deg);}
+52.763%   {-webkit-transform:rotate(190deg);}
+53.0407%   {-webkit-transform:rotate(191deg);}
+53.3184%   {-webkit-transform:rotate(192deg);}
+53.5961%   {-webkit-transform:rotate(193deg);}
+53.8738%   {-webkit-transform:rotate(194deg);}
+54.1515%   {-webkit-transform:rotate(195deg);}
+54.4292%   {-webkit-transform:rotate(196deg);}
+54.7069%   {-webkit-transform:rotate(197deg);}
+54.9846%   {-webkit-transform:rotate(198deg);}
+55.2623%   {-webkit-transform:rotate(199deg);}
+55.54%   {-webkit-transform:rotate(200deg);}
+55.8177%   {-webkit-transform:rotate(201deg);}
+56.0954%   {-webkit-transform:rotate(202deg);}
+56.3731%   {-webkit-transform:rotate(203deg);}
+56.6508%   {-webkit-transform:rotate(204deg);}
+56.9285%   {-webkit-transform:rotate(205deg);}
+57.2062%   {-webkit-transform:rotate(206deg);}
+57.4839%   {-webkit-transform:rotate(207deg);}
+57.7616%   {-webkit-transform:rotate(208deg);}
+58.0393%   {-webkit-transform:rotate(209deg);}
+58.317%   {-webkit-transform:rotate(210deg);}
+58.5947%   {-webkit-transform:rotate(211deg);}
+58.8724%   {-webkit-transform:rotate(212deg);}
+59.1501%   {-webkit-transform:rotate(213deg);}
+59.4278%   {-webkit-transform:rotate(214deg);}
+59.7055%   {-webkit-transform:rotate(215deg);}
+59.9832%   {-webkit-transform:rotate(216deg);}
+60.2609%   {-webkit-transform:rotate(217deg);}
+60.5386%   {-webkit-transform:rotate(218deg);}
+60.8163%   {-webkit-transform:rotate(219deg);}
+61.094%   {-webkit-transform:rotate(220deg);}
+61.3717%   {-webkit-transform:rotate(221deg);}
+61.6494%   {-webkit-transform:rotate(222deg);}
+61.9271%   {-webkit-transform:rotate(223deg);}
+62.2048%   {-webkit-transform:rotate(224deg);}
+62.4825%   {-webkit-transform:rotate(225deg);}
+62.7602%   {-webkit-transform:rotate(226deg);}
+63.0379%   {-webkit-transform:rotate(227deg);}
+63.3156%   {-webkit-transform:rotate(228deg);}
+63.5933%   {-webkit-transform:rotate(229deg);}
+63.871%   {-webkit-transform:rotate(230deg);}
+64.1487%   {-webkit-transform:rotate(231deg);}
+64.4264%   {-webkit-transform:rotate(232deg);}
+64.7041%   {-webkit-transform:rotate(233deg);}
+64.9818%   {-webkit-transform:rotate(234deg);}
+65.2595%   {-webkit-transform:rotate(235deg);}
+65.5372%   {-webkit-transform:rotate(236deg);}
+65.8149%   {-webkit-transform:rotate(237deg);}
+66.0926%   {-webkit-transform:rotate(238deg);}
+66.3703%   {-webkit-transform:rotate(239deg);}
+66.648%   {-webkit-transform:rotate(240deg);}
+66.9257%   {-webkit-transform:rotate(241deg);}
+67.2034%   {-webkit-transform:rotate(242deg);}
+67.4811%   {-webkit-transform:rotate(243deg);}
+67.7588%   {-webkit-transform:rotate(244deg);}
+68.0365%   {-webkit-transform:rotate(245deg);}
+68.3142%   {-webkit-transform:rotate(246deg);}
+68.5919%   {-webkit-transform:rotate(247deg);}
+68.8696%   {-webkit-transform:rotate(248deg);}
+69.1473%   {-webkit-transform:rotate(249deg);}
+69.425%   {-webkit-transform:rotate(250deg);}
+69.7027%   {-webkit-transform:rotate(251deg);}
+69.9804%   {-webkit-transform:rotate(252deg);}
+70.2581%   {-webkit-transform:rotate(253deg);}
+70.5358%   {-webkit-transform:rotate(254deg);}
+70.8135%   {-webkit-transform:rotate(255deg);}
+71.0912%   {-webkit-transform:rotate(256deg);}
+71.3689%   {-webkit-transform:rotate(257deg);}
+71.6466%   {-webkit-transform:rotate(258deg);}
+71.9243%   {-webkit-transform:rotate(259deg);}
+72.202%   {-webkit-transform:rotate(260deg);}
+72.4797%   {-webkit-transform:rotate(261deg);}
+72.7574%   {-webkit-transform:rotate(262deg);}
+73.0351%   {-webkit-transform:rotate(263deg);}
+73.3128%   {-webkit-transform:rotate(264deg);}
+73.5905%   {-webkit-transform:rotate(265deg);}
+73.8682%   {-webkit-transform:rotate(266deg);}
+74.1459%   {-webkit-transform:rotate(267deg);}
+74.4236%   {-webkit-transform:rotate(268deg);}
+74.7013%   {-webkit-transform:rotate(269deg);}
+74.979%   {-webkit-transform:rotate(270deg);}
+75.2567%   {-webkit-transform:rotate(271deg);}
+75.5344%   {-webkit-transform:rotate(272deg);}
+75.8121%   {-webkit-transform:rotate(273deg);}
+76.0898%   {-webkit-transform:rotate(274deg);}
+76.3675%   {-webkit-transform:rotate(275deg);}
+76.6452%   {-webkit-transform:rotate(276deg);}
+76.9229%   {-webkit-transform:rotate(277deg);}
+77.2006%   {-webkit-transform:rotate(278deg);}
+77.4783%   {-webkit-transform:rotate(279deg);}
+77.756%   {-webkit-transform:rotate(280deg);}
+78.0337%   {-webkit-transform:rotate(281deg);}
+78.3114%   {-webkit-transform:rotate(282deg);}
+78.5891%   {-webkit-transform:rotate(283deg);}
+78.8668%   {-webkit-transform:rotate(284deg);}
+79.1445%   {-webkit-transform:rotate(285deg);}
+79.4222%   {-webkit-transform:rotate(286deg);}
+79.6999%   {-webkit-transform:rotate(287deg);}
+79.9776%   {-webkit-transform:rotate(288deg);}
+80.2553%   {-webkit-transform:rotate(289deg);}
+80.533%   {-webkit-transform:rotate(290deg);}
+80.8107%   {-webkit-transform:rotate(291deg);}
+81.0884%   {-webkit-transform:rotate(292deg);}
+81.3661%   {-webkit-transform:rotate(293deg);}
+81.6438%   {-webkit-transform:rotate(294deg);}
+81.9215%   {-webkit-transform:rotate(295deg);}
+82.1992%   {-webkit-transform:rotate(296deg);}
+82.4769%   {-webkit-transform:rotate(297deg);}
+82.7546%   {-webkit-transform:rotate(298deg);}
+83.0323%   {-webkit-transform:rotate(299deg);}
+83.31%   {-webkit-transform:rotate(300deg);}
+83.5877%   {-webkit-transform:rotate(301deg);}
+83.8654%   {-webkit-transform:rotate(302deg);}
+84.1431%   {-webkit-transform:rotate(303deg);}
+84.4208%   {-webkit-transform:rotate(304deg);}
+84.6985%   {-webkit-transform:rotate(305deg);}
+84.9762%   {-webkit-transform:rotate(306deg);}
+85.2539%   {-webkit-transform:rotate(307deg);}
+85.5316%   {-webkit-transform:rotate(308deg);}
+85.8093%   {-webkit-transform:rotate(309deg);}
+86.087%   {-webkit-transform:rotate(310deg);}
+86.3647%   {-webkit-transform:rotate(311deg);}
+86.6424%   {-webkit-transform:rotate(312deg);}
+86.9201%   {-webkit-transform:rotate(313deg);}
+87.1978%   {-webkit-transform:rotate(314deg);}
+87.4755%   {-webkit-transform:rotate(315deg);}
+87.7532%   {-webkit-transform:rotate(316deg);}
+88.0309%   {-webkit-transform:rotate(317deg);}
+88.3086%   {-webkit-transform:rotate(318deg);}
+88.5863%   {-webkit-transform:rotate(319deg);}
+88.864%   {-webkit-transform:rotate(320deg);}
+89.1417%   {-webkit-transform:rotate(321deg);}
+89.4194%   {-webkit-transform:rotate(322deg);}
+89.6971%   {-webkit-transform:rotate(323deg);}
+89.9748%   {-webkit-transform:rotate(324deg);}
+90.2525%   {-webkit-transform:rotate(325deg);}
+90.5302%   {-webkit-transform:rotate(326deg);}
+90.8079%   {-webkit-transform:rotate(327deg);}
+91.0856%   {-webkit-transform:rotate(328deg);}
+91.3633%   {-webkit-transform:rotate(329deg);}
+91.641%   {-webkit-transform:rotate(330deg);}
+91.9187%   {-webkit-transform:rotate(331deg);}
+92.1964%   {-webkit-transform:rotate(332deg);}
+92.4741%   {-webkit-transform:rotate(333deg);}
+92.7518%   {-webkit-transform:rotate(334deg);}
+93.0295%   {-webkit-transform:rotate(335deg);}
+93.3072%   {-webkit-transform:rotate(336deg);}
+93.5849%   {-webkit-transform:rotate(337deg);}
+93.8626%   {-webkit-transform:rotate(338deg);}
+94.1403%   {-webkit-transform:rotate(339deg);}
+94.418%   {-webkit-transform:rotate(340deg);}
+94.6957%   {-webkit-transform:rotate(341deg);}
+94.9734%   {-webkit-transform:rotate(342deg);}
+95.2511%   {-webkit-transform:rotate(343deg);}
+95.5288%   {-webkit-transform:rotate(344deg);}
+95.8065%   {-webkit-transform:rotate(345deg);}
+96.0842%   {-webkit-transform:rotate(346deg);}
+96.3619%   {-webkit-transform:rotate(347deg);}
+96.6396%   {-webkit-transform:rotate(348deg);}
+96.9173%   {-webkit-transform:rotate(349deg);}
+97.195%   {-webkit-transform:rotate(350deg);}
+97.4727%   {-webkit-transform:rotate(351deg);}
+97.7504%   {-webkit-transform:rotate(352deg);}
+98.0281%   {-webkit-transform:rotate(353deg);}
+98.3158%   {-webkit-transform:rotate(354deg);}
+98.5935%   {-webkit-transform:rotate(355deg);}
+98.8712%   {-webkit-transform:rotate(356deg);}
+99.1500%   {-webkit-transform:rotate(357deg);}
+99.4300%   {-webkit-transform:rotate(358deg);}
+99.7243%   {-webkit-transform:rotate(359deg);}
+99.992%   {-webkit-transform:rotate(360deg);}
+}
+
+
 @-moz-keyframes mysecond /* Firefox */
 {
 0.0%   {-moz-transform:rotate(0deg);}
@@ -765,21 +1170,7 @@
 99.992%   {-moz-transform:rotate(360deg);}
 }
 
-@-webkit-keyframes myfirst /* Safari and Chrome */
-{
-0%   {background:red;}
-25%  {background:yellow;}
-50%  {background:blue;}
-100% {background:green;}
-}
 
-@-o-keyframes myfirst /* Opera */
-{
-0%   {background:red;}
-25%  {background:yellow;}
-50%  {background:blue;}
-100% {background:green;}
-}
 
 
 /*search.html*/
@@ -789,7 +1180,7 @@
     height: 80px;
     width: 80px;
 	}
-	
+
 .labelEach{
 	width:100px;
 	height:100px;
@@ -799,7 +1190,10 @@
 	}
 	
 .searchTag{
-	margin: 20px 10px;
+	width:80px;
+	text-align: center;
+	border-radius:25px;
+-moz-border-radius:25px; /* Old Firefox */
 	}
 
 #changeTagDiv{
@@ -823,24 +1217,52 @@
 	
 	
 #searchTagFrame{
-	background-image:url(../img/blue.png);
-	width:1280px;
-	height:535px;
+	/*background-image:url(../img/blue.png);*/
+	width:100%;
+	height:508px;
 	}
 	
-#MerryChristmasFrame{
-	background-image:url(../img/blue.png);
-	width:1280px;
-	height:535px;
-	}
-	
-.labelImg{
-	/*background-image:url(../img/ClassicalBadge.jpg);*/
+#labelImg0{
+	background-image:url(../img/ClassicalBadge.jpg);
+}
+
+#labelImg1{
+	background-image:url(../img/ClassicalGuitarBadge.jpg);
+}
+
+#labelImg2{
+	background-image:url(../img/ClassicalPeriodBadge.jpg);
+}
+
+#labelImg3{
+	background-image:url(../img/ECertBadge.jpg);
+}
+
+#labelImg4{
+	background-image:url(../img/SM2011122015wVj.jpg);
+}
+
+#labelImg5{
+	background-image:url(../img/FirmBadge.jpg);
+}
+
+#labelImg6{
 	background-image:url(../img/NocturneBadge.jpg);
 }
 
+#labelImg7{
+	background-image:url(../img/SM2011121810EfV.jpg);
+}
 
+#labelImg8{
+	background-image:url(../img/EmocoreBadge.jpg);
+}
 
 #labelBack{
-	
+	/*background-image:url(../img/labelBack.png);*/
+	position:relative;
+	float:left;
+	width:92%;
+	left:4%;
+	background-color: white;
 }

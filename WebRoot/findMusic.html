@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+		<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+		<link href="css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+		<link href="css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="css/findMusic.css" rel="stylesheet" type="text/css">
+    
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/findMusic.js"></script>
+    
+     
+		<script>
+			$(document).ready(function(){
+				});
+		</script>
+   </head>
+   <body>
+   <div id="bodyDiv">
+		<div class="primary"><!--导航-->
+			 <table>
+				<tr>
+					<td class="naviBtns">
+						<a class="btn btn-large" href="/">发现音乐</a>
+						<a class=" btn btn-large btn-success" href="/space/lib-song">我的音乐</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<!-- ----------------------------------->
+<div class="section">
+	<div class="container">
+	
+		<div id="recommends">
+		<h2>
+			<strong class="bigtext">猜你喜欢</strong>
+		</h2>
+		<div class="view">
+			<div class="content_block">
+				<div class="album">
+					<a class="image">
+						<img src="./img/songCover1.jpg"></img>
+						<div class="albumIntoplay" onclick="playMusicInner(this)"></div>
+					</a>
+					<div class="info">
+						<p class="name">
+							<strong>
+								<a title="归来" href="">归来</a>
+							</strong>
+						</p>
+						<p>
+							<a title="陈其钢" href="">陈其钢</a>
+						</p>
+					</div>
+				</div>
+				<div class="album">
+					<a class="image">
+						<img src="./img/songCover2.jpg"></img>
+						<div class="albumIntoplay" onclick="playMusicInner(this)"></div>
+					</a>
+					<div class="info">
+						<p class="name ">
+							<strong>
+								<a title="关在家" href="">关在家 </a>
+							</strong>
+						</p>
+						<p>
+							<a title="关诗敏" href="">关诗敏</a>
+						</p>
+					</div>
+				</div>
+				<div class="album">
+					<a class="image">
+						<img src="./img/songCover3.jpg"></img>
+						<div class="albumIntoplay" onclick="playMusicInner(this)"></div>
+					</a>
+					<div class="info">
+						<p class="name ">
+							<strong>
+								<a title="Sandy Lam Concert MMXI" href="">Sandy Lam </a>
+							</strong>
+						</p>
+						<p>
+							<a title="林忆莲" href="">林忆莲</a>
+						</p>
+					</div>
+				</div>
+				<div class="album">
+					<a class="image">
+						<img src="./img/songCover4.jpg"></img>
+						<div class="albumIntoplay" onclick="playMusicInner(this)"></div>
+					</a>
+					<div class="info">
+						<p class="name ">
+							<strong>
+								<a title="Gentleman" href="">Gentleman</a>
+							</strong>
+						</p>
+						<p>
+							<a title="PSY" href="">PSY</a>
+						</p>
+					</div>
+				</div>
+				<div class="album">
+					<a class="image">
+						<img src="./img/songCover5.jpg"></img>
+						<div class="albumIntoplay" onclick="playMusicInner(this)"></div>
+					</a>
+					<div class="info">
+						<p class="name ">
+							<strong>
+								<a title="Stars Dance" href="">Stars Dance</a>
+							</strong>
+						</p>
+						<p>
+							<a title="Selena Gomez" href="">Selena Gomez</a>
+						</p>
+					</div>
+				</div>
+				
+				
+			</div>
+		</div>
+	<a class="nav prev" onclick="preAlbums(this)" href=""></a>
+	<a class="nav next" href="" onclick="nextAlbums(this)"></a>
+	<div class="extra">
+		<a class="toplay" onclick="playMusicOuter(this)" href="">
+		<i></i>
+		一键播放
+		</a>
+	</div> 		  	
+	</div>
+	
+	<div id="albums">
+		<h2>
+			<strong class="bigtext">新碟首发</strong>
+		</h2>
+		<div class="view">
+			<div class="content_block">
+				<div class="album">
+					<a class="image">
+						<img src="./img/albumCover1.jpg"></img>
+						<div class="albumIntoplay" onclick="playMusicInner(this)"></div>
+					</a>
+					<div class="info">
+						<p class="name">
+							<strong>
+								<a title="寻人启事" href="">寻人启事</a>
+							</strong>
+						</p>
+						<p>
+							<a title="徐佳莹" href="">徐佳莹</a>
+						</p>
+					</div>
+				</div>
+				<div class="album">
+					<a class="image">
+						<img src="./img/albumCover2.jpg"></img>
+						<div class="albumIntoplay" onclick="playMusicInner(this)"></div>
+					</a>
+					<div class="info">
+						<p class="name ">
+							<strong>
+								<a title="私人经验" href="">私人经验 </a>
+							</strong>
+						</p>
+						<p>
+							<a title="焙焙" href="">焙焙</a>
+						</p>
+					</div>
+				</div>
+				<div class="album">
+					<a class="image">
+						<img src="./img/albumCover3.jpg"></img>
+						<div class="albumIntoplay" onclick="playMusicInner(this)"></div>
+					</a>
+					<div class="info">
+						<p class="name ">
+							<strong>
+								<a title="Love Someone" href="">Love Someone</a>
+							</strong>
+						</p>
+						<p>
+							<a title="Jason Mraz" href="">Jason Mraz</a>
+						</p>
+					</div>
+				</div>
+				<div class="album">
+					<a class="image">
+						<img src="./img/albumCover4.jpg"></img>
+						<div class="albumIntoplay" onclick="playMusicInner(this)"></div>
+					</a>
+					<div class="info">
+						<p class="name ">
+							<strong>
+								<a title="28" href="">28</a>
+							</strong>
+						</p>
+						<p>
+							<a title="苏永康" href="">苏永康</a>
+						</p>
+					</div>
+				</div>
+				<div class="album">
+					<a class="image">
+						<img src="./img/albumCover5.jpg"></img>
+						<div class="albumIntoplay" onclick="playMusicInner(this)"></div>
+					</a>
+					<div class="info">
+						<p class="name ">
+							<strong>
+								<a title="Labrador Retriever" href="">Retriever</a>
+							</strong>
+						</p>
+						<p>
+							<a title="AKB48" href="">AKB48</a>
+						</p>
+					</div>
+				</div>
+				
+				
+			</div>
+		</div>
+	<a class="nav prev" onclick="preAlbums(this)" href=""></a>
+	<a class="nav next" href="" onclick="nextAlbums(this)"></a>
+	<div class="extra">
+		<a class="toplay" onclick="playMusicOuter(this)" href="">
+		<i></i>
+		一键播放
+		</a>
+	</div> 		  	
+	</div>
+
+	<div id="charts" data-spm="1478643733">
+	<h2>
+		<strong class="bigtext">排行榜</strong>
+	</h2>
+	<div class="content">
+	<table>
+		<tbody>
+			<tr class="songwrapper" onmouseover="rangListSongCoverVis(this)"  onmouseout="rangListSongCoverHid(this) " data-title="We Are One">
+				<td>
+					<div class="sortNumber">1</number></div>
+				</td>
+				<td class="song_block">
+					<div class="song">
+						<div class="imageano" style="display:none">
+							<img class="miniViewCover" src="./img/songCover2.jpg"></img>
+							<div class="albumIntoplayano" onclick="playMusicInnerRankinglist(this)"></div>
+						</div>
+						
+						<div class="infor">
+							<p>
+								<strong>
+									<a title="We Are One" href="">We Are One </a>
+								</strong>
+							</p>
+							
+						</div>
+					</div>
+				</td>
+				<td>
+					<p class="singer song">
+								<a target="_blank" title="Pitbull" href=""><strong>Pitbull</strong></a>
+									;
+								<a target="_blank" title="Jennifer Lopez" href=""><strong>Jennifer Lopez<strong></a>
+					</p>
+				</td>
+			</tr>
+			<tr class="songwrapper" onmouseover="rangListSongCoverVis(this)"  onmouseout="rangListSongCoverHid(this) " data-title="We Are One">
+				<td>
+					<div class="sortNumber">2</number></div>
+				</td>
+				<td class="song_block">
+					<div class="song">
+						<div class="imageano" style="display:none">
+							<img class="miniViewCover" src="./img/songCover3.jpg"></img>
+							<div class="albumIntoplayano" onclick="playMusicInnerRankinglist(this)"></div>
+						</div>
+					
+
+						<div class="infor">
+							<p>
+								<strong>
+									<a title="Sandy Lam" href="">Sandy Lam </a>
+								</strong>
+							</p>
+							
+						</div>
+					</div>
+				</td>
+				<td>
+					<p class="singer song">
+								<a target="_blank" title="林忆莲" href=""><strong>林忆莲</strong></a>
+					</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	<div class="extra">
+	<a class="toplay" onclick="playChart()" href="">
+	<i></i>
+	一键播放
+	</a>
+	</div>
+	</div>
+	</div>
+	</div>
+	<div class="footer"><!--导航-->
+			
+   </div>
+   </body> 
+ </html>

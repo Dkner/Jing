@@ -16,6 +16,7 @@ public class Song implements java.io.Serializable {
 	private Album album;
 	private String name;
 	private String path;
+	private Double score;
 	private Set tags = new HashSet(0);
 	private Set assesses = new HashSet(0);
 
@@ -33,12 +34,13 @@ public class Song implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Song(Singer singer, Album album, String name, String path, Set tags,
-			Set assesses) {
+	public Song(Singer singer, Album album, String name, String path,
+			Double score, Set tags, Set assesses) {
 		this.singer = singer;
 		this.album = album;
 		this.name = name;
 		this.path = path;
+		this.score = score;
 		this.tags = tags;
 		this.assesses = assesses;
 	}
@@ -83,6 +85,14 @@ public class Song implements java.io.Serializable {
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	public Double getScore() {
+		return this.score;
+	}
+
+	public void setScore(Double score) {
+		this.score = score;
 	}
 
 	public Set getTags() {

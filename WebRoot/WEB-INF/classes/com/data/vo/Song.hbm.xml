@@ -22,6 +22,9 @@
         <property name="path" type="java.lang.String">
             <column name="path" length="300" not-null="true" />
         </property>
+        <property name="score" type="java.lang.Double">
+            <column name="score" precision="5" scale="0" />
+        </property>
         <set name="tags" inverse="true">
             <key>
                 <column name="song_id" not-null="true" />

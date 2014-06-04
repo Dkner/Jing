@@ -2,25 +2,19 @@ package com.web.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.process.logic.DJ;
-import com.process.model.CurrentList;
 import com.process.model.Page;
-import com.data.vo.User;
-import com.data.vo.UserDAO;
 
 public class jing_servlet extends HttpServlet {
 	
 	private DJ factory;
-	private CurrentList list = null;
 	private Page currentpage = null;
 	
 	private LoginHandler loginhandler = null;
@@ -33,7 +27,6 @@ public class jing_servlet extends HttpServlet {
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
 		super.init();
-		list = new CurrentList();
 		factory = new DJ();
 		loginhandler = new LoginHandler();
 		socialhandler = new SocialHandler();
@@ -76,6 +69,54 @@ public class jing_servlet extends HttpServlet {
 		}
 		
 		
+		
+		//设计相关
+				if(request.getParameter("findMusic") != null)
+				{
+					System.out.println("find...");
+					recommendhandler.Recommend_ByRanking(request, factory);
+					recommendhandler.RecommendSinger_ByPage(request, factory);
+					
+					//使用response挑战会丢失request\session的数据
+					//response.sendRedirect("/Jing/findMusic.jsp");
+					request.getRequestDispatcher("findMusic.jsp").forward(request, response);
+				}
+				if(request.getParameter("homepage") != null)
+				{
+					System.out.println("homepage");
+					
+					socialhandler.gotoUserCenter(1, request, factory);
+					request.getRequestDispatcher("social/homepage.jsp").forward(request, response);
+				}
+				if(request.getParameter("usercenter") != null)
+				{
+					System.out.println("usercenter");
+					
+					socialhandler.gotoUserCenter(1, request, factory);
+					request.getRequestDispatcher("social/timeline_component.jsp").forward(request, response);
+				}
+				if(request.getParameter("mytag") != null)
+				{
+					System.out.println("mytag");
+					
+					socialhandler.getUser(request, factory);
+					request.getRequestDispatcher("social/tab_component.jsp").forward(request, response);
+				}
+				if(request.getParameter("mysinger") != null)
+				{
+					System.out.println("mysinger");
+					
+					socialhandler.getFavorSingerByPage(1, request, factory);
+					request.getRequestDispatcher("social/singer_component.jsp").forward(request, response);
+				}
+				if(request.getParameter("mymusic") != null)
+				{
+					System.out.println("mymusic");
+					
+					socialhandler.getFavorSong(request, factory);
+					request.getRequestDispatcher("social/mymusic_component.jsp").forward(request, response);
+				}
+		
 	}
 
 
@@ -89,20 +130,21 @@ public class jing_servlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		
+		//登陆相关
 		//login
 		if (request.getParameter("username") != null
 				&& request.getParameter("password") != null) {
 			
-			loginhandler.login(request, response, out, factory, list);
+			loginhandler.login(request, response, out, factory);
 		}
-
 		//注册 
 		if(request.getParameter("RegisEmail") != null && request.getParameter("RegisPassword") != null)
 		{
-			loginhandler.register(request, response, out, list);
+			loginhandler.register(request, response, out, factory);
 		}
 			
-		
+		if(!loginhandler.verify(response, request, factory))
+			return;
 		
 		
 		
@@ -110,7 +152,7 @@ public class jing_servlet extends HttpServlet {
 		
 		//初始化评价窗口
 		if (request.getParameter("commentwindow") != null) {
-			socialhandler.CreateCommentWindow(request, out, list, currentpage);
+			socialhandler.CreateCommentWindow(request, out, currentpage, factory);
 		}
 			
 		//社交评价相关
@@ -120,21 +162,25 @@ public class jing_servlet extends HttpServlet {
 		if (request.getParameter("nextcommend") != null) {
 			socialhandler.next(currentpage);
 		}
-		
+		if(request.getParameter("collectsinger") != null)
+    	{  
+			System.out.println("收藏艺人");
+			socialhandler.CollectSinger(out, factory);
+    	}
 		if (request.getParameter("level") != null) {
-			socialhandler.Mark(request, out, list, currentpage, factory);
+			socialhandler.Mark(request, out, currentpage, factory);
 		}
 
 		if (request.getParameter("comment") != null) {
-			socialhandler.Comment(request, out, list, currentpage, factory);
+			socialhandler.Comment(request, out, currentpage, factory);
 		}
 
 		if (request.getParameter("love") != null) {
-			socialhandler.Love(request, out, list, factory);
+			socialhandler.Love(request, out, factory);
 		}
 
 		if (request.getParameter("hate") != null) {
-			socialhandler.Hate(out, list, factory);
+			socialhandler.Hate(out, factory);
 		}
 		
 		//修改個人信息
@@ -150,12 +196,12 @@ public class jing_servlet extends HttpServlet {
 		//订制个人标签
 		if(request.getParameter("newusertag") != null)
 		{
-			socialhandler.CreateUserTag(request, out, list, factory);
+			socialhandler.CreateUserTag(request, out, factory);
 		}
 		//删除个人标签
 		if(request.getParameter("deleteusertag") != null)
 		{
-			socialhandler.DeleteUserTag(request, out, list, factory);
+			socialhandler.DeleteUserTag(request, out, factory);
 		}
 
 		
@@ -168,19 +214,53 @@ public class jing_servlet extends HttpServlet {
 		
 		
 		
-		//
+		//推荐相关
 		if (request.getParameter("lookandlisten") != null) {
-			recommendhandler.LookandListen(out, list, factory);
+			System.out.println("随机搜索");
+			recommendhandler.LookandListen(out, factory);
 		}
 		
 		if (request.getParameter("hongxindiantai") != null) {
-			recommendhandler.LoveSong(out, list, factory);
+			System.out.println("红心电台");
+			recommendhandler.LoveSong(out, factory);
 		}
 		
 		if (request.getParameter("zhinengtuijian") != null) {
-			recommendhandler.AI(out, list, factory);
+			System.out.println("智能搜索");
+			recommendhandler.AI(out, factory);
 		}
 		
+		if(request.getParameter("searchsimilarsinger") != null)
+    	{  
+			System.out.println("搜索相似歌手");
+			recommendhandler.SearchSimilarSinger(out, factory);
+    	}
+		
+		if(request.getParameter("searchsimilarsong") != null)
+    	{  
+			System.out.println("搜索相似歌曲");
+			recommendhandler.SearchSimilarSong(out, factory);
+    	}
+		
+		if(request.getParameter("recommendsinger") != null)
+    	{  
+			System.out.println("推荐歌手");
+			recommendhandler.RecommendSinger_ByPage_AJAX(out, request, factory);
+    	}
+		
+		if(request.getParameter("ranking") != null)
+    	{  
+			System.out.println("排行榜");
+			recommendhandler.Recommend_ByRanking_AJAX(out, request, factory);
+    	}
+		if(request.getParameter("nextsinger") != null)
+    	{
+			recommendhandler.RecommendSinger_ByPage(request, factory);
+    	}
+		if(request.getParameter("nextranking") != null)
+    	{
+			recommendhandler.Recommend_ByRanking(request, factory);
+    	}
 		
 		
 		
@@ -189,10 +269,16 @@ public class jing_servlet extends HttpServlet {
 		
 		
 		
-		//
+		
+		
+		
+		
+		
+		
+		//音乐播放相关
 		if(request.getParameter("next") != null)
     	{
-			control.next(out, list, factory);
+			control.next(out, factory);
     	}
 		
 		
@@ -209,39 +295,71 @@ public class jing_servlet extends HttpServlet {
 		
 		
 		
-		//
+		//搜索相关
 		if(request.getParameter("input") != null)
     	{  
 			String input = request.getParameter("input");
 			System.out.println("服务器收到："+input);
-			searchhandler.SearchInput(request, out, list, factory);
+			searchhandler.SearchInput(request, out, factory);
     	}
-		
+				
+		//废弃原来的搜索
 		if(request.getParameter("name") != null)
     	{   
-			searchhandler.SearchName(request, out, list, factory);
+			searchhandler.SearchName(request, out, factory);
     	}
 	
 		if(request.getParameter("album") != null)
 		{
-			searchhandler.SearchAlbum(request, out, list, factory);
+			searchhandler.SearchAlbum(request, out, factory);
 		}
 	
 		if(request.getParameter("tag") != null)
 		{
-			searchhandler.SearchTag(request, out, list, factory);
+			searchhandler.SearchTag(request, out, factory);
 		}
 	
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		//
 		if(request.getParameter("match") != null)
 		{
-			searchhandler.Match(request, out, list, factory);
+			searchhandler.Match(request, out, factory);
 		}
-		//
 		if(request.getParameter("firstmatch") != null)
 		{
-			searchhandler.firstMatch(request, out, list, factory);
+			searchhandler.firstMatch(request, out, factory);
 		}		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+		
+		
 		
 		
 		

@@ -1,0 +1,149 @@
+#header {
+text-align: left;
+zoom: 1;
+z-index: 10;
+}
+
+#header .primary {
+height: 60px;
+background: #fa8723;
+background: -moz-linear-gradient(top, #fa8723 0, #f57614 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fa8723), color-stop(100%, #f57614));
+background: -webkit-linear-gradient(top, #fa8723 0, #f57614 100%);
+background: -o-linear-gradient(top, #fa8723 0, #f57614 100%);
+background: -ms-linear-gradient(top, #fa8723 0, #f57614 100%);
+background: linear-gradient(to bottom, #383838 0, #989898 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fa8723', endColorstr='#f57614', GradientType=0);
+}
+
+body, h1, h2, h3, h4, h5, h6, p, blockquote, pre, form, input, textarea, button, fieldset, img, legend, ul, ol, li, dl, dt, dd, th, td, div, a {
+border: 0;
+font-size: 100%;
+margin: 0;
+outline: 0;
+padding: 0;
+}
+
+#header .primary .wrapper {
+}
+
+#header .primary .logo {
+width: 200px;
+}
+
+#header .primary .logo a {
+overflow: hidden;
+display: block;
+width: 200px;
+height: 60px;
+background: url('http://img.xiami.net/static/img/common/logo/default.png') no-repeat;
+_background-image: url('http://img.xiami.net/static/img/common/logo/default.gif');
+line-height: 60px;
+text-indent: 100%;
+}
+
+#header .primary .nav a {
+float: left;
+display: block;
+width: 90px;
+height: 60px;
+font-size: 16px;
+line-height: 60px;
+text-align: center;
+color: #FFF;
+text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+
+#p-nowrap {
+margin-top: 0;
+position: relative;
+z-index: 1;
+_z-index: 2;
+width: 100%;
+text-align: left;
+}
+
+#column695 {
+padding: 8px 0 40px 0;
+}
+
+.clearfix {
+zoom: 1;
+}
+
+.c695_title .usr_navigation {
+position: absolute;
+z-index: 40;
+left: 10px;
+}
+
+.usr_navigation ul li {
+float: left;
+display: inline;
+}
+
+.usr_navigation ul li a {
+font-size: 12px;
+position: relative;
+color: #666;
+background: #f8f9fb;
+border: 1px solid #dadfe0;
+border-left: none;
+width: 65px;
+text-align: center;
+display: block;
+}
+
+.usr_navigation ul li a span {
+border: 1px solid #fff;
+display: block;
+line-height: 28px;
+height: 28px;
+}
+
+.usr_navigation ul li.showmore {
+position: relative;
+}
+
+.usr_navigation ul li.showmore a.more {
+position: relative;
+z-index: 2;
+}
+
+.usr_navigation ul li a.more span {
+background: url(http://img.xiami.net/res/img/default/xsjx.gif) 45px -84px no-repeat;
+padding-right: 10px;
+}
+
+.usr_navigation ul li.showmore .showmore_menu {
+position: absolute;
+z-index: 1;
+top: 31px;
+right: 0;
+width: 100px;
+margin-left: 0;
+margin-top: 0;
+border: 1px solid #dadfe0;
+background: #7f7f7f;
+}
+
+.usr_navigation ul li.showmore dl {
+background: #fff;
+position: relative;
+}
+
+.usr_navigation ul li.showmore dl dd a {
+width: auto;
+border: none;
+text-align: left;
+display: block;
+position: static;
+background: none;
+padding: 0 0 0 10px;
+color: #666;
+height: 24px;
+line-height: 24px;
+}
+
+
+

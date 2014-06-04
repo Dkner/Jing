@@ -1,5 +1,6 @@
 package com.web.servlet;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -15,11 +16,31 @@ import com.data.vo.User;
 import com.data.vo.HibernateSessionFactory;
 import com.data.vo.UserDAO;
 import com.process.logic.DJ;
-import com.process.model.CurrentList;
 
 public class LoginHandler {
 
-	public void login(HttpServletRequest request, HttpServletResponse response, PrintWriter out, DJ factory, CurrentList list){
+	public boolean verify(HttpServletResponse response, HttpServletRequest request, DJ factory){
+		HttpSession hs = request.getSession(true);
+		if(hs.getAttribute("username") == null)
+		{
+			return false;
+		}
+		else if(!hs.getAttribute("username").equals(factory.get_username()))
+		{
+			try {
+				response.sendRedirect("/Jing/Login.jsp");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return false;
+		}
+		else
+			return true;
+	}
+	
+	public void login(HttpServletRequest request, HttpServletResponse response, PrintWriter out, DJ factory){
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		System.out.println(username + " " + password);
@@ -33,9 +54,10 @@ public class LoginHandler {
 			System.out.println("验证成功");
 			//初始化session和currentlist
 			String user_id = ((User) temp.get(0)).getUserId();
-			list.set_userid(user_id);
+			factory.set_userid(user_id);
+			factory.set_username(username);
 
-			List usertaglist = factory.get_usertagProcess(user_id);
+			List usertaglist = factory.get_usertagProcess();
 			//List lovesonglist = factory.GetLoveSongListProcess(user_id);
 			
 			//cookie
@@ -47,7 +69,7 @@ public class LoginHandler {
 			System.out.println("写入session");
 			HttpSession hs = request.getSession(true);
 			hs.setAttribute("username", username);
-			hs.setAttribute("usertag", usertaglist);
+			//hs.setAttribute("usertag", usertaglist);
 			//hs.setAttribute("lovesonglist", lovesonglist);
 			//response.sendRedirect("/Jing/MainView.jsp");
 			out.print("correct");
@@ -62,7 +84,7 @@ public class LoginHandler {
 		}
 	}
 	
-	public void register(HttpServletRequest request, HttpServletResponse response, PrintWriter out, CurrentList list){
+	public void register(HttpServletRequest request, HttpServletResponse response, PrintWriter out, DJ factory){
 		String email = request.getParameter("RegisEmail");
 		String password = request.getParameter("RegisPassword");
 		System.out.println("注册邮箱 ；"+email+" 注册密码 ："+password);
@@ -89,7 +111,7 @@ public class LoginHandler {
 			tst.commit();
 			session.close();
 			//初始化list的id
-			list.set_userid(newuser_id);
+			factory.set_userid(newuser_id);
 			
 			//cookie
 			Cookie namecookie = new Cookie("username", email);

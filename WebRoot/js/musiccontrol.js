@@ -28,27 +28,15 @@ function get(id){
 	}
 	
 	function gonext(){
+		$('#remindInfo').text("正在拼命搜索。。。");
 		control_XmlHttpRequest=getXmlHttpObject();
 		if(control_XmlHttpRequest){
 			//window.alert("next1");
 			var data =  "next=song";
-			
-			
-			
-			
-			
+	
 			var url="/Jing/jing_servlet";
 			
-			//var url="/Jing/MusicServiceServlet";			
-
-			
-			
-			
-			
-			
-			
-			
-			
+		
 			control_XmlHttpRequest.open("post",url,true);
 			control_XmlHttpRequest.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 			control_XmlHttpRequest.onreadystatechange=gonext_callback;
@@ -64,33 +52,18 @@ function get(id){
 			
 			if(control_XmlHttpRequest.status == 200)
 			{
-				//window.alert("服务器返回"+control_XmlHttpRequest.responseText);
-				//var result = control_XmlHttpRequest.responseText;
-				//get('player').src = result;
-				
+					
 				var mes=control_XmlHttpRequest.responseText;
 				var mes_obj=eval("("+mes+")");
-				get('player').src = mes_obj[0].path;
-				get('songName').text = mes_obj[0].songname;
-				//alert(mes_obj[0].path);
-				
-				
-				
-				
-				//test
-				//get('MusicPlayer').style.backgroundImage = "url("+mes_obj[0].coverimg+")";
-				
-			
-				
-				
-				
-				
-				
+				$('#player').attr("src", "/songlist/"+mes_obj[0].path);
+				$('#songName').text( mes_obj[0].songname);
+				$('#singerName').text(mes_obj[0].singername);
+								
 				
 				if(mes_obj[0].path != "")
-					get('remindInfo').text = "下一首";
+					$('#remindInfo').text("下一首");
 				if($.trim(mes_obj[0].path) == "")
-					get('remindInfo').text = "不好意思，歌放完了，搜搜其他的歌呗";
+					$('#remindInfo').text("不好意思，歌放完了，搜搜其他的歌呗");
 			}
 		}
 	}
@@ -101,14 +74,14 @@ function get(id){
 		{
 			get('player').loop = "";
 			get('player').isLooped = false;
-			get('remindInfo').text = "已取消单曲循环";
+			$('#remindInfo').text("已取消单曲循环");
 			//alert(1);
 		}
 		else
 		{
 			get('player').loop = "loop";
 			get('player').isLooped = true;
-			get('remindInfo').text = "单曲循环中。。。";
+			$('#remindInfo').text("单曲循环中。。。");
 			//alert(2);
 		}
 	}
@@ -156,7 +129,7 @@ function get(id){
 	}
 	
 	function chuli4(){		
-		get('remindInfo').text = "已为您标记为喜欢咯";	
+		$('#remindInfo').text("已为您标记为喜欢咯");	
 	}
 	
 	

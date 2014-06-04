@@ -1,6 +1,9 @@
 package com.data.vo;
 
 import com.connection.dao.BaseHibernateDAO;
+import com.process.model.Page;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import org.hibernate.LockMode;
@@ -26,6 +29,7 @@ public class SongDAO extends BaseHibernateDAO {
 	// property constants
 	public static final String NAME = "name";
 	public static final String PATH = "path";
+	public static final String SCORE = "score";
 
 	public void save(Song transientInstance) {
 		log.debug("saving Song instance");
@@ -97,6 +101,10 @@ public class SongDAO extends BaseHibernateDAO {
 		return findByProperty(PATH, path);
 	}
 
+	public List findByScore(Object score) {
+		return findByProperty(SCORE, score);
+	}
+
 	public List findAll() {
 		log.debug("finding all Song instances");
 		try {
@@ -142,4 +150,53 @@ public class SongDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	//按页查找
+
+		@SuppressWarnings("unchecked")
+		public List findByPage(Page page)
+		{
+			try {
+				List<Song> gifts = new ArrayList<Song>();
+				String queryString = "from Song order by score desc";
+
+				Query queryObject = getSession().createQuery(queryString);
+				queryObject.setFirstResult((page.get_pagenow()-1)*page.get_pagesize());
+				queryObject.setMaxResults(page.get_pagesize());
+
+				gifts = queryObject.list();						
+				return gifts;
+			}
+			catch(RuntimeException re) {
+				log.error("find by page failed", re);
+				throw re;
+			}
+
+
+		}
+
+
+
+		//得到总的礼品数
+		public int getTotalRows()
+		{
+
+			Number c= (Number) getSession().createQuery("select count(*) from Song")
+					.uniqueResult();
+
+
+			return c.intValue();
+
+		}
+	
+	
+	
+	
 }

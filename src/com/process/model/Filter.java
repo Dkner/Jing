@@ -1,6 +1,7 @@
 package com.process.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -12,6 +13,7 @@ public class Filter {
 	private static int SINGERFILTER = 2;
 	private static int LABELFILTER = 3;
 	private static int LIMITFILTER = 4;
+	private static int PATHFILTER = 5;
 
 	private int filtertype = 0;
 	private List filtercondition = new ArrayList();
@@ -35,15 +37,17 @@ public class Filter {
 		this.filtercondition = filterlist;
 	}
 	
-	public List<Integer> filtering(List<Integer> idlist){
+	public List<Integer> doFilter(List<Integer> idlist){
 		
 		if(filtertype == NOFILTER)
 		{
+			System.out.println("无过滤");
 			return idlist;
 		}
 		
 		if(filtertype == SONGFILTER)
 		{
+			System.out.println("歌名过滤");
 			for(int i=0; i<filtercondition.size(); i++)
 			{
 				int filterId = (Integer) filtercondition.get(i);
@@ -57,6 +61,7 @@ public class Filter {
 		
 		if(filtertype == SINGERFILTER)
 		{
+			System.out.println("歌手过滤");
 			for(int i=0; i<idlist.size(); i++)
 			{
 				Singer singer = sd.findById(idlist.get(i)).getSinger();
@@ -71,21 +76,42 @@ public class Filter {
 		
 		if(filtertype == LIMITFILTER)
 		{
+			System.out.println("歌曲上限过滤");
 			int size = idlist.size();
 			if(size>50)
 			{
 				List<Integer> tempidlist = new ArrayList<Integer>();
-				List<Integer> number = this.create_randomnumber(size-1, 50);
+				List<Integer> number = this.create_randomnumber(size, 50);
 				for(int i=0; i<50; i++)
 				{
 					tempidlist.add(idlist.get(number.get(i)));
 				}
 				idlist.clear();
 				idlist = tempidlist;
+//				for(int i=0; i<50; i++)
+//				{
+//					idlist.add(tempidlist.get(i));
+//				}
 			}
 		}
 		
-		return idlist;
+		if(filtertype == PATHFILTER)
+		{
+			System.out.println("路径过滤");
+			for(int i=0; i<idlist.size(); i++)
+			{
+				Song song = sd.findById(idlist.get(i));
+				if(song == null)
+					idlist.set(i, 0);
+				String path = song.getPath();
+				if(path == null || path.equals("") || path.equals("null"))
+				{
+					idlist.set(i, 0);
+				}
+			}
+		}
+		
+		return this.remove_InvalidElement(idlist);
 	}
 	
 	
@@ -99,7 +125,7 @@ public class Filter {
 		//
 		while(counter<amount)
 		{
-			int label_id_choosed = god.nextInt(uplimit)+1;
+			int label_id_choosed = god.nextInt(uplimit);
 			if(!number.contains(label_id_choosed))
 			{
 				counter++;
@@ -109,6 +135,19 @@ public class Filter {
 		
 		
 		return number;
+	}
+	
+	
+	public final List<Integer> remove_InvalidElement(List<Integer> idlist)
+	{
+	    Iterator<Integer> ListIterator = idlist.iterator();
+	    while(ListIterator.hasNext()){
+	        int e = ListIterator.next();
+	        if(e==0){
+	        	ListIterator.remove();
+	        }
+	    }
+	    return idlist;
 	}
 	
 }
