@@ -115,6 +115,7 @@ public class SearchHandler {
 	public void Match(HttpServletRequest request, PrintWriter out, DJ factory){
 		List resulttag = new ArrayList();
 		String tagname = request.getParameter("match");
+		tagname = tagname.replace("/", "+");
 		System.out.println("相关匹配："+tagname);
 		resulttag = factory.find_MatchLabelProcess(tagname);
 		

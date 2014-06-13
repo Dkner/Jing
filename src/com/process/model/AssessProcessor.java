@@ -22,7 +22,6 @@ public class AssessProcessor implements AssessService {
 	public SongDAO sd = null;
 	private UsertagDAO utd = null;
 	private LabelDAO ld = null;
-	private SingerDAO sid = null;
 	//
 	
 	public AssessProcessor()
@@ -30,7 +29,8 @@ public class AssessProcessor implements AssessService {
 		ad = new AssessDAO();
 		ud = new UserDAO();
 		sd = new SongDAO();
-		sid = new SingerDAO();
+		utd = new UsertagDAO();
+		ld = new LabelDAO();
 	}
 	
 	/**
@@ -130,19 +130,21 @@ public class AssessProcessor implements AssessService {
 				Session session = HibernateSessionFactory.getSession();
 				Transaction tst = session.beginTransaction();
 				assess.setLoveorhate("love");
+				assess.setLevel("9");
+				session.saveOrUpdate(assess);
 				tst.commit();
 				session.close();
 				return;
 			}
 		} 
-		System.out.println("喜欢");
+		System.out.println("新标记喜欢");
 		User tempuser = ud.findById(user_id);
 		Song tempsong = sd.findById(song_id);
 		Date date = new Date(System.currentTimeMillis()); 
 		//
 		Session session = HibernateSessionFactory.getSession();
 		Transaction tst = session.beginTransaction();
-		Assess newassess = new Assess(tempuser,tempsong,"love",null,null,date.toLocaleString());
+		Assess newassess = new Assess(tempuser,tempsong,"love",null,"9",date.toLocaleString());
 		session.saveOrUpdate(newassess);
 		tst.commit();
 		session.close();
@@ -169,6 +171,8 @@ public class AssessProcessor implements AssessService {
 				Session session = HibernateSessionFactory.getSession();
 				Transaction tst = session.beginTransaction();
 				assess.setLoveorhate("hate");
+				assess.setLevel("1");
+				session.saveOrUpdate(assess);
 				tst.commit();
 				session.close();
 				return;
@@ -181,7 +185,7 @@ public class AssessProcessor implements AssessService {
 		//
 		Session session = HibernateSessionFactory.getSession();
 		Transaction tst = session.beginTransaction();
-		Assess newassess = new Assess(tempuser,tempsong,"hate",null,null,date.toLocaleString());
+		Assess newassess = new Assess(tempuser,tempsong,"hate",null,"1",date.toLocaleString());
 		ad.save(newassess);
 		tst.commit();
 		session.close();
@@ -235,9 +239,6 @@ public class AssessProcessor implements AssessService {
 	   */
 	public final void undo_usertag(String user_id, String usertag)
 	{
-		ud = new UserDAO();
-		utd = new UsertagDAO();
-		
 		User tempuser = ud.findById(user_id);
 		List temptag = new ArrayList();
 		temptag.addAll(tempuser.getUsertags());
@@ -252,8 +253,9 @@ public class AssessProcessor implements AssessService {
 				tst.commit();
 				session.close();
 				return;
-			}
+			}		
 		} 
+		System.out.println("没有匹配的标签需要删除");
 	}
 	
 	/**
@@ -263,14 +265,11 @@ public class AssessProcessor implements AssessService {
 	   */
 	public final boolean customize_usertag(String user_id, String usertag)
 	{
-		ld = new LabelDAO();
-		ud = new UserDAO();
-		utd = new UsertagDAO();
 		List temp = new ArrayList();
 		temp = ld.findByLabel(usertag);
 		if(temp.size() == 0)
 		{
-			System.out.println("没有匹配的标签");
+			System.out.println("没有匹配的标签可以添加");
 			return false;
 		}
 		else
@@ -306,6 +305,9 @@ public class AssessProcessor implements AssessService {
 	   */
 	public final boolean collect_singer(String user_id, String singername)
 	{
+		UserProfileProcessor userprofile = new UserProfileProcessor();
+		userprofile.TagRecordProcessing(user_id, singername);
+		
 		FavorDAO fd = new FavorDAO();
 		SingerDAO sid = new SingerDAO();
 		Singer singer = null;
@@ -378,6 +380,14 @@ public class AssessProcessor implements AssessService {
 			singers.add(favors.get(i).getSinger());
 		}
 		return singers;
+	}
+
+	public List get_Assess(int song_id, Page page) {
+		// TODO Auto-generated method stub
+		AssessDAO ad = new AssessDAO();
+		page.set_allcount(ad.getTotalRows(song_id));
+		page.set_pagecount();
+		return ad.findByPage(song_id, page);
 	}
 	
 	

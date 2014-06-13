@@ -120,37 +120,33 @@ function deletetag_callback()
 }
 
 //
-var commentXmlHttpRequest = "";
-var givcomXmlHttpRequest = "";
-var givlevXmlHttpRequest = "";
-
-function comment()
-{
-	//alert("1");
-	commentXmlHttpRequest=getXmlHttpObject();
-	if(commentXmlHttpRequest){
-		//alert("2");
-		var data =  "commentwindow=user";
-		var url="/Jing/jing_servlet";
-		commentXmlHttpRequest.open("post",url,true);
-		commentXmlHttpRequest.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-		commentXmlHttpRequest.onreadystatechange=comment_callback;
-		commentXmlHttpRequest.send(data);
-	}
-}
-
-function comment_callback()
-{
-	if(commentXmlHttpRequest.readyState==4){
-		if(commentXmlHttpRequest.status == 200)
-		{
-			//alert("4");
-			var result = commentXmlHttpRequest.responseText;	
-			var myiframe = get("commentFrame");
-			myiframe.contentWindow.location.reload();
-			//alert("fresh");
-			if(result == "success")
-				showComment();
-		}
-	}
-}
+//var commentXmlHttpRequest = "";
+//
+//function assess()
+//{
+//	commentXmlHttpRequest=getXmlHttpObject();
+//	if(commentXmlHttpRequest){
+//		var data =  "assesswindow=user";
+//		var url="/Jing/jing_servlet";
+//		commentXmlHttpRequest.open("post",url,true);
+//		commentXmlHttpRequest.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+//		commentXmlHttpRequest.onreadystatechange=assess_callback;
+//		commentXmlHttpRequest.send(data);
+//	}
+//}
+//
+//function assess_callback()
+//{
+//	if(commentXmlHttpRequest.readyState==4){
+//		if(commentXmlHttpRequest.status == 200)
+//		{
+//			//alert("4");
+//			var result = commentXmlHttpRequest.responseText;	
+//			var myiframe = get("commentFrame");
+//			myiframe.contentWindow.location.reload();
+//			//alert(result);
+//			if(result == "success")
+//				showComment();
+//		}
+//	}
+//}

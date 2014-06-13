@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  else
  	request.removeAttribute("isLegal");
 
- User user = (User) request.getAttribute("user");
+ List<Label> userlabel = (List<Label>) request.getAttribute("userlabel");
 
  %>
 
@@ -33,21 +33,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <ol class="unstyled stream-items">
         <li class="unstyled expanding-stream-item">
         <div class="indent">
+        
         <% 
-			List usertags = new ArrayList();
-        	usertags.addAll(user.getUsertags());
-			Iterator<Usertag> it= usertags.iterator();
-            for(int i=0;i<usertags.size();i++)
+			Iterator<Label> it= userlabel.iterator();
+            for(int i=0;i<userlabel.size();i++)
   			{ 
   				if(!it.hasNext())
 					break;
 					
-				 Label label = it.next().getLabel();
+				 Label label = it.next();
   		%>
-        <span class="cloud2"><a href="#"><%=label.getLabel()%></a></span>&nbsp; &nbsp;
+        <span class="cloud4"><button><%=label.getLabel()%></button></span>&nbsp; &nbsp;
+        <span class="cloud4"></span>
 		<%
   			}
 		%>
+		
+		<br/><br/>
+		<form action="/Jing/jing_servlet" method="post">
+			<input type="text" name="newusertag"></input>
+			<button type="submit">添加标签</button>
+		</form>
+		<form action="/Jing/jing_servlet" method="post">
+			<input type="text" name="deleteusertag"></input>
+			<button type="submit">删除标签</button>
+		</form>
+		
         </div>
         </li>
         </ol>

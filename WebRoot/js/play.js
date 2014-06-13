@@ -1,9 +1,8 @@
 
 function showComment()
 {
-	$("#commentFrameDiv").show().animate({"top":"-635px"},"500");
-	comment_score(4);
-	//alert("score");
+	//$("#commentFrameDiv").show().animate({"top":"-635px"},"500");
+	//comment_score(4);
 }
 
 
@@ -19,7 +18,6 @@ function backToListen()
 		{
 			$("#searchTagFrame").hide();
 			$("#topLeftFrame").show("slow");
-			//alert("test");
 		}
 }
 

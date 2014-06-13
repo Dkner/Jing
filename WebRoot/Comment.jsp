@@ -26,135 +26,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/star.js"></script>	
-	<script type="text/javascript" src="js/play.js"></script>
-	<script type="text/javascript" src="js/musiccontrol.js"></script>
 	
   </head>
   
   <script type="text/javascript">
   
-  	//window.onload=init;
-  	
-  	function init()
-  	{
-  		this.location.reload();
-  		//alert("refresh");
-  	}
-  	
-var infoXmlHttpRequest = "";
-var keyXmlHttpRequest = "";
-  	
-  	function givecomment()
+function giveComment()
 {
-	//alert("1");
-	givcomXmlHttpRequest=getXmlHttpObject();
-	if(givcomXmlHttpRequest){
-		//alert("2");
-		var data =  "comment="+get('comment').value;
-		var url="/Jing/jing_servlet";
-		givcomXmlHttpRequest.open("post",url,true);
-		givcomXmlHttpRequest.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-		givcomXmlHttpRequest.onreadystatechange=givecomment_callback;
-		givcomXmlHttpRequest.send(data);
-		//alert("3");
-	}
+	$("#commentForm").attr("action","/Jing/jing_servlet");	
+	$("#commentForm").submit();
 }
 
-function givecomment_callback()
-{
-	if(givcomXmlHttpRequest.readyState==4){
-		if(givcomXmlHttpRequest.status == 200)
-		{
-			//alert("4");
-			var result = givcomXmlHttpRequest.responseText;	
-			init();
-		}
-	}
-}
-
-function givelevel(n)
-{
-	on_click(n);
-	//alert("1");
-	givlevXmlHttpRequest=getXmlHttpObject();
-	if(givlevXmlHttpRequest){
-		//alert(score);
-		var data =  "level="+score;
-		var url="/Jing/jing_servlet";
-		givlevXmlHttpRequest.open("post",url,true);
-		givlevXmlHttpRequest.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-		givlevXmlHttpRequest.onreadystatechange=givelevel_callback;
-		givlevXmlHttpRequest.send(data);
-		//alert("3");
-	}
-}
-
-function givelevel_callback()
-{
-	if(givlevXmlHttpRequest.readyState==4){
-		if(givlevXmlHttpRequest.status == 200)
-		{
-			//alert("4");
-			var result = givlevXmlHttpRequest.responseText;	
-			init();
-		}
-	}
-}
-
-
-	var naviXmlHttpRequest = "";
-function nextorback(type)
-{
-	//alert("1");
-	naviXmlHttpRequest=getXmlHttpObject();
-	if(naviXmlHttpRequest){
-		//alert("2");
-		var data =  type+"=song";
-		var url="/Jing/jing_servlet";
-		naviXmlHttpRequest.open("post",url,true);
-		naviXmlHttpRequest.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-		naviXmlHttpRequest.onreadystatechange=nextorback_callback;
-		naviXmlHttpRequest.send(data);
-		//alert("3");
-	}
-}
-
-function nextorback_callback()
-{
-	if(naviXmlHttpRequest.readyState==4){
-		if(naviXmlHttpRequest.status == 200)
-		{
-			//alert("4");
-			init();
-		}
-	}
-}
-
-  	
-  	
-  	function test()
-  	{
-  		alert("test");
-  	}
   </script>
   
   <body>
 
-<%--  	<% --%>
-<%--  		HttpSession hs = request.getSession(true);--%>
-<%--  		Page currentpage = new Page();--%>
-<%--  		if(hs.getAttribute("page") != null)--%>
-<%--			currentpage = (Page)hs.getAttribute("page");   --%>
-<%--		else--%>
-<%--			return;	--%>
-<%--	%>  --%>
+  	<%
+  	 String flag = (String)request.getAttribute("isLegal");
+  	 if(flag == null || !flag.equals("legal"))
+  	 {
+  	 	response.sendRedirect("/Jing/jing_servlet?assesswindow=music");
+  	 	return;
+  	 }
+  	 else
+  	 	request.removeAttribute("isLegal");
+  	 
+  	 List<Assess> assesses = (List<Assess>)request.getAttribute("assesses");
+  	 Song song = (Song) request.getAttribute("song");
+  	 List<Tag> songtags = new ArrayList<Tag>(song.getTags());
+  	 Page commentpage = (Page)request.getAttribute("commentpage");
+  	 Iterator<Assess> it = assesses.iterator();
+	%>
         	
 	 <div id="commentDiv">
         	<div id="headComment">
             	<div id="nameAndImg">
         			<div id="albumImg"></div>
-        					<a>123</a>
-<%--        			<a><%=currentpage.songname%></a>--%>
+        			<a><%=song.getName()%>--<%=song.getSinger().getName()%></a>
         		</div>
                 <div id="scoresAndTagsDiv">
 					<!--*******************************************************************************************************************-->
@@ -167,14 +75,15 @@ function nextorback_callback()
 					</span>
 					<!--*******************************************************************************************************************-->
                     <div id="tagGroups">
-<%--                 <% --%>
-<%--                 	--%>
-<%--                    for(int i=0; i<currentpage.get_taglist().size()&&i<6; i++) {   	--%>
-<%--   				 %>			--%>
-<%--                    	<div class="tagList"><%=((Tag)(currentpage.get_taglist().get(i))).getLabel().getLabel()%></div>--%>
-<%--                 <%--%>
-<%--                  	}--%>
-<%--                 %>      --%>
+                <%
+                    for(int i=0; i<songtags.size()&&i<5; i++) {   	
+   				%>		
+   					
+                   	<div class="tagList"><%=songtags.get(i).getLabel().getLabel()%></div>
+                   
+                <%
+                  	}
+                %>      
                     </div>
                 </div>
             </div>
@@ -203,72 +112,45 @@ function nextorback_callback()
             </div>
             <!--********************************************************************************************************************************-->
             <div id="commendGroups"><!-- 修改地方 -->
-            	<!--<div id="" class="">
-                  		<textarea id="comment" type="text" class="large" placeholder="评论"></textarea>
+           
+           		<form id="commentForm" method="post">
+                  		<textarea id="commentTextArea" name="comment" type="text" class="large" placeholder="评论"></textarea>
                   		<div class="saveOrcCanBtn">
-                     		<button id="###" class="btn" onclick="givecomment()">发送</button>          
-                  		</div>        
-           		</div>-->
-           		<form id="commentForm" class="" action="#">
-                  		<textarea id="commentTextArea"type="text" class="large" placeholder="评论"></textarea>
-                  		<div class="saveOrcCanBtn">
-                     		<button id="###" class="btn btn-info">发送</button>
-                      	 	<button id="###" class="btn">取消</button>
+                     		<button class="btn btn-info" onclick="giveComment()">发送</button>
                   		</div>        
            		</form>
-           		
-<%--           	<%                	--%>
-<%--                for(int i=0; i<currentpage.get_pagelist().size(); i++) {   	--%>
-<%--                	String level = ((Assess)(currentpage.get_pagelist().get(i))).getLevel();--%>
-<%--                	String comment = ((Assess)(currentpage.get_pagelist().get(i))).getComment();--%>
-<%--   			%>	--%>
-   			<!-- 修改过 -->
+           		     
+
    				<div id="othersComment">
+   			<%                	
+                for(int i=0; i<commentpage.get_pagesize(); i++) {  
+                	if(!it.hasNext())
+    					break;
+    					
+    				Assess assess = it.next();
+                	String user = assess.getUser().getName();
+               	 	String comment = assess.getComment();
+               	 	String time = assess.getTime();
+  			%>	
 					<div class="commentDivBox">
-						<a class="">Amy</a>:<a>真好听</a>
+						<ul>
+						<li><%=user%>&nbsp&nbsp 评论于<%=time%></li>
+						<li><%=comment%></li>
+						</ul>
 					</div>	
-					<div class="commentDivBox">
-						<a class="">Jack</a>:<p>真难听</p>
-					</div>	
-					<div class="commentDivBox">
-						<a class="">Jackie_9692</a>:<a>歌曲旋律真不错，大爱！！！</a>
-					</div>	
+			<%
+                }
+			%>
 				</div>
-<%--            	<!-- <div class="commentDiv">--%>
-<%--                	<a class=""><%=((Assess)(currentpage.get_pagelist().get(i))).getUser().getName()%></a>--%>
-<%--                	<a class=""><%=((Assess)(currentpage.get_pagelist().get(i))).getTime()%></a>--%>
-<%--                	--%>
-<%--                <%--%>
-<%--                	if(level != null)--%>
-<%--                	{--%>
-<%--                %>               	               	--%>
-<%--                		<br/>--%>
-<%--                		<a>评分： <%=level%></a>--%>
-<%--                <%	--%>
-<%--                	} --%>
-<%--                	if(comment != null)--%>
-<%--                	{--%>
-<%--                %>	--%>
-<%--                		<br/>--%>
-<%--                		<a>评论： <%=comment%></a>--%>
-<%--                <%  } %>	--%>
-<%--                --%>
-<%--                </div>	--%>
-<%--                --%>
-<%--            <%--%>
-<%--                 }--%>
-<%--            %>        --%>
-<%--                 -->--%>
 
             </div>
             
- 
+ 		
      	<div id=navi>
-     		<a onclick="nextorback('backcommend')"> back </a>&nbsp&nbsp&nbsp&nbsp
-     		<a onclick="nextorback('nextcommend')"> next </a>
+     		<a href="/Jing/jing_servlet?backcommend=control"> back </a>&nbsp&nbsp&nbsp&nbsp
+     		<a href="/Jing/jing_servlet?nextcommend=control"> next </a>
   		</div>
-    
-    
+    	 
     
      </div> 
    </body>

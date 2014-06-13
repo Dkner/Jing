@@ -19,20 +19,6 @@ public class Page {
 		
 	}
 	
-	@SuppressWarnings("unchecked")
-	void init()
-	{
-		
-		
-		if(allcount%pagesize != 0)
-    		pagecount = allcount/pagesize + 1;
-    	else
-    		pagecount = allcount/pagesize;
-		
-		//默认第一页
-		set_pagenow(1);
-	}
-	
 	/**
 	   * function 当前歌曲的评论翻到下一页
 	   * @param 
@@ -60,7 +46,8 @@ public class Page {
 	   */
 	public final void set_pagenow(int n)
 	{
-		pagenow = n;
+		//if(n>0 && n<=this.pagecount)
+			pagenow = n;
 	}
 	
 	public final void set_pagesize(int n)

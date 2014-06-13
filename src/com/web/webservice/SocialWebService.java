@@ -8,34 +8,36 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces; 
 
+import com.data.vo.Song;
 import com.process.model.Filter;
 import com.process.model.FilterChain;
 import com.process.model.LabelProcessor;
-import com.process.service.SearchService;
 import com.sun.jersey.spi.resource.Singleton;
 
-@Produces("text/plain")
-@Path("search")
+@Produces({"application/xml"})
+@Path("login")
 @Singleton
-public class test {
+public class SocialWebService {
 	
-	SearchService searchservice = new LabelProcessor();
-			
+	LabelProcessor ss = new LabelProcessor();
+	XmlDataFactory factory = new XmlDataFactory();
 
 @GET
 public String testoutput() {
-    return "all";
+    return "<xml>SEARCH</xml>";
 }
 
 @GET
-@Path("{input}")
-public String getInput(@PathParam("input") String input) {
+@Path("{username}/{password}")
+public String SearchInput(@PathParam("username") String input) {
 	System.out.println("webservice 输入："+input);
+	
 	FilterChain chain = new FilterChain();
 	chain.AddFilter(new Filter(4));
 	chain.AddFilter(new Filter(5));
-	List result = searchservice.find_songlist_by_input(0, input, chain, "");
-    return result.toString();
+	List result = ss.find_songlist_by_input(0, input, chain, "");
+	
+	return factory.ProductXmlString_FromSourceData(Song.class.getSimpleName(), result);
 }
 
 @POST

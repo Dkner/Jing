@@ -1,6 +1,8 @@
 package com.process.service;
 
 import java.util.List;
+
+import com.data.vo.Song;
 import com.process.model.FilterChain;
 
 
@@ -47,5 +49,7 @@ public interface SearchService {
 	   * @return List Song
 	   */
 	public List find_songlist_by_input(int match_degree_minus, String input, FilterChain chain, String user_id);
+	
+	public Song find_song_by_id(int song_id);
 	
 }

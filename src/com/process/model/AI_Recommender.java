@@ -35,7 +35,7 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 	//UrlParser
 	private UrlParser parser = null;
 	
-	
+	private User2UserRecommendation u2u = null;
 	
 	
 	
@@ -49,6 +49,21 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		size = ld.findAll().size();
 		
 		parser = new UrlParser();
+		
+		u2u = new User2UserRecommendation();
+	}
+	
+	/**
+	   * function 协同过滤
+	   * @param String 用户id
+	   * @return List Song
+	   */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public final List collaboration(String user_id)
+	{
+		List result = new ArrayList();
+		
+		return result;
 	}
 	
 	/**
@@ -182,8 +197,12 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 			return templist;
 		}
 		for (int i = 0; i<templist.size(); i++){ 
-			Label temp = ((Usertag)templist.get(i)).getLabel();
-			list.add(temp);
+			Usertag usertag = ((Usertag)templist.get(i));
+			if(usertag.getWeight()>0)
+			{
+				Label temp = usertag.getLabel();
+				list.add(temp);
+			}
 		}
 		return list;
 	}
@@ -225,6 +244,7 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 			
 		} 	
 		
+		System.out.println(labelstring);
 		this.currentlabel = labelstring;
 		//
 		FilterChain chain = new FilterChain();
@@ -239,12 +259,12 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 	   * @return List Song
 	   */
 	@SuppressWarnings("unchecked")
-	public final List RecommendSong_BySong(int songId){
-		Song song = new SongDAO().findById(songId);
-		if(song == null)
+	public final List RecommendSong_BySong(String songname){
+		List<Song> song = new SongDAO().findByName(songname);
+		if(song == null || song.size()==0)
 			return null;
 		List<Tag> temp = new ArrayList();
-		temp.addAll(song.getTags());
+		temp.addAll(song.get(0).getTags());
 		String labelstring = "";
 		for(int i=0; i<temp.size(); i++)
 		{
@@ -257,8 +277,8 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		//
 		FilterChain chain = new FilterChain();
 		Filter filter = new Filter(1);
-		List filterlist = new ArrayList();
-		filterlist.add(song.getId());
+		List<Integer> filterlist = new ArrayList<Integer>();
+		filterlist.add(song.get(0).getId());
 		filter.setFilterCondition(filterlist);
 		chain.AddFilter(filter);
 		chain.AddFilter(new Filter(4));
@@ -275,22 +295,24 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 	public final List RecommendSinger_BySinger(String singername){
 		List<Integer> tempsinger_idlist = new ArrayList<Integer>();
 		tempsinger_idlist = this.RecommendSinger(singername);
-		int index = (Integer) this.create_randomnumber(tempsinger_idlist.size(), 1).get(0);
-		int singerid_chosen = 0;
-		if(index>=0)
-			singerid_chosen = tempsinger_idlist.get(index);
+		if(tempsinger_idlist.size() == 0)
+			return null;
+		List<Integer> temp = this.create_randomnumber(tempsinger_idlist.size(), 1);
+		int index = temp.get(0);
+		int singerid_chosen = tempsinger_idlist.get(index);
 		//
 		System.out.println("数字:"+singerid_chosen+"\n最后选中的歌手id:"+sid.findById(singerid_chosen).getSingerId());
 		FilterChain chain = new FilterChain();
 		chain.AddFilter(new Filter(4));
 		chain.AddFilter(new Filter(5));
+		
 		return lp.find_songlist_by_input(0, sid.findById(singerid_chosen).getName(), chain, "");
 	}	
 	
 	/**
 	   * function 推荐歌手
 	   * @param Singer user_id
-	   * @return List Song
+	   * @return List Singer
 	   */
 	public final List RecommendSinger_ByPage(String user_id, Page page){
 		
@@ -300,6 +322,8 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		
 		UserDAO ud = new UserDAO();
 		User user = ud.findById(user_id);
+		if(user == null)
+			return null;
 		List<Integer> tempsinger_idlist = new ArrayList<Integer>();
 		List singers = new ArrayList();
 		List favors = new ArrayList();
@@ -326,15 +350,16 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		}
 		
 		int counter = 0;
-		int j=(page.get_pagenow()-1)*page.get_pagesize(); 
+		//int j=(page.get_pagenow()-1)*page.get_pagesize(); 
 		//page.print_page();
 		//System.out.println("j:"+j+"\nsize:"+tempsinger_idlist.size());
-		while(j<tempsinger_idlist.size())
+		for(int j=(page.get_pagenow()-1)*page.get_pagesize(); j<tempsinger_idlist.size(); j++)
 		{
+			//if(j<0)
+			//	break;
 			int id = tempsinger_idlist.get(j);
 			singers.add(sd.findById(id));
 			counter++;
-			j++;
 			if(counter == page.get_pagesize())
 				break;
 		}
@@ -376,7 +401,26 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		return songs;
 	}	
 	
+	//猜你喜欢
+	public List GuessSong_ByPage(String user_id, Page page) {
+		// TODO Auto-generated method stub
+		User user = ud.findById(user_id);
+		if(user.getUsertags().size() == 0)
+			return this.suibiantingting();
+			
+		u2u.set_userId(user_id);
+		u2u.locateCluster();
+		List<Song> temp = u2u.recommendSongBySimilarity();
+		page.set_allcount(temp.size());
+		page.set_pagecount();
+		
+		//还没写分页的代码
+		
+		return temp;
+	}
+	
 	//根据一个歌手推荐类似的歌手们
+	//return List<Integer> idlsit
 	public final List RecommendSinger(String singername)
 	{
 		SingerDAO sd = new SingerDAO();
@@ -431,9 +475,34 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		return tempsinger_idlist;
 	}
 	
+	//获得List<Singer>
+	public final List RecommendSimilarSinger(String singername)
+	{
+		SingerDAO sd = new SingerDAO();
+		List<Integer> singeridlist = this.RecommendSinger(singername);
+		List singers = new ArrayList();
+		
+		for(int i=0; i<singeridlist.size(); i++)
+		{
+			Singer singer = sd.findById(singeridlist.get(i));
+			if(singer != null)
+			{
+				singers.add(singer);
+			}
+		}
+		
+		return singers;
+	}
+	
 	public final String get_currentlabel(){
 		return this.currentlabel;
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -475,10 +544,13 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 	   * @param int 上限（不包含边界），随机数字个数
 	   * @return List integers
 	   */
-	public final List create_randomnumber(int uplimit, int amount)
+	public final List<Integer> create_randomnumber(int uplimit, int amount)
 	{
 		int counter = 0;
-		List number = new ArrayList();
+		List<Integer> number = new ArrayList<Integer>();
+		if(uplimit<=0)
+			return number;
+		
 		Random god = new Random();
 		//
 		while(counter<amount)
@@ -494,6 +566,20 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		
 		return number;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -559,5 +645,6 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		// TODO Auto-generated method stub
 		this.parser.importUrl(result);
 	}
+
 }
  

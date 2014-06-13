@@ -60,8 +60,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				});
 			$("#musicConBtn").click(playOrStop);
-			$("#commentBtn").click(showComment);
-			$("#closeCommentBtn").click(hideComment);
+			$("#commentBtn").click(function(){
+				//retify comment.html
+				loop();
+				window.open("/Jing/Comment.jsp");
+			});
+			//$("#closeCommentBtn").click(hideComment);
 			$(".searchLa").click(function(){
 				$("#dLabel").text(this.text);
 				});
@@ -242,12 +246,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
    
-     
-     <!-- 评论浮窗 -->
+   	<!--
      <div id="commentFrameDiv" class="hide">
 	    <i id="closeCommentBtn" class=" icon-chevron-down "></i>
       	<iframe id="commentFrame" class="img-polaroid" src="Comment.jsp"></iframe>
      </div>
+     -->
+     
     </div> 
 </body>
 </html>

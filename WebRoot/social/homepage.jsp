@@ -59,25 +59,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <body>
 	
-	<div id="header" data-spm="226669510"><div class="primary">
-		<div class="gap">
-			<div class="wrapper">
-				<table>
-					<tbody>
-						<tr>
-							<td class="logo">
-								<a data-spm-anchor-id="a1z1s.6928797.226669510.1">M^2 - 高品质音乐 发现 分享</a>
-							</td>
-							<td class="nav">
-								<a class="bigtext " href="/Jing/findMusic.jsp" data-spm-anchor-id="a1z1s.6928797.226669510.2">发现音乐</a>
-								<a class="bigtext current" href="/Jing/social/homepage.jsp" data-spm-anchor-id="a1z1s.6928797.226669510.3">我的音乐</a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+	<div id="bodyDiv">
+		<div class="primary"><!--导航-->
+			 <table>
+				<tr>
+					<td class="naviBtns">
+						<a class="btn btn-large" href="/Jing/findMusic.jsp">发现音乐</a>
+						<a class=" btn btn-large btn-success" href="/Jing/social/homepage.jsp">我的音乐</a>
+					</td>
+				</tr>
+			</table>
 		</div>
-	</div></div>
+	</div>	
 
 	<div id="p-nowrap"><div id="column695">
 		<div class="c695_title clearfix" data-spm="1561534497" data-spm-max-idx="15">
@@ -126,11 +119,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<small class="post-timestamp"><%=record.getTime()%></small>
 							</div>
 							<p class="post-text">
-								搜索了: <%=record.getRecord()%>
+								收听关键词: <%=record.getRecord()%>
 							</p>
-							<!-- 
 							<img src="img/post-pic.jpg">
-							 -->
 							<div class="post-item-footer">
 								<ul class="unstyle post-actions">
 									<li>

@@ -50,7 +50,7 @@ public class UserProfileProcessor {
 		List<Label> temp = new ArrayList();
 		temp = ld.findByLabel(labelname);
 		User tempuser = ud.findById(user_id);
-		if(temp.size() == 0 || tempuser == null)
+		if(tempuser == null || temp.size() == 0)
 		{
 			System.out.println("UserTag process failed.");
 			return;
@@ -69,13 +69,16 @@ public class UserProfileProcessor {
 				Usertag exisitedtag = usertag.get(0);
 				int weight = exisitedtag.getWeight();
 				exisitedtag.setWeight(++weight);
-				utd.save(exisitedtag);
+				
+				System.out.println("已存在usertag");
+				session.saveOrUpdate(exisitedtag);
 			}
-			//
-			System.out.println("新建usertag");
-			Usertag newusertag = new Usertag((Label)(temp.get(0)), ud.findById(user_id), 1, 0);
-			utd.save(newusertag);
-			
+			else
+			{
+				System.out.println("新建usertag");
+				Usertag newusertag = new Usertag((Label)(temp.get(0)), ud.findById(user_id), 1, 0);
+				session.saveOrUpdate(newusertag);
+			}
 			tst.commit();
 			session.close();
 		}
@@ -102,6 +105,7 @@ public class UserProfileProcessor {
 			
 			Set songtagset = song.getTags();
 			List<Tag> songtaglist = new ArrayList<Tag>();
+			songtaglist.addAll(songtagset);
 			for(int i=0; i<songtaglist.size(); i++)
 			{
 				Label label = songtaglist.get(i).getLabel();
@@ -115,12 +119,15 @@ public class UserProfileProcessor {
 					Usertag exisitedtag = usertag.get(0);
 					int weight = exisitedtag.getWeight()+5;
 					exisitedtag.setWeight(weight);
-					utd.save(exisitedtag);
+					
+					System.out.println("已存在usertag");
+					session.saveOrUpdate(exisitedtag);
 				}
 				else
 				{
+					System.out.println("新建usertag");
 					Usertag newusertag = new Usertag(label, ud.findById(user_id), 5, 0);
-					utd.save(newusertag);
+					session.saveOrUpdate(newusertag);
 				}
 			}
 			
@@ -150,6 +157,7 @@ public class UserProfileProcessor {
 			
 			Set songtagset = song.getTags();
 			List<Tag> songtaglist = new ArrayList<Tag>();
+			songtaglist.addAll(songtagset);
 			for(int i=0; i<songtaglist.size(); i++)
 			{
 				Label label = songtaglist.get(i).getLabel();
@@ -163,12 +171,15 @@ public class UserProfileProcessor {
 					Usertag exisitedtag = usertag.get(0);
 					int weight = exisitedtag.getWeight()-5;
 					exisitedtag.setWeight(weight);
-					utd.save(exisitedtag);
+					
+					System.out.println("已存在usertag");
+					session.saveOrUpdate(exisitedtag);
 				}
 				else
 				{
+					System.out.println("新建usertag");
 					Usertag newusertag = new Usertag(label, ud.findById(user_id), -5, 0);
-					utd.save(newusertag);
+					session.saveOrUpdate(newusertag);
 				}
 			}
 			

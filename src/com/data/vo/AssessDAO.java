@@ -1,6 +1,9 @@
 package com.data.vo;
 
 import com.connection.dao.BaseHibernateDAO;
+import com.process.model.Page;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
@@ -152,4 +155,63 @@ public class AssessDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
+	
+	
+	public List findByProperty2(int song_id, String user_id)
+	{
+		try {
+			List<Song> gifts = new ArrayList<Song>();
+			String queryString = "from Assess where song_id = "+ song_id +" and user_id = "+user_id;
+
+			Query queryObject = getSession().createQuery(queryString);
+			gifts = queryObject.list();						
+			return gifts;
+		}
+		catch(RuntimeException re) {
+			log.error("find assess by 2 property failed", re);
+			throw re;
+		}
+
+
+	}
+	
+	//按页查找
+
+			@SuppressWarnings("unchecked")
+			public List findByPage(int song_id, Page page)
+			{
+				try {
+					List<Song> gifts = new ArrayList<Song>();
+					String queryString = "from Assess where song_id = "+ song_id +" order by time desc";
+
+					Query queryObject = getSession().createQuery(queryString);
+					queryObject.setFirstResult((page.get_pagenow()-1)*page.get_pagesize());
+					queryObject.setMaxResults(page.get_pagesize());
+
+					gifts = queryObject.list();						
+					return gifts;
+				}
+				catch(RuntimeException re) {
+					log.error("find assess by page failed", re);
+					throw re;
+				}
+
+
+			}
+
+
+
+			//得到总的礼品数
+			public int getTotalRows(int song_id)
+			{
+
+				Number c= (Number) getSession().createQuery("select count(*) from Assess where song_id = "+song_id)
+						.uniqueResult();
+
+
+				return c.intValue();
+
+			}
+		
+	
 }

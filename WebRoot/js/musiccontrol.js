@@ -104,17 +104,17 @@ function get(id){
 	
 	
 	//comment
-	function postcomment(){
-		comment_XmlHttpRequest=getXmlHttpObject();
-		if(comment_XmlHttpRequest){
-			var data =  "level="+get("level").value+"&comment="+get("comment").value;
-			var url="/Jing/jing_servlet";
-			comment_XmlHttpRequest.open("post",url,true);
-			comment_XmlHttpRequest.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-			comment_XmlHttpRequest.onreadystatechange=chuli4;
-			comment_XmlHttpRequest.send(data); 
-		}
-	}
+//	function postcomment(){
+//		comment_XmlHttpRequest=getXmlHttpObject();
+//		if(comment_XmlHttpRequest){
+//			var data =  "level="+get("level").value+"&comment="+get("comment").value;
+//			var url="/Jing/jing_servlet";
+//			comment_XmlHttpRequest.open("post",url,true);
+//			comment_XmlHttpRequest.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+//			comment_XmlHttpRequest.onreadystatechange=chuli4;
+//			comment_XmlHttpRequest.send(data); 
+//		}
+//	}
 
 	function love(){
 		love_XmlHttpRequest=getXmlHttpObject();

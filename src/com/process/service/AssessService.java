@@ -3,7 +3,6 @@ package com.process.service;
 import java.util.List;
 
 import com.data.vo.User;
-import com.process.model.AssessProcessor;
 import com.process.model.Page;
 
 public interface AssessService {
@@ -61,6 +60,8 @@ public interface AssessService {
 	public List get_RecordsByPage(String user_id, Page page);
 	
 	public User get_User(String user_id);
+	
+	public List get_Assess(int song_id, Page page);
 	
 	public List get_FavorSingerByPage(String usr_id, Page page);
 }

@@ -101,8 +101,8 @@ public class LoginHandler {
 		else
 		{
 			System.out.println("注册成功");
-			int new_id = identify.findAll().size()+1;
-			String newuser_id = "u"+new_id;
+			int new_id = identify.findAll().size();
+			String newuser_id = "1000"+new_id;
 			//创建一个新用户
 			Session session = HibernateSessionFactory.getSession();
 			Transaction tst = session.beginTransaction();

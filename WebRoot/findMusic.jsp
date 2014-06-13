@@ -24,8 +24,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
  List<Singer> singers = (List<Singer>)request.getAttribute("singers");
  List<Song> rankingsongs = (List<Song>)request.getAttribute("rankingsongs");
+ List<Song> guesssongs = (List<Song>)request.getAttribute("guesssongs");
  Page singerpage = (Page)request.getAttribute("singerpage");
  Page rankingpage = (Page)request.getAttribute("rankingpage");
+ Page guesspage = (Page)request.getAttribute("guesspage");
  %>
 
 <!DOCTYPE html>
@@ -74,88 +76,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</h2>
 		<div class="view">
 			<div class="content_block">
+			
+		<% 
+			Iterator<Song> it2= guesssongs.iterator();
+            for(int i=0;i<guesspage.get_pagesize();i++)
+  			{ 
+  				if(!it2.hasNext())
+					break;
+					
+				Song song=it2.next();
+  		%>
+  		
 				<div class="album">
 					<a class="image">
-						<img src="./img/songCover1.jpg"></img>						
+						<img src="/songlist/<%=song.getSinger().getPicture()%>"></img>						
 					</a>
 					<div class="albumIntoplay" onclick="playMusicInner(this)"></div>
 					<div class="info">
 						<p class="name">
 							<strong>
-								<a title="归来" href="">归来</a>
+								<a><%=song.getName()%></a>
 							</strong>
 						</p>
 						<p>
-							<a title="陈其钢" href="">陈其钢</a>
-						</p>
-					</div>
-				</div>
-				<div class="album">
-					<a class="image">
-						<img src="./img/songCover2.jpg"></img>
-						<div class="albumIntoplay" onclick="playMusicInner(this)"></div>
-					</a>
-					<div class="info">
-						<p class="name ">
-							<strong>
-								<a title="关在家" href="">关在家 </a>
-							</strong>
-						</p>
-						<p>
-							<a title="关诗敏" href="">关诗敏</a>
-						</p>
-					</div>
-				</div>
-				<div class="album">
-					<a class="image">
-						<img src="./img/songCover3.jpg"></img>
-						<div class="albumIntoplay" onclick="playMusicInner(this)"></div>
-					</a>
-					<div class="info">
-						<p class="name ">
-							<strong>
-								<a title="Sandy Lam Concert MMXI" href="">Sandy Lam </a>
-							</strong>
-						</p>
-						<p>
-							<a title="林忆莲" href="">林忆莲</a>
-						</p>
-					</div>
-				</div>
-				<div class="album">
-					<a class="image">
-						<img src="./img/songCover4.jpg"></img>
-						<div class="albumIntoplay" onclick="playMusicInner(this)"></div>
-					</a>
-					<div class="info">
-						<p class="name ">
-							<strong>
-								<a title="Gentleman" href="">Gentleman</a>
-							</strong>
-						</p>
-						<p>
-							<a title="PSY" href="">PSY</a>
-						</p>
-					</div>
-				</div>
-				<div class="album">
-					<a class="image">
-						<img src="./img/songCover5.jpg"></img>
-						<div class="albumIntoplay" onclick="playMusicInner(this)"></div>
-					</a>
-					<div class="info">
-						<p class="name ">
-							<strong>
-								<a title="Stars Dance" href="">Stars Dance</a>
-							</strong>
-						</p>
-						<p>
-							<a title="Selena Gomez" href="">Selena Gomez</a>
+							<a><%=song.getSinger().getName()%></a>
 						</p>
 					</div>
 				</div>
 				
-				
+		<%
+  			}
+		%>		
+									
 			</div>
 		</div>
 	<a class="nav prev" onclick="preAlbums(this)" href=""></a>

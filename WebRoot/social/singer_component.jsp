@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div style="float:left;" class ="album-info">
 									<p><%=singer.getName()%></p>
 									<div class ="album-description">
-										<p><%=singer.getBriefing()%></p>
+										<pre><%=singer.getBriefing()%></pre>
 									</div>
 									<hr/>
 									<button class="btn btn-primary">取消关注</button>

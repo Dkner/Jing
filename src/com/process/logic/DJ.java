@@ -1,6 +1,8 @@
 package com.process.logic;
 
 import java.util.List;
+
+import com.data.vo.Song;
 import com.data.vo.User;
 import com.process.model.AI_Recommender;
 import com.process.model.AssessProcessor;
@@ -35,6 +37,16 @@ public class DJ implements CurrentListInterface{
 		userprofile = new UserProfileProcessor();
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//播放模块CurrentList的接口实现
 	public void set_username(String username)
 	{
 		this.username = username;
@@ -86,15 +98,35 @@ public class DJ implements CurrentListInterface{
 		list.play_nextsong();
 	}
 	
+	public final void set_list(List list)
+	{
+		this.list.set_list(list);		
+	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//SearchService的接口实现
 	/**
-	   * function 收藏艺人
-	   * @param CurrentList list
-	   * @return
+	   * function 匹配标签
+	   * @param String word
+	   * @return List Label
 	   */
-	public final boolean CollectSingerProcess(){
-		return assessservice.collect_singer(list.get_userid(), list.give_currentsingername());
+	public final List find_MatchLabelProcess(String word){
+		return searchservice.find_matchlabel(word);
+	}
+	
+	public final Song get_CurrentSong()
+	{
+		return searchservice.find_song_by_id(list.get_currentSongId());
 	}
 	
 	/**
@@ -142,7 +174,6 @@ public class DJ implements CurrentListInterface{
 		
 	}
 	
-	
 	/**
 	   * function 根据用户输入的字符串搜索到歌曲列表并填充到用户的当前歌曲列表
 	   * @param String Integer CurrentList words,minus,list
@@ -166,9 +197,48 @@ public class DJ implements CurrentListInterface{
 		return true;
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//RecommendService的接口实现
+	/**
+	   * function 获得用户的喜好标签
+	   * @param String user_id
+	   * @return List UserTag
+	   */
+	public final List get_usertagProcess()
+	{
+		return recommendservice.get_UserTag(list.get_userid());
+	}
+	
+	/**
+	   * function 获得随机标签
+	   * @param 
+	   * @return List Label
+	   */
+	public final List create_randomlabelProcess()
+	{
+		return recommendservice.create_randomlabel();
+	}
+	
 	public List RecommendSinger_ByPage(Page page){
 
 		List result = recommendservice.RecommendSinger_ByPage(list.get_userid(), page);
+		
+		return result;
+	}
+	
+	public List GuessSong_ByPage(Page page){
+
+		List result = recommendservice.GuessSong_ByPage(list.get_userid(), page);
 		
 		return result;
 	}
@@ -212,7 +282,7 @@ public class DJ implements CurrentListInterface{
 		if(id == -1)
 			return;
 		System.out.println("当前歌曲的id:"+id+",搜索类似歌曲");
-		List result = recommendservice.RecommendSong_BySong(id);
+		List result = recommendservice.RecommendSong_BySong(list.give_currentsongname());
 		if(result.size() == 0)
 			return;
 		
@@ -276,9 +346,47 @@ public class DJ implements CurrentListInterface{
 		list.set_currentlabel(recommendservice.get_currentlabel());
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//AssessService的接口实现
 	public final List GetFavorSingerListProcess(Page page){
 		List result = assessservice.get_FavorSingerByPage(list.get_userid(), page);
 		return result;
+	}
+	
+	/**
+	   * function 收藏艺人
+	   * @param CurrentList list
+	   * @return
+	   */
+	public final boolean CollectSingerProcess(){
+		return assessservice.collect_singer(list.get_userid(), list.give_currentsingername());
+	}
+	
+	public final List get_Tagrecord(Page page)
+	{
+		String user_id = this.list.get_userid();
+		return assessservice.get_RecordsByPage(user_id, page);
+	}
+	
+	public final User get_User()
+	{
+		String user_id = this.list.get_userid();
+		return assessservice.get_User(user_id);
+	}
+	
+	public final List get_Assess(Page page)
+	{
+		return assessservice.get_Assess(list.get_currentSongId(), page);
 	}
 	
 	/**
@@ -333,52 +441,6 @@ public class DJ implements CurrentListInterface{
 	   */
 	public final void UndoTagProcess(String usertag){
 		assessservice.undo_usertag(list.get_userid(), usertag);
-	}
-	
-	/**
-	   * function 匹配标签
-	   * @param String word
-	   * @return List Label
-	   */
-	public final List find_MatchLabelProcess(String word){
-		return searchservice.find_matchlabel(word);
-	}
-	
-	/**
-	   * function 获得用户的喜好标签
-	   * @param String user_id
-	   * @return List UserTag
-	   */
-	public final List get_usertagProcess()
-	{
-		return recommendservice.get_UserTag(list.get_userid());
-	}
-	
-	/**
-	   * function 获得随机标签
-	   * @param 
-	   * @return List Label
-	   */
-	public final List create_randomlabelProcess()
-	{
-		return recommendservice.create_randomlabel();
-	}
-	
-	public final List get_Tagrecord(Page page)
-	{
-		String user_id = this.list.get_userid();
-		return assessservice.get_RecordsByPage(user_id, page);
-	}
-	
-	public final User get_User()
-	{
-		String user_id = this.list.get_userid();
-		return assessservice.get_User(user_id);
-	}
-	
-	public final void set_list(List list)
-	{
-			this.list.set_list(list);		
 	}
 	
 }

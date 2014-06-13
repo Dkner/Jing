@@ -28,6 +28,8 @@ import com.process.model.Filter;
 import com.process.model.FilterChain;
 import com.process.model.LabelProcessor;
 import com.process.model.Page;
+import com.process.model.User2UserRecommendation;
+import com.process.model.UserProfileProcessor;
 import com.web.api.UrlParser;
 
 
@@ -55,32 +57,16 @@ public class test {
 //		int id = singer.getSingerId();
 //		System.out.println("原来歌手的id:"+id);
 //	    AI_Recommender ai = new AI_Recommender();
-//	    ai.RecommendSinger_BySinger(name);
-//	    List song = ai.hongxindiantai("100000000");
-//	    printList(song);
-	    
-//	    FavorDAO fd = new FavorDAO();
-//	    Map<String,Object> conditions = new HashMap<String,Object>(); 
-//	    conditions.put("singer_id", 1);
-//	    conditions.put("fans_id", "100000000");
-//	    System.out.println(fd.findByMultiProperty(conditions).size());
-	    
-		//AssessProcessor ap = new AssessProcessor();
-		//ap.collect_singer("100000000", "邓丽君");
+//	    ai.zhinengtuijian("100000000");
 		
-		UsertagDAO utd = new UsertagDAO();
-		List temp = utd.findTopFeature("100000001", 4);
-		List<Label> labellist = new ArrayList<Label>();
-		for(int i=0; i<temp.size(); i++)
-		{
-			Usertag tag = (Usertag) temp.get(i);
-			labellist.add(tag.getLabel());
-		}
-		for(int i=0; i<labellist.size(); i++)
-		{
-			Label label = (Label) labellist.get(i);
-			System.out.println(label.getLabel());
-		}
+		//User2UserRecommendation u2u = new User2UserRecommendation("10003000");
+		//u2u.locateCluster();
+		//u2u.calculateSim();
+		//System.out.println("最终算出的歌曲数量:"+u2u.recommendSongBySimilarity().size());
+
+		System.out.println(Song.class.getSimpleName());
+		
+	
 	}
 	
 	public static void printMap(Map<String,Object> map) { 

@@ -1,6 +1,5 @@
 package com.process.logic;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -113,7 +112,7 @@ public class CurrentList implements CurrentListInterface{
 	   */
 	public final void play_nextsong()
 	{
-		if(songamount == 0)
+		if(songamount <= 0)
 		{
 			currentsongnumber = -1;
 			currentpath = "";
@@ -121,22 +120,28 @@ public class CurrentList implements CurrentListInterface{
 			singername = "";
 			return;
 		}
-		songamount--;
 		songlist.remove(currentsongnumber);
+		songamount--;
 		if(songamount <= 0)
 		{
+			currentsongnumber = -1;
 			currentpath = "";
 			songname = "";
 			singername = "";
 			return;
 		}
+		
 		Random god = new Random();
 		currentsongnumber = god.nextInt(songamount);
+		songamount--;
 		if(currentsongnumber >= 0)
 		{
 			currentpath = songlist.get(currentsongnumber).getPath();
 			songname = songlist.get(currentsongnumber).getName();
-			singername = songlist.get(currentsongnumber).getSinger().getName();
+			if(songlist.get(currentsongnumber).getSinger() != null)
+				singername = songlist.get(currentsongnumber).getSinger().getName();
+			else
+				singername = "";
 		}
 		else
 		{

@@ -27,10 +27,7 @@
 }
 
 /*above new*/
-#commentForm
-{
-	/*height:60px;*/
-}
+
 .musicShowSize{
 	width:100px;
 	height:100px;
@@ -342,24 +339,45 @@
     width: 500px;
 	position:relative;
 	left:27%;
+	top:30px;
 }	
 	
 /*-------------------------commentCSS*/	
 #commentDiv{
-	 background-image:url(../img/commentBackground.jpg);
+	 /*background-image:url(../img/commentBackground.jpg);*/
+	 //background-color: #efefef;
+	 position:relative;
+	 float:left;
+	 left:30%;
 	 height: 590px;
 	 width: 500px;
 	}
 .commentDivBox{
-	height:60px;
-	width:450px;
+	height:90px;
+	width:100%;
 	background-color:#FFFFFF;;
-	margin:10px 10px;
+	margin-top:10px;
+	border:1px solid gray;
+	/*border-top-style:1px solid gray;
+	border-buttom-style:1px solid gray;*/
+	border-left-style:none;
+	border-right-style:none;
+	border-bottom-style:none;
 	}
 #headComment{
 	height: 180px;
+	border:1px solid gray;
+	margin-top: 30px;
 	}
-
+#commendGroups
+{
+	border:1px solid gray;
+}
+#commentForm
+{
+	background-color: rgb(235, 235, 243);
+	border-color:green;
+}
 #closeCommentBtn{
 	position:absolute;
 	top:50px;
@@ -399,7 +417,7 @@
 #tagGroups{
 	background-image: url("../img/white.png");
 	/*border:1px solid blue;*/
-	height: 130px;
+	height: 110px;
     width: 320px;
 	}
 .tagList{
@@ -413,9 +431,8 @@
     width: 60px;
 	}
 #commentTextArea {
-    height: 70px;
-    margin-left: 10px;
-    margin-top: 7px;
+    height: 100px;
+   margin:10px 12px;
     width: 470px;
 }
 	

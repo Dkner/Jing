@@ -2,7 +2,18 @@ body {
   /*background-color: #C0DEED;*/
   background-color: #F0F0F0;
 }
-
+.primary {
+background-color: gray;
+border-bottom: 1px solid #CC5A18;
+height: 60px;
+/* text-align: center; */
+}
+.naviBtns {
+position: relative;
+float: left;
+left: 35px;
+padding-top: 10px;
+}
 div {
   display: block;
 }

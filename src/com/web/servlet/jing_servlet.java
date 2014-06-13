@@ -12,10 +12,11 @@ import javax.servlet.http.HttpSession;
 import com.process.logic.DJ;
 import com.process.model.Page;
 
+@SuppressWarnings("serial")
 public class jing_servlet extends HttpServlet {
 	
 	private DJ factory;
-	private Page currentpage = null;
+	private Page currentpage = new Page();
 	
 	private LoginHandler loginhandler = null;
 	private SocialHandler socialhandler = null;
@@ -76,6 +77,7 @@ public class jing_servlet extends HttpServlet {
 					System.out.println("find...");
 					recommendhandler.Recommend_ByRanking(request, factory);
 					recommendhandler.RecommendSinger_ByPage(request, factory);
+					recommendhandler.GuessSong_ByPage(request, factory);
 					
 					//使用response挑战会丢失request\session的数据
 					//response.sendRedirect("/Jing/findMusic.jsp");
@@ -117,6 +119,18 @@ public class jing_servlet extends HttpServlet {
 					request.getRequestDispatcher("social/mymusic_component.jsp").forward(request, response);
 				}
 		
+				if (request.getParameter("assesswindow") != null) {			
+					socialhandler.CreateAssessWindow(request, currentpage, factory);
+					request.getRequestDispatcher("Comment.jsp").forward(request, response);
+				}	
+				if (request.getParameter("backcommend") != null) {
+					socialhandler.back(currentpage, request, factory);
+					request.getRequestDispatcher("Comment.jsp").forward(request, response);
+				}
+				if (request.getParameter("nextcommend") != null) {
+					socialhandler.next(currentpage, request, factory);
+					request.getRequestDispatcher("Comment.jsp").forward(request, response);
+				}
 	}
 
 
@@ -149,30 +163,39 @@ public class jing_servlet extends HttpServlet {
 		
 		
 		
+	
+		
+		
+		
+		
+		
+		
+		
 		
 		//初始化评价窗口
-		if (request.getParameter("commentwindow") != null) {
-			socialhandler.CreateCommentWindow(request, out, currentpage, factory);
-		}
-			
+//		if (request.getParameter("assesswindow") != null) {			
+//			socialhandler.CreateAssessWindow(request, out, currentpage, factory);
+//		}	
 		//社交评价相关
-		if (request.getParameter("backcommend") != null) {
-			socialhandler.back(currentpage);
-		}
-		if (request.getParameter("nextcommend") != null) {
-			socialhandler.next(currentpage);
-		}
+//		if (request.getParameter("backcommend") != null) {
+//			socialhandler.back(currentpage, request, factory);
+//		}
+//		if (request.getParameter("nextcommend") != null) {
+//			socialhandler.next(currentpage, request, factory);
+//		}
 		if(request.getParameter("collectsinger") != null)
     	{  
 			System.out.println("收藏艺人");
 			socialhandler.CollectSinger(out, factory);
     	}
 		if (request.getParameter("level") != null) {
-			socialhandler.Mark(request, out, currentpage, factory);
+			socialhandler.Mark(request, currentpage, factory);
+			request.getRequestDispatcher("Comment.jsp").forward(request, response);
 		}
 
 		if (request.getParameter("comment") != null) {
-			socialhandler.Comment(request, out, currentpage, factory);
+			socialhandler.Comment(request, currentpage, factory);
+			request.getRequestDispatcher("Comment.jsp").forward(request, response);
 		}
 
 		if (request.getParameter("love") != null) {
@@ -246,6 +269,12 @@ public class jing_servlet extends HttpServlet {
     	{  
 			System.out.println("推荐歌手");
 			recommendhandler.RecommendSinger_ByPage_AJAX(out, request, factory);
+    	}
+		
+		if(request.getParameter("guesssong") != null)
+    	{  
+			System.out.println("猜你喜欢");
+			recommendhandler.GuessSong_ByPage_AJAX(out, request, factory);
     	}
 		
 		if(request.getParameter("ranking") != null)

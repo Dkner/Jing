@@ -492,8 +492,7 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 	public void revicePath(){
 		Session session = HibernateSessionFactory.getSession();
 		Transaction tst = session.beginTransaction();
-		SongDAO ss = new SongDAO();
-		List list = ss.findAll();
+		List list = sd.findAll();
 		for(int i=0; i<list.size(); i++)
 		{
 			Song tempsong = (Song) list.get(i);
@@ -518,6 +517,11 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 	public String getSongUrlByName(String songname) {
 		// TODO Auto-generated method stub
 		return parser.getSongUrl(songname);
+	}
+
+	public Song find_song_by_id(int song_id) {
+		// TODO Auto-generated method stub
+		return sd.findById(song_id);
 	}
 	
 	

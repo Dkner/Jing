@@ -6,35 +6,87 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.data.vo.Song;
 import com.data.vo.User;
 import com.process.logic.DJ;
 import com.process.model.Page;
 
 public class SocialHandler {
 	
-	public void CreateCommentWindow(HttpServletRequest request, PrintWriter out, Page currentpage, DJ factory){
-		System.out.println("commentwindow init");
-		String comment = request.getParameter("commentwindow");
-		//初始化page的session
-		if(factory.give_currentsongname() != "")
-		{
-			//Page
-			
-			HttpSession hs = request.getSession(true);
-			if(hs.getAttribute("page") != null)
-				hs.removeAttribute("page");
-			hs.setAttribute("page",currentpage);
-			out.print("success");
-			out.flush();
-			out.close();
-		}
-		else
-		{
-			out.print("fail");
-			out.flush();
-			out.close();
-		}
+	public void back(Page currentpage, HttpServletRequest request, DJ factory){
+		System.out.println("backcommend");
+		currentpage.back();
+		List assesses = factory.get_Assess(currentpage);
+		Song song = factory.get_CurrentSong();
+		
+		request.setAttribute("song",song);
+		request.setAttribute("commentpage",currentpage);
+		request.setAttribute("assesses",assesses);
+		request.setAttribute("isLegal","legal");
 	}
+	
+	public void next(Page currentpage, HttpServletRequest request, DJ factory){
+		System.out.println("nextcommend");
+		currentpage.next();
+		List assesses = factory.get_Assess(currentpage);
+		Song song = factory.get_CurrentSong();
+		
+		request.setAttribute("song",song);
+		request.setAttribute("commentpage",currentpage);
+		request.setAttribute("assesses",assesses);
+		request.setAttribute("isLegal","legal");
+	}
+	
+	public void CreateAssessWindow(HttpServletRequest request, Page currentpage, DJ factory){
+		System.out.println("assess window init");
+		//初始化commentpage的session
+		if(factory.get_songamount() != 0 && !factory.give_currentsongname().equals(""))
+		{
+			//Page			
+			currentpage.set_pagenow(1);
+			currentpage.set_pagesize(8);
+			
+			List assesses = factory.get_Assess(currentpage);
+			Song song = factory.get_CurrentSong();
+			System.out.println("歌曲:"+song.getName()+"\n评论条数"+assesses.size());
+			
+			request.setAttribute("song",song);
+			request.setAttribute("commentpage",currentpage);
+			request.setAttribute("assesses",assesses);
+			request.setAttribute("isLegal","legal");
+		}
+		
+	}
+	
+//	public void CreateAssessWindow(HttpServletRequest request, PrintWriter out, Page currentpage, DJ factory){
+//		System.out.println("assess window init");
+//		//初始化commentpage的session
+//		if(!factory.give_currentsongname().equals(""))
+//		{
+//			//Page			
+//			currentpage.set_pagenow(1);
+//			currentpage.set_pagesize(8);
+//			
+//			List assesses = factory.get_Assess(currentpage);
+//			Song song = factory.get_CurrentSong();
+//			System.out.println("歌曲:"+song.getName()+"\n评论条数"+assesses.size());
+//			
+//			request.setAttribute("song",song);
+//			request.setAttribute("commentpage",currentpage);
+//			request.setAttribute("assesses",assesses);
+//			request.setAttribute("isLegal", "legal");
+//			
+//			out.print("success");
+//			out.flush();
+//			out.close();
+//		}
+//		else
+//		{
+//			out.print("fail");
+//			out.flush();
+//			out.close();
+//		}
+//	}
 	
 	public void gotoUserCenter(int pagenow, HttpServletRequest request, DJ factory){
 		Page page = new Page();
@@ -54,10 +106,10 @@ public class SocialHandler {
 	
 	public void getUser(HttpServletRequest request, DJ factory){
 		
-		User user = factory.get_User();
-		if(user != null)
+		List userlabel = factory.get_usertagProcess();
+		if(userlabel != null && userlabel.size()>0)
 		{
-			request.setAttribute("user", user);
+			request.setAttribute("userlabel", userlabel);
 			request.setAttribute("isLegal", "legal");
 		}
 	}
@@ -74,6 +126,7 @@ public class SocialHandler {
 			request.setAttribute("favorsingerpage", page);
 			request.setAttribute("isLegal", "legal");
 		}
+		
 	}
 	
 	public void getFavorSong(HttpServletRequest request, DJ factory){
@@ -84,6 +137,7 @@ public class SocialHandler {
 			request.setAttribute("lovesongs", lovesongs);
 			request.setAttribute("isLegal", "legal");
 		}
+		
 	}
 	
 	public void CollectSinger(PrintWriter out, DJ factory){
@@ -97,17 +151,7 @@ public class SocialHandler {
 		out.close();
 	}
 	
-	public void back(Page currentpage){
-		System.out.println("backcommend");
-		currentpage.back();
-	}
-	
-	public void next(Page currentpage){
-		System.out.println("nextcommend");
-		currentpage.next();
-	}
-	
-	public void Mark(HttpServletRequest request, PrintWriter out, Page currentpage, DJ factory){
+	public void Mark(HttpServletRequest request, Page currentpage, DJ factory){
 		System.out.println("level");
 		String level = request.getParameter("level");
 		//list.level_assess(level);
@@ -115,19 +159,20 @@ public class SocialHandler {
 		if(song_id != -1)
 			factory.GradeMarkingProcess(level);
 		//
-		//currentpage = new Page(list.give_currentsongname());
-		//currentpage.print();
+		currentpage.set_pagenow(1);
+		currentpage.set_pagesize(8);
 		
-		HttpSession hs = request.getSession(true);
-		if(hs.getAttribute("page") != null)
-			hs.removeAttribute("page");
-		hs.setAttribute("page",currentpage);
-		out.print("success");
-		out.flush();
-		out.close();
+		List assesses = factory.get_Assess(currentpage);
+		Song song = factory.get_CurrentSong();
+		
+		request.setAttribute("song",song);
+		request.setAttribute("commentpage",currentpage);
+		request.setAttribute("assesses",assesses);
+		request.setAttribute("isLegal", "legal");
+				
 	}
 	
-	public void Comment(HttpServletRequest request, PrintWriter out, Page currentpage, DJ factory){
+	public void Comment(HttpServletRequest request, Page currentpage, DJ factory){
 		System.out.println("comment");
 		String comment = request.getParameter("comment");
 		//list.comment_assess(comment);
@@ -135,16 +180,14 @@ public class SocialHandler {
 		if(song_id != -1)
 			factory.CommentProcess(comment);
 		//
-		//currentpage = new Page(list.give_currentsongname());
-		//currentpage.print();
+		List assesses = factory.get_Assess(currentpage);
+		Song song = factory.get_CurrentSong();
 		
-		HttpSession hs = request.getSession(true);
-		if(hs.getAttribute("page") != null)
-			hs.removeAttribute("page");
-		hs.setAttribute("page",currentpage);
-		out.print("success");
-		out.flush();
-		out.close();
+		request.setAttribute("song",song);
+		request.setAttribute("commentpage",currentpage);
+		request.setAttribute("assesses",assesses);
+		request.setAttribute("isLegal", "legal");
+		
 	}
 	
 	public void Love(HttpServletRequest request, PrintWriter out, DJ factory){
@@ -172,13 +215,12 @@ public class SocialHandler {
 	
 	public void CreateUserTag(HttpServletRequest request, PrintWriter out, DJ factory){
 		String newusertag = request.getParameter("newusertag");		
-		System.out.println(newusertag);
+		System.out.println("添加标签："+newusertag);
 		boolean result = factory.CustomizeTagProcess(newusertag);
 		if(result == true)
 		{
-			HttpSession hs = request.getSession(true);
 			List usertaglist = factory.get_usertagProcess();
-			hs.setAttribute("usertag", usertaglist);
+			request.setAttribute("userlabel", usertaglist);
 			out.print("标签订制成功");
 			out.flush();
 			out.close();
@@ -196,9 +238,8 @@ public class SocialHandler {
 		System.out.println(oldusertag);
 		factory.UndoTagProcess(oldusertag);
 		//
-		HttpSession hs = request.getSession(true);
 		List usertaglist = factory.get_usertagProcess();
-		hs.setAttribute("usertag", usertaglist);
+		request.setAttribute("userlabel", usertaglist);
 		out.print("删除标签");
 		out.flush();
 		out.close();

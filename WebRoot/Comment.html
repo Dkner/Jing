@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh">
+   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/play.css" rel="stylesheet" type="text/css">
+	<link href="css/star.css" rel="stylesheet" type="text/css">
+    
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/star.js"></script>	
+	<script type="text/javascript" src="js/play.js"></script>
+    
+     
+     <script>
+     	$(document).ready(function(){
+			});
+     </script>
+   </head>
+   <body>
+   		<!--<i id="closeCommentBtn" class="icon-remove"></i>-->
+		<!--<input id="closeiFrameBtn" type="button"  value="关闭" /> -->
+        <div id="commentDiv">
+        	<div id="headComment">
+            	<div id="albumImg"></div>
+                <div id="scoresAndTagsDiv">
+					<!--*******************************************************************************************************************-->
+                	<span id="stars0">
+							<img id="star_1" value="1" src="img/nst.gif"/>
+							<img id="star_2" value="2" src="img/nst.gif"/>
+							<img id="star_3" value="3" src="img/nst.gif"/>
+							<img id="star_4" value="4" src="img/nst.gif"/>
+							<img id="star_5" value="5" src="img/nst.gif"/>
+					</span>
+					<!--*******************************************************************************************************************-->
+                    <div id="tagGroups">
+                    	<div class="tagList">古典</div>
+                        <div class="tagList">爵士</div>
+                        <div class="tagList">民谣</div>
+                        <div class="tagList">戏曲</div>
+                        <div class="tagList">流行</div>
+                        <div class="tagList">嘻哈</div>
+                    </div>
+                </div>
+            </div>
+            <br>
+			<!--********************************************************************************************************************************-->
+			<div id="rating" onmouseout="mOut()">
+            评价:
+                <span id="stars">
+                <a>
+                    <img id="star1" value="1" onmouseover="mOver(1)" onclick="on_click(1)" src="img/nst.gif"/>
+                </a>
+                <a>
+                    <img id="star2" value="2" onmouseover="mOver(2)" onclick="on_click(2)" src="img/nst.gif"/>
+                </a>
+                <a>
+                    <img id="star3" value="3" onmouseover="mOver(3)" onclick="on_click(3)" src="img/nst.gif"/>
+                </a>
+                <a>
+                    <img id="star4" value="4" onmouseover="mOver(4)" onclick="on_click(4)" src="img/nst.gif"/>
+                </a>
+                <a>
+                    <img id="star5" value="5" onmouseover="mOver(5)" onclick="on_click(5)" src="img/nst.gif"/>
+                </a>
+                </span>
+            <input id="n_rating" type="hidden" value="">
+            </div>
+           
+            <!--********************************************************************************************************************************-->
+            <div id="commendGroups">
+            	<form id="commentForm" class="" action="#">
+                  		<textarea id="commentTextArea"type="text" class="large" placeholder="评论"></textarea>
+                  		<div class="saveOrcCanBtn">
+                     		<button id="###" class="btn btn-info">发送</button>
+                      	 	<button id="###" class="btn">取消</button>
+                  		</div>        
+           		</form>
+				<div id="othersComment">
+					<div class="commentDivBox">
+						<a class="">Amy</a>:<a>真好听</a>
+					</div>	
+					<div class="commentDivBox">
+						<a class="">Jack</a>:<p>真难听</p>
+					</div>	
+					<div class="commentDivBox">
+						<a class="">Jackie_9692</a>:<a>歌曲旋律真不错，大爱！！！</a>
+					</div>	
+				</div>
+            </div>
+     </div>
+   </body>
+</html>

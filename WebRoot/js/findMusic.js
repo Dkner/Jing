@@ -98,7 +98,16 @@ function playMusicOuter(type)
 	outer_XmlHttpRequest=getXmlHttpObject();
 	
 	if(type == 1)//猜你喜欢
-		;
+	{
+		if(outer_XmlHttpRequest){
+			var data =  "guesssong=song";
+			var url="/Jing/jing_servlet";
+			outer_XmlHttpRequest.open("post",url,true);
+			outer_XmlHttpRequest.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+			outer_XmlHttpRequest.onreadystatechange=playMusicOuter_callback;
+			outer_XmlHttpRequest.send(data); 
+		}
+	}
 	
 	else if(type == 2)//歌手推荐
 	{

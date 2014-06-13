@@ -56,10 +56,11 @@ public interface RecommendService {
 	   * @param Song Integer song,tracksnumber
 	   * @return List Song
 	   */
-	@SuppressWarnings("unchecked")
-	public List RecommendSong_BySong(int songId);
+	public List RecommendSong_BySong(String songname);
 	
 	public List RecommendSinger_ByPage(String user_id, Page page);
+	
+	public List GuessSong_ByPage(String user_id, Page page);
 	
 	public List Recommend_ByRanking(Page page);
 	

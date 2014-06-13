@@ -56,9 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<p class="post-text">
 								搜索了: <%=record.getRecord()%>
 							</p>
-							<!-- 
 							<img src="img/post-pic.jpg">
-							 -->
 							<div class="post-item-footer">
 								<ul class="unstyle post-actions">
 									<li>

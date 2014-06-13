@@ -16,6 +16,7 @@ public class RecommendHandler {
 	
 	private int singerpagenow = 1;
 	private int rankingpagenow = 1;
+	private int guesspagenow = 1;
 	
 	public void Recommend_ByRanking(HttpServletRequest request, DJ factory){
 		Page page = new Page();
@@ -60,6 +61,49 @@ public class RecommendHandler {
 	
 	}
 	
+	public void GuessSong_ByPage(HttpServletRequest request, DJ factory){
+		Page page = new Page();
+		page.set_pagesize(5);
+		page.set_pagenow(guesspagenow);
+		
+		List songs = factory.GuessSong_ByPage(page);
+		if(songs != null && songs.size()>0)
+		{
+			request.setAttribute("guesssongs", songs);
+			request.setAttribute("guesspage", page);
+			request.setAttribute("isLegal", "legal");
+			
+			System.out.println("猜你喜欢");
+		}
+		
+	}
+	
+	public void GuessSong_ByPage_AJAX(PrintWriter out, HttpServletRequest request, DJ factory){
+		Page page = new Page();
+		page.set_pagesize(5);
+		page.set_pagenow(guesspagenow);
+		
+		List songs = factory.GuessSong_ByPage(page);
+		
+		factory.set_list(songs);
+		String currentpath = factory.give_currentpath();
+		String currentsongname = factory.give_currentsongname();
+		String currentlabel = factory.get_currentlabel();
+		String currentsingername = factory.give_currentsingername();
+		System.out.println("当前列表的歌数："+ factory.get_songamount());
+		//
+		JSONArray jArray = new JSONArray();
+		JSONObject jObject = new JSONObject();
+		jObject.put("path", currentpath);
+		jObject.put("songname", currentsongname);
+		jObject.put("singername", currentsingername);
+		jObject.put("label", currentlabel);
+		jArray.add(jObject);
+		out.print(jArray.toString());
+		out.flush();
+		out.close();
+	}
+	
 	public void RecommendSinger_ByPage(HttpServletRequest request, DJ factory){
 		Page page = new Page();
 		page.set_pagesize(5);
@@ -81,7 +125,7 @@ public class RecommendHandler {
 		Page page = new Page();
 		page.set_pagesize(5);
 		page.set_pagenow(singerpagenow);
-		
+
 		List songs = factory.RecommendSong_BySingers(page);
 		
 		factory.set_list(songs);
