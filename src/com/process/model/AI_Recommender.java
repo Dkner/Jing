@@ -82,7 +82,7 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		for(int k=0; k<lovesonglist.size(); k++)
 			idlist.add(lovesonglist.get(k).getId());
 		
-		this.printsong_byname(lovesonglist);
+		Toolkit.printsong_byname(lovesonglist);
 		//this.importUrl(lovesonglist);
 		
 		FilterChain chain = new FilterChain();
@@ -97,7 +97,7 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 	    	  if(temp != null)
 	    		  lovesonglist.add(temp);
 	      }   
-		this.printsong_byname(lovesonglist);
+		Toolkit.printsong_byname(lovesonglist);
 		return lovesonglist;
 	}
 	
@@ -112,7 +112,7 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		List number = new ArrayList();
 		String labelstring = "";		
 		//
-		number = this.create_randomnumber(size, condition_counter);
+		number = Toolkit.create_randomnumber(size, condition_counter);
 		for(int i=0;i<number.size();i++)
 		{
 			Label temp = ld.findById((Integer)(number.get(i)));
@@ -163,7 +163,7 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 	    	  if(temp != null)
 	    		  list.add(temp);
 	      }   
-		this.printsong_byname(list);
+		Toolkit.printsong_byname(list);
 		return list;
 	}
 	
@@ -257,7 +257,7 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		tempsinger_idlist = this.RecommendSinger(singername);
 		if(tempsinger_idlist.size() == 0)
 			return null;
-		List<Integer> temp = this.create_randomnumber(tempsinger_idlist.size(), 1);
+		List<Integer> temp = Toolkit.create_randomnumber(tempsinger_idlist.size(), 1);
 		int index = temp.get(0);
 		int singerid_chosen = tempsinger_idlist.get(index);
 		//
@@ -302,7 +302,7 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		}
 		
 		//随机艺人
-		List<Integer> random_idlist = this.create_randomnumber(sd.findAll().size(), 5);
+		List<Integer> random_idlist = Toolkit.create_randomnumber(sd.findAll().size(), 5);
 		for(int i=0; i<random_idlist.size(); i++)
 		{
 			if(!tempsinger_idlist.contains(random_idlist.get(i)))
@@ -491,7 +491,7 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		List number = new ArrayList();
 		List labellist = new ArrayList();	
 		//
-		number = this.create_randomnumber(size, label_counter);
+		number = Toolkit.create_randomnumber(size, label_counter);
 		for(int i=0;i<number.size();i++)
 		{
 			Label temp = ld.findById((Integer)(number.get(i)));
@@ -504,33 +504,6 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		
 	}
 	
-	/**
-	   * function 生成随机数字，用来随机标签
-	   * @param int 上限（不包含边界），随机数字个数
-	   * @return List integers
-	   */
-	public final List<Integer> create_randomnumber(int uplimit, int amount)
-	{
-		int counter = 0;
-		List<Integer> number = new ArrayList<Integer>();
-		if(uplimit<=0)
-			return number;
-		
-		Random god = new Random();
-		//
-		while(counter<amount)
-		{
-			int label_id_choosed = god.nextInt(uplimit);
-			if(!number.contains(label_id_choosed))
-			{
-				counter++;
-				number.add(label_id_choosed);
-			}
-		}
-		
-		
-		return number;
-	}
 	
 	
 	
@@ -564,7 +537,7 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		for(int i=1;i<83;i++)
 		{	
 			Song tempsong = sd.findById(i);
-			number = this.create_randomnumber(size, 4);
+			number = Toolkit.create_randomnumber(size, 4);
 			
 			for(int j=0; j<4; j++)
 			{
@@ -592,14 +565,6 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
                     + entry.getValue()); 
         } 
     } 
-	
-	//打印songlist
-	public void printsong_byname(List songlist) {
-		for (int i = 0; i < songlist.size(); i++) {
-			System.out.println("id: " + ((Song) songlist.get(i)).getId()
-					+ "name：" + ((Song) songlist.get(i)).getName());
-		}
-	}
 
 	public String getSongUrlByName(String songname) {
 		// TODO Auto-generated method stub

@@ -334,23 +334,6 @@ public class jing_servlet extends HttpServlet {
 			searchhandler.SearchInput(request, out, factory);
     	}
 				
-		//废弃原来的搜索
-		if(request.getParameter("name") != null)
-    	{   
-			searchhandler.SearchName(request, out, factory);
-    	}
-	
-		if(request.getParameter("album") != null)
-		{
-			searchhandler.SearchAlbum(request, out, factory);
-		}
-	
-		if(request.getParameter("tag") != null)
-		{
-			searchhandler.SearchTag(request, out, factory);
-		}
-	
-		
 		
 		
 		

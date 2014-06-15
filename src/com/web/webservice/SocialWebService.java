@@ -9,7 +9,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces; 
 
 import com.data.vo.Label;
-import com.process.model.AssessProcessor;
+import com.process.service.AssessImplement;
 import com.sun.jersey.spi.resource.Singleton;
 
 @Produces({"application/xml"})
@@ -18,7 +18,7 @@ import com.sun.jersey.spi.resource.Singleton;
 public class SocialWebService {
 	
 	UserVerification verifier = new UserVerification();
-	AssessProcessor as = new AssessProcessor();
+	AssessImplement as = new AssessImplement();
 	XmlDataFactory factory = new XmlDataFactory();
 
 @GET

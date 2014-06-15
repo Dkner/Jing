@@ -130,51 +130,6 @@ public class DJ implements CurrentListInterface{
 	}
 	
 	/**
-	   * function 根据歌曲名搜索到歌曲列表并填充到用户的当前歌曲列表
-	   * @param String CurrentList song.name,list
-	   * @return
-	   */
-	public final void SongnameSearchingProcess(String songname){
-		List result = searchservice.find_songlist_by_songname(songname);
-		if(result.size() == 0)
-			return;
-			
-		list.set_currentlabel(songname);
-		list.set_list(result);
-		
-	}
-
-	/**
-	   * function 根据专辑名搜索到歌曲列表并填充到用户的当前歌曲列表
-	   * @param String CurrentList album.name,list
-	   * @return
-	   */
-	public final void AlbumSearchingProcess(String albumname){
-		List result = searchservice.find_songlist_by_albumname(albumname);
-		if(result.size() == 0)
-			return;		
-		
-		list.set_currentlabel(albumname);
-		list.set_list(result);
-		
-	}
-	
-	/**
-	   * function 根据标签条件字符串搜索到歌曲列表并填充到用户的当前歌曲列表
-	   * @param String Integer CurrentList words,minus,list
-	   * @return
-	   */
-	public final void KeywordSearchingProcess(String words, int minus){
-		List result = searchservice.find_songlist_by_words(words, minus);
-		if(result.size() == 0)
-			return;
-		
-		list.set_currentlabel(words);
-		list.set_list(result);
-		
-	}
-	
-	/**
 	   * function 根据用户输入的字符串搜索到歌曲列表并填充到用户的当前歌曲列表
 	   * @param String Integer CurrentList words,minus,list
 	   * @return boolean 找到与否

@@ -11,8 +11,8 @@ import javax.ws.rs.Produces;
 
 import com.data.vo.Singer;
 import com.data.vo.Song;
-import com.process.model.AI_Recommender;
 import com.process.model.Page;
+import com.process.service.RecommendImplement;
 
 import com.sun.jersey.spi.resource.Singleton;
 
@@ -22,7 +22,7 @@ import com.sun.jersey.spi.resource.Singleton;
 public class RecommendWebService {
 	
 	UserVerification verifier = new UserVerification();
-	AI_Recommender rs = new AI_Recommender();
+	RecommendImplement rs = new RecommendImplement();
 	XmlDataFactory factory = new XmlDataFactory();
 
 @GET

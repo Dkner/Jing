@@ -60,6 +60,8 @@ public interface RecommendService {
 	
 	public List RecommendSong_BySingers(String user_id, Page page);
 	
+	public List RecommendSimilarSinger(String input);
+	
 	public String get_currentlabel();
 	
 }

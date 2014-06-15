@@ -11,7 +11,7 @@ import javax.ws.rs.Produces;
 import com.data.vo.Song;
 import com.process.model.Filter;
 import com.process.model.FilterChain;
-import com.process.model.LabelProcessor;
+import com.process.service.SearchImplement;
 import com.sun.jersey.spi.resource.Singleton;
 
 @Produces({"application/xml"})
@@ -19,7 +19,7 @@ import com.sun.jersey.spi.resource.Singleton;
 @Singleton
 public class SearchWebService {
 	
-	LabelProcessor ss = new LabelProcessor();
+	SearchImplement ss = new SearchImplement();
 	XmlDataFactory factory = new XmlDataFactory();
 
 @GET

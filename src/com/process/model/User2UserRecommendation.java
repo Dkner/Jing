@@ -129,7 +129,7 @@ public class User2UserRecommendation{
 		UsertagDAO utd = new UsertagDAO();
 		List<User> users = ud.findAll();
 		int USERNO = users.size();
-		List<Integer> sampleid = this.create_randomnumber(USERNO, 150);
+		List<Integer> sampleid = Toolkit.create_randomnumber(USERNO, 150);
 		User user = ud.findById(user_id);
 		List<Usertag> mytag = utd.findTopFeature(user_id, 4); 
 		
@@ -209,7 +209,7 @@ public class User2UserRecommendation{
 		int number = 0;
 		UserDAO ud = new UserDAO();
 		if(GroupIdList.size()>0)
-			number = create_randomnumber(this.GroupIdList.size(), 1).get(0);
+			number = Toolkit.create_randomnumber(this.GroupIdList.size(), 1).get(0);
 		else
 			return lovesonglist;
 		int id = GroupIdList.get(number);
@@ -252,33 +252,6 @@ public class User2UserRecommendation{
 	      }   
 		return lovesonglist;
 	}
-	
-	/**
-	   * function 生成随机数字，用来随机标签
-	   * @param int 上限（不包含边界），随机数字个数
-	   * @return List integers
-	   */
-	public final List<Integer> create_randomnumber(int uplimit, int amount)
-	{
-		int counter = 0;
-		List<Integer> number = new ArrayList<Integer>();
-		if(uplimit<=0)
-			return number;
-		
-		Random god = new Random();
-		//
-		while(counter<amount)
-		{
-			int label_id_choosed = god.nextInt(uplimit);
-			if(!number.contains(label_id_choosed))
-			{
-				counter++;
-				number.add(label_id_choosed);
-			}
-		}
-		
-		
-		return number;
-	}
+
 	
 }
