@@ -213,36 +213,26 @@ public class SocialHandler {
 		out.close();
 	}
 	
-	public void CreateUserTag(HttpServletRequest request, PrintWriter out, DJ factory){
+	public void CreateUserTag(HttpServletRequest request, DJ factory){
 		String newusertag = request.getParameter("newusertag");		
 		System.out.println("添加标签："+newusertag);
 		boolean result = factory.CustomizeTagProcess(newusertag);
 		if(result == true)
 		{
 			List usertaglist = factory.get_usertagProcess();
-			request.setAttribute("userlabel", usertaglist);
-			out.print("标签订制成功");
-			out.flush();
-			out.close();
-		}
-		else
-		{
-			out.print("没有匹配的标签");
-			out.flush();
-			out.close();
+			request.setAttribute("userlabel", usertaglist);			
 		}
 	}
 	
-	public void DeleteUserTag(HttpServletRequest request, PrintWriter out, DJ factory){
+	public void DeleteUserTag(HttpServletRequest request, DJ factory){
 		String oldusertag = request.getParameter("deleteusertag");		
 		System.out.println(oldusertag);
-		factory.UndoTagProcess(oldusertag);
-		//
-		List usertaglist = factory.get_usertagProcess();
-		request.setAttribute("userlabel", usertaglist);
-		out.print("删除标签");
-		out.flush();
-		out.close();
+		boolean result = factory.UndoTagProcess(oldusertag);
+		if(result == true)
+		{
+			List usertaglist = factory.get_usertagProcess();
+			request.setAttribute("userlabel", usertaglist);			
+		}
 	}
 	
 	public void ReviceUserInfo(HttpServletRequest request, PrintWriter out){

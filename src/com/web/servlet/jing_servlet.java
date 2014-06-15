@@ -219,12 +219,14 @@ public class jing_servlet extends HttpServlet {
 		//订制个人标签
 		if(request.getParameter("newusertag") != null)
 		{
-			socialhandler.CreateUserTag(request, out, factory);
+			socialhandler.CreateUserTag(request, factory);
+			request.getRequestDispatcher("social/tab_component.jsp").forward(request, response);
 		}
 		//删除个人标签
 		if(request.getParameter("deleteusertag") != null)
 		{
-			socialhandler.DeleteUserTag(request, out, factory);
+			socialhandler.DeleteUserTag(request, factory);
+			request.getRequestDispatcher("social/tab_component.jsp").forward(request, response);
 		}
 
 		

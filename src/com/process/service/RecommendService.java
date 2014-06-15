@@ -9,12 +9,6 @@ import com.process.model.Page;
 
 public interface RecommendService {
 	
-	/**
-	   * function 获得用户的喜好标签
-	   * @param String user_id
-	   * @return List UserTag
-	   */
-	public List get_UserTag(String user_id);
 	
 	/**
 	   * function 获得随机标签

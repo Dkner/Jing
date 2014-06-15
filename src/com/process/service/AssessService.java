@@ -8,6 +8,13 @@ import com.process.model.Page;
 public interface AssessService {
 	
 	/**
+	   * function 获得用户的喜好标签
+	   * @param String user_id
+	   * @return List UserTag
+	   */
+	public List get_UserTag(String user_id);
+	
+	/**
 	   * function 标记歌曲为喜欢的歌曲
 	   * @param String user_id,song_id
 	   * @return
@@ -45,9 +52,9 @@ public interface AssessService {
 	/**
 	   * function 删除用户标签
 	   * @param String user_id,usertag
-	   * @return
+	   * @return boolean 操作是否成功
 	   */
-	public void undo_usertag(String user_id, String usertag);
+	public boolean undo_usertag(String user_id, String usertag);
 	
 	/**
 	   * function 收藏艺人

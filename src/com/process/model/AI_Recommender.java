@@ -54,19 +54,6 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 	}
 	
 	/**
-	   * function 协同过滤
-	   * @param String 用户id
-	   * @return List Song
-	   */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public final List collaboration(String user_id)
-	{
-		List result = new ArrayList();
-		
-		return result;
-	}
-	
-	/**
 	   * function 找到用户标记过喜欢的歌曲列表
 	   * @param String 用户id
 	   * @return List Song
@@ -177,33 +164,6 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 	    		  list.add(temp);
 	      }   
 		this.printsong_byname(list);
-		return list;
-	}
-	
-	/**
-	   * function 得到用户已有的喜欢标签
-	   * @param String 用户id
-	   * @return List UserTag
-	   */
-	public final List get_UserTag(String user_id)
-	{
-		List templist = new ArrayList();
-		List list = new ArrayList();
-		User user = ud.findById(user_id);
-		templist.addAll(user.getUsertags());
-		if(templist.size() == 0)
-		{
-			System.out.println("该用户未设置标签");
-			return templist;
-		}
-		for (int i = 0; i<templist.size(); i++){ 
-			Usertag usertag = ((Usertag)templist.get(i));
-			if(usertag.getWeight()>0)
-			{
-				Label temp = usertag.getLabel();
-				list.add(temp);
-			}
-		}
 		return list;
 	}
 	
@@ -402,6 +362,11 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 	}	
 	
 	//猜你喜欢
+	/**
+	   * function 协同过滤
+	   * @param String 用户id, Page
+	   * @return List Song
+	   */
 	public List GuessSong_ByPage(String user_id, Page page) {
 		// TODO Auto-generated method stub
 		User user = ud.findById(user_id);

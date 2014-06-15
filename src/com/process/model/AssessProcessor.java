@@ -235,13 +235,13 @@ public class AssessProcessor implements AssessService {
 	/**
 	   * function 删除用户已有标签
 	   * @param String 用户id，用户已有标签名
-	   * @return
+	   * @return boolean 删除成功与否
 	   */
-	public final void undo_usertag(String user_id, String usertag)
+	public final boolean undo_usertag(String user_id, String usertag)
 	{
 		User tempuser = ud.findById(user_id);
-		List temptag = new ArrayList();
-		temptag.addAll(tempuser.getUsertags());
+		List temptag = new ArrayList(tempuser.getUsertags());
+
 		for (Iterator i = temptag.iterator(); i.hasNext();){  
 			Usertag tempusertag = (Usertag)i.next();	
 			if(tempusertag.getLabel().getLabel().equals(usertag))
@@ -252,10 +252,12 @@ public class AssessProcessor implements AssessService {
 				utd.delete(tempusertag);
 				tst.commit();
 				session.close();
-				return;
+				return true;
 			}		
 		} 
+		
 		System.out.println("没有匹配的标签需要删除");
+		return false;
 	}
 	
 	/**
@@ -296,6 +298,33 @@ public class AssessProcessor implements AssessService {
 			session.close();
 			return true;
 		}
+	}
+	
+	/**
+	   * function 得到用户已有的喜欢标签
+	   * @param String 用户id
+	   * @return List UserTag
+	   */
+	public final List get_UserTag(String user_id)
+	{
+		List templist = new ArrayList();
+		List list = new ArrayList();
+		User user = ud.findById(user_id);
+		templist.addAll(user.getUsertags());
+		if(templist.size() == 0)
+		{
+			System.out.println("该用户未设置标签");
+			return templist;
+		}
+		for (int i = 0; i<templist.size(); i++){ 
+			Usertag usertag = ((Usertag)templist.get(i));
+			if(usertag.getWeight()>0)
+			{
+				Label temp = usertag.getLabel();
+				list.add(temp);
+			}
+		}
+		return list;
 	}
 	
 	/**

@@ -3,8 +3,10 @@ package com.web.webservice;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.data.vo.Label;
 import com.data.vo.Singer;
 import com.data.vo.Song;
+import com.web.xmlbean.LabelXml;
 import com.web.xmlbean.SingerXml;
 import com.web.xmlbean.SongXml;
 
@@ -67,6 +69,25 @@ public class bean2xml {
 	
 	
 	
+	
+	public List<LabelXml> Change_labellist(List<Label> labellist){
+		
+		List<LabelXml> result = new ArrayList<LabelXml>();
+		
+			for(int i=0; i<labellist.size(); i++)
+			{
+				Label label = labellist.get(i);
+				LabelXml xmllabel = new LabelXml();
+				xmllabel.setName(label.getLabel());
+				xmllabel.setType(label.getType());
+				xmllabel.setPicture(label.getPicture());
+				
+				result.add(xmllabel);
+			}
+			
+		return result;
+	     
+	}
 	
 	
 	

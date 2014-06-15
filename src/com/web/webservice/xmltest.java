@@ -17,6 +17,7 @@ import com.process.model.LabelProcessor;
 import com.process.model.Page;
 import com.web.xmlbean.SingerXml;
 import com.web.xmlbean.SongXml;
+import com.web.xmlbean.Xml;
 
 public class xmltest {
 

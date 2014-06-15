@@ -208,17 +208,7 @@ public class DJ implements CurrentListInterface{
 	
 	
 	
-	//RecommendService的接口实现
-	/**
-	   * function 获得用户的喜好标签
-	   * @param String user_id
-	   * @return List UserTag
-	   */
-	public final List get_usertagProcess()
-	{
-		return recommendservice.get_UserTag(list.get_userid());
-	}
-	
+	//RecommendService的接口实现	
 	/**
 	   * function 获得随机标签
 	   * @param 
@@ -358,6 +348,16 @@ public class DJ implements CurrentListInterface{
 	
 	
 	//AssessService的接口实现
+	/**
+	   * function 获得用户的喜好标签
+	   * @param String user_id
+	   * @return List UserTag
+	   */
+	public final List get_usertagProcess()
+	{
+		return assessservice.get_UserTag(list.get_userid());
+	}
+	
 	public final List GetFavorSingerListProcess(Page page){
 		List result = assessservice.get_FavorSingerByPage(list.get_userid(), page);
 		return result;
@@ -437,10 +437,10 @@ public class DJ implements CurrentListInterface{
 	/**
 	   * function 删除用户标签
 	   * @param String user_id,usertag
-	   * @return
+	   * @return boolean 操作是否成功
 	   */
-	public final void UndoTagProcess(String usertag){
-		assessservice.undo_usertag(list.get_userid(), usertag);
+	public final boolean UndoTagProcess(String usertag){
+		return assessservice.undo_usertag(list.get_userid(), usertag);
 	}
 	
 }

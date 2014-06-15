@@ -2,6 +2,8 @@ package com.web.webservice;
 
 import java.util.List;
 
+import com.web.xmlbean.Xml;
+
 public class XmlDataFactory {
 	
 	bean2xml tool = new bean2xml();
@@ -21,6 +23,10 @@ public class XmlDataFactory {
 		{
 			return tool.Change_singerlist(source);
 		}
+		if(XMLBEAN.equals("Label"))
+		{
+			return tool.Change_labellist(source);
+		}
 		
 		return null;
 	}
@@ -36,6 +42,11 @@ public class XmlDataFactory {
 			sourcedata.setSingerlist(xmldatalist);
 			return;
 		}
+		if(XMLBEAN.equals("Label"))
+		{
+			sourcedata.setLabellist(xmldatalist);
+			return;
+		}
 	}
 	
 	public String TransformProcessing(Xml sourcedata)
@@ -47,10 +58,30 @@ public class XmlDataFactory {
 	{
 		Xml sourcedata = this.Create_NewXmlSourceData();
 		List xmldatalist = this.XmlDataChangeProcessing(XMLBEAN, source);
-		if(xmldatalist == null)
-			return "<xml>No Result</xml>";
+		if(xmldatalist == null || xmldatalist.size() == 0)
+			return ProductXmlString_NoResult();
 		this.XmlDataLoading(XMLBEAN, xmldatalist, sourcedata);
 		return this.TransformProcessing(sourcedata);
+	}
+	
+	public String ProductXmlString_NoResult()
+	{
+		return "<xml>No Result</xml>";
+	}
+	
+	public String ProductXmlString_NoUser()
+	{
+		return "<xml>No Exisiting User</xml>";
+	}
+	
+	public String ProductXmlString_Success()
+	{
+		return "<xml>Operation Success</xml>";
+	}
+	
+	public String ProductXmlString_Fail()
+	{
+		return "<xml>Operation Fail</xml>";
 	}
 	
 }

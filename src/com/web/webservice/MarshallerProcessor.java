@@ -6,6 +6,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
+import com.web.xmlbean.Xml;
+
 public class MarshallerProcessor {
 
 	public String Transform2XMLString(Xml data){
