@@ -18,6 +18,7 @@ import com.process.model.Page;
 import com.web.xmlbean.SingerXml;
 import com.web.xmlbean.SongXml;
 import com.web.xmlbean.Xml;
+import com.web.xmlfactory.bean2xml;
 
 public class xmltest {
 

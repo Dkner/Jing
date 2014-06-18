@@ -114,6 +114,22 @@ public class SocialHandler {
 		}
 	}
 	
+	public void getFriend(HttpServletRequest request, DJ factory){
+		
+		List friends = factory.get_Friend();
+		
+		request.setAttribute("friends", friends);
+		request.setAttribute("isLegal", "legal");
+	}
+	
+	public void getNotice(HttpServletRequest request, DJ factory){
+		
+		List notices = factory.get_Notice();
+		
+		request.setAttribute("notices", notices);
+		request.setAttribute("isLegal", "legal");
+	}
+	
 	public void getFavorSingerByPage(int pagenow, HttpServletRequest request, DJ factory){
 		Page page = new Page();
 		page.set_pagesize(20);

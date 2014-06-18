@@ -133,13 +133,14 @@ public class CurrentList implements CurrentListInterface{
 		
 		Random god = new Random();
 		currentsongnumber = god.nextInt(songamount);
-		songamount--;
-		if(currentsongnumber >= 0)
+		
+		Song song = songlist.get(currentsongnumber);
+		if(currentsongnumber >= 0 && song!=null)
 		{
-			currentpath = songlist.get(currentsongnumber).getPath();
-			songname = songlist.get(currentsongnumber).getName();
-			if(songlist.get(currentsongnumber).getSinger() != null)
-				singername = songlist.get(currentsongnumber).getSinger().getName();
+			currentpath = song.getPath();
+			songname = song.getName();
+			if(song.getSinger() != null)
+				singername = song.getSinger().getName();
 			else
 				singername = "";
 		}

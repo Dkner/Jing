@@ -104,6 +104,20 @@ public class jing_servlet extends HttpServlet {
 					socialhandler.getUser(request, factory);
 					request.getRequestDispatcher("social/tab_component.jsp").forward(request, response);
 				}
+				if(request.getParameter("myfriend") != null)
+				{
+					System.out.println("myfriend");
+					
+					socialhandler.getFriend(request, factory);
+					request.getRequestDispatcher("social/myfriend_component.jsp").forward(request, response);
+				}
+				if(request.getParameter("mynotice") != null)
+				{
+					System.out.println("mynotice");
+					
+					socialhandler.getNotice(request, factory);
+					request.getRequestDispatcher("social/notice_component.jsp").forward(request, response);
+				}
 				if(request.getParameter("mysinger") != null)
 				{
 					System.out.println("mysinger");

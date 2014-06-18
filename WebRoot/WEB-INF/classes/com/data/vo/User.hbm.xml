@@ -58,13 +58,11 @@
             </key>
             <one-to-many class="com.data.vo.Notice" />
         </set>
-        <set name="notices_1" table="call" catalog="jing">
+        <set name="calls" inverse="true">
             <key>
                 <column name="user_called" length="20" not-null="true" />
             </key>
-            <many-to-many entity-name="com.data.vo.Notice">
-                <column name="notice_id" not-null="true" />
-            </many-to-many>
+            <one-to-many class="com.data.vo.Call" />
         </set>
         <set name="friendshipsForU2" inverse="true">
             <key>

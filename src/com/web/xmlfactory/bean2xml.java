@@ -1,4 +1,4 @@
-package com.web.webservice;
+package com.web.xmlfactory;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.process.com/" targetNamespace="http://service.process.com/" version="1.0">
+
+  <xs:element name="collect_singer" type="tns:collect_singer"/>
+
+  <xs:element name="collect_singerResponse" type="tns:collect_singerResponse"/>
+
+  <xs:element name="collect_song" type="tns:collect_song"/>
+
+  <xs:element name="collect_songResponse" type="tns:collect_songResponse"/>
+
+  <xs:element name="customize_usertag" type="tns:customize_usertag"/>
+
+  <xs:element name="customize_usertagResponse" type="tns:customize_usertagResponse"/>
+
+  <xs:element name="get_Assess" type="tns:get_Assess"/>
+
+  <xs:element name="get_AssessResponse" type="tns:get_AssessResponse"/>
+
+  <xs:element name="get_FavorSingerByPage" type="tns:get_FavorSingerByPage"/>
+
+  <xs:element name="get_FavorSingerByPageResponse" type="tns:get_FavorSingerByPageResponse"/>
+
+  <xs:element name="get_Friend" type="tns:get_Friend"/>
+
+  <xs:element name="get_FriendResponse" type="tns:get_FriendResponse"/>
+
+  <xs:element name="get_Notice" type="tns:get_Notice"/>
+
+  <xs:element name="get_NoticeResponse" type="tns:get_NoticeResponse"/>
+
+  <xs:element name="get_RecordsByPage" type="tns:get_RecordsByPage"/>
+
+  <xs:element name="get_RecordsByPageResponse" type="tns:get_RecordsByPageResponse"/>
+
+  <xs:element name="get_User" type="tns:get_User"/>
+
+  <xs:element name="get_UserResponse" type="tns:get_UserResponse"/>
+
+  <xs:element name="get_UserTag" type="tns:get_UserTag"/>
+
+  <xs:element name="get_UserTagResponse" type="tns:get_UserTagResponse"/>
+
+  <xs:element name="give_commentassess" type="tns:give_commentassess"/>
+
+  <xs:element name="give_commentassessResponse" type="tns:give_commentassessResponse"/>
+
+  <xs:element name="give_hateveassess" type="tns:give_hateveassess"/>
+
+  <xs:element name="give_hateveassessResponse" type="tns:give_hateveassessResponse"/>
+
+  <xs:element name="give_levelassess" type="tns:give_levelassess"/>
+
+  <xs:element name="give_levelassessResponse" type="tns:give_levelassessResponse"/>
+
+  <xs:element name="give_loveassess" type="tns:give_loveassess"/>
+
+  <xs:element name="give_loveassessResponse" type="tns:give_loveassessResponse"/>
+
+  <xs:element name="undo_usertag" type="tns:undo_usertag"/>
+
+  <xs:element name="undo_usertagResponse" type="tns:undo_usertagResponse"/>
+
+  <xs:complexType name="give_loveassess">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element name="arg1" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="give_loveassessResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="collect_singer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="collect_singerResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="give_levelassess">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+      <xs:element name="arg2" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="give_levelassessResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="get_RecordsByPage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="tns:page"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="page">
+    <xs:sequence>
+      <xs:element name="_pagenow" type="xs:int"/>
+      <xs:element name="_pagesize" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="get_RecordsByPageResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="get_Notice">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="get_NoticeResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="customize_usertag">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="customize_usertagResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="get_User">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="get_UserResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:user"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="user">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="assesses" nillable="true" type="xs:anyType"/>
+      <xs:element minOccurs="0" name="birth" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="calls" nillable="true" type="xs:anyType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="comments" nillable="true" type="xs:anyType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="favors" nillable="true" type="xs:anyType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="friendshipsForU1" nillable="true" type="xs:anyType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="friendshipsForU2" nillable="true" type="xs:anyType"/>
+      <xs:element minOccurs="0" name="keyword" type="xs:string"/>
+      <xs:element minOccurs="0" name="mail" type="xs:string"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="notices" nillable="true" type="xs:anyType"/>
+      <xs:element minOccurs="0" name="sex" type="xs:string"/>
+      <xs:element minOccurs="0" name="signature" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="tagrecords" nillable="true" type="xs:anyType"/>
+      <xs:element minOccurs="0" name="userId" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="usertags" nillable="true" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="undo_usertag">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="undo_usertagResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="get_UserTag">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="get_UserTagResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="collect_song">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="collect_songResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="get_Friend">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="get_FriendResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="get_Assess">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+      <xs:element minOccurs="0" name="arg1" type="tns:page"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="get_AssessResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="give_commentassess">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+      <xs:element name="arg2" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="give_commentassessResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="get_FavorSingerByPage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="tns:page"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="get_FavorSingerByPageResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="give_hateveassess">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element name="arg1" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="give_hateveassessResponse">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>

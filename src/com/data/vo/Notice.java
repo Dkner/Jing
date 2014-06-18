@@ -16,8 +16,9 @@ public class Notice implements java.io.Serializable {
 	private User user;
 	private String content;
 	private Date time;
+	private String type;
 	private Set comments = new HashSet(0);
-	private Set users = new HashSet(0);
+	private Set calls = new HashSet(0);
 
 	// Constructors
 
@@ -26,18 +27,21 @@ public class Notice implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Notice(User user, String content) {
+	public Notice(User user, String content, String type) {
 		this.user = user;
 		this.content = content;
+		this.type = type;
 	}
 
 	/** full constructor */
-	public Notice(User user, String content, Date time, Set comments, Set users) {
+	public Notice(User user, String content, Date time, String type,
+			Set comments, Set calls) {
 		this.user = user;
 		this.content = content;
 		this.time = time;
+		this.type = type;
 		this.comments = comments;
-		this.users = users;
+		this.calls = calls;
 	}
 
 	// Property accessors
@@ -74,6 +78,14 @@ public class Notice implements java.io.Serializable {
 		this.time = time;
 	}
 
+	public String getType() {
+		return this.type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	public Set getComments() {
 		return this.comments;
 	}
@@ -82,12 +94,12 @@ public class Notice implements java.io.Serializable {
 		this.comments = comments;
 	}
 
-	public Set getUsers() {
-		return this.users;
+	public Set getCalls() {
+		return this.calls;
 	}
 
-	public void setUsers(Set users) {
-		this.users = users;
+	public void setCalls(Set calls) {
+		this.calls = calls;
 	}
 
 }

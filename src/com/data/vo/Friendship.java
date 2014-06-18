@@ -9,7 +9,8 @@ public class Friendship implements java.io.Serializable {
 	// Fields
 
 	private FriendshipId id;
-	private String relation;
+	private User userByU2;
+	private User userByU1;
 
 	// Constructors
 
@@ -18,9 +19,10 @@ public class Friendship implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Friendship(FriendshipId id, String relation) {
+	public Friendship(FriendshipId id, User userByU2, User userByU1) {
 		this.id = id;
-		this.relation = relation;
+		this.userByU2 = userByU2;
+		this.userByU1 = userByU1;
 	}
 
 	// Property accessors
@@ -33,12 +35,20 @@ public class Friendship implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public String getRelation() {
-		return this.relation;
+	public User getUserByU2() {
+		return this.userByU2;
 	}
 
-	public void setRelation(String relation) {
-		this.relation = relation;
+	public void setUserByU2(User userByU2) {
+		this.userByU2 = userByU2;
+	}
+
+	public User getUserByU1() {
+		return this.userByU1;
+	}
+
+	public void setUserByU1(User userByU1) {
+		this.userByU1 = userByU1;
 	}
 
 }

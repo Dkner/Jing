@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.process.com/" targetNamespace="http://service.process.com/" version="1.0">
+
+  <xs:element name="find_matchlabel" type="tns:find_matchlabel"/>
+
+  <xs:element name="find_matchlabelResponse" type="tns:find_matchlabelResponse"/>
+
+  <xs:element name="find_song_by_id" type="tns:find_song_by_id"/>
+
+  <xs:element name="find_song_by_idResponse" type="tns:find_song_by_idResponse"/>
+
+  <xs:element name="find_songlist_by_input" type="tns:find_songlist_by_input"/>
+
+  <xs:element name="find_songlist_by_inputResponse" type="tns:find_songlist_by_inputResponse"/>
+
+  <xs:element name="find_songlist_by_input_Basic" type="tns:find_songlist_by_input_Basic"/>
+
+  <xs:element name="find_songlist_by_input_BasicResponse" type="tns:find_songlist_by_input_BasicResponse"/>
+
+  <xs:complexType name="find_songlist_by_input_Basic">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="find_songlist_by_input_BasicResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:song"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="song">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="album" type="tns:album"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="assesses" nillable="true" type="xs:anyType"/>
+      <xs:element minOccurs="0" name="id" type="xs:int"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="path" type="xs:string"/>
+      <xs:element minOccurs="0" name="score" type="xs:double"/>
+      <xs:element minOccurs="0" name="singer" type="tns:singer"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="tags" nillable="true" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="album">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="albumId" type="xs:int"/>
+      <xs:element minOccurs="0" name="company" type="xs:string"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="singer" type="tns:singer"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="songs" nillable="true" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="singer">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="albums" nillable="true" type="xs:anyType"/>
+      <xs:element minOccurs="0" name="birth" type="xs:string"/>
+      <xs:element minOccurs="0" name="briefing" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="favors" nillable="true" type="xs:anyType"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="nationality" type="xs:string"/>
+      <xs:element minOccurs="0" name="picture" type="xs:string"/>
+      <xs:element minOccurs="0" name="singerId" type="xs:int"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="singerlabels" nillable="true" type="xs:anyType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="songs" nillable="true" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="find_song_by_id">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="find_song_by_idResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:song"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="find_songlist_by_input">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg2" type="tns:filterChain"/>
+      <xs:element minOccurs="0" name="arg3" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="filterChain">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="find_songlist_by_inputResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:song"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="find_matchlabel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="find_matchlabelResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:label"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="label">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="label" type="xs:string"/>
+      <xs:element minOccurs="0" name="labelId" type="xs:int"/>
+      <xs:element minOccurs="0" name="picture" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="singerlabels" nillable="true" type="xs:anyType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="tags" nillable="true" type="xs:anyType"/>
+      <xs:element minOccurs="0" name="type" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="usertags" nillable="true" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

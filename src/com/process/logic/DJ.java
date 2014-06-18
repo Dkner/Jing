@@ -339,6 +339,18 @@ public class DJ implements CurrentListInterface{
 		return assessservice.get_User(user_id);
 	}
 	
+	public final List get_Notice()
+	{
+		String user_id = this.list.get_userid();
+		return assessservice.get_Notice(user_id);
+	}
+	
+	public final List get_Friend()
+	{
+		String user_id = this.list.get_userid();
+		return assessservice.get_Friend(user_id);
+	}
+	
 	public final List get_Assess(Page page)
 	{
 		return assessservice.get_Assess(list.get_currentSongId(), page);

@@ -19,19 +19,20 @@
         <property name="time" type="java.util.Date">
             <column name="time" length="10" />
         </property>
+        <property name="type" type="java.lang.String">
+            <column name="type" length="20" not-null="true" />
+        </property>
         <set name="comments" inverse="true">
             <key>
                 <column name="notice_id" not-null="true" />
             </key>
             <one-to-many class="com.data.vo.Comment" />
         </set>
-        <set name="users" inverse="true" table="call" catalog="jing">
+        <set name="calls" inverse="true">
             <key>
                 <column name="notice_id" not-null="true" />
             </key>
-            <many-to-many entity-name="com.data.vo.User">
-                <column name="user_called" length="20" not-null="true" />
-            </many-to-many>
+            <one-to-many class="com.data.vo.Call" />
         </set>
     </class>
 </hibernate-mapping>

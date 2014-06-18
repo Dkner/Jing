@@ -15,11 +15,18 @@ public interface AssessService {
 	public List get_UserTag(String user_id);
 	
 	/**
-	   * function 标记歌曲为喜欢的歌曲
-	   * @param String user_id,song_id
+	   * function 标记歌曲为喜欢的歌曲，web应用网站专用
+	   * @param String user_id,Integer song_id
 	   * @return
 	   */
 	public void give_loveassess(String user_id, int song_id);
+	
+	/**
+	   * function 标记歌曲为喜欢的歌曲,webservice专用
+	   * @param String user_id,songname
+	   * @return
+	   */
+	public void collect_song(String user_id, String songname);
 	
 	/**
 	   * function 标记歌曲为讨厌的歌曲
@@ -67,6 +74,10 @@ public interface AssessService {
 	public List get_RecordsByPage(String user_id, Page page);
 	
 	public User get_User(String user_id);
+	
+	public List get_Friend(String user_id);
+	
+	public List get_Notice(String user_id);
 	
 	public List get_Assess(int song_id, Page page);
 	

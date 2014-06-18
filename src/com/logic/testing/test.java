@@ -64,8 +64,15 @@ public class test {
 		//u2u.calculateSim();
 		//System.out.println("最终算出的歌曲数量:"+u2u.recommendSongBySimilarity().size());
 
-		System.out.println(Song.class.getSimpleName());
-		
+		DJ dj = new DJ();
+		dj.set_userid("100000001");
+		for(int i=0; i<dj.get_Notice().size(); i++)
+		{
+			///User user = (User) dj.get_Friend().get(i);
+			//System.out.println(user.getUserId());
+			List<Notice> notices = dj.get_Notice();
+			System.out.println(notices.get(i).getContent());
+		}
 	
 	}
 	

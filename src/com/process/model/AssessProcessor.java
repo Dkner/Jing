@@ -418,6 +418,77 @@ public class AssessProcessor implements AssessService {
 		page.set_pagecount();
 		return ad.findByPage(song_id, page);
 	}
+
+	public void collect_song(String user_id, String songname) {
+		// TODO Auto-generated method stub
+		List<Song> songs = sd.findByName(songname);
+		if(songs == null || songs.size() == 0)
+			return;
+		
+		int song_id = songs.get(0).getId();
+		UserProfileProcessor userprofile = new UserProfileProcessor();
+		userprofile.UserTagProcesing_FOR_CollectSong(user_id, song_id);
+		
+		user = ud.findById(user_id);
+		List temp = new ArrayList();
+		temp.addAll(user.getAssesses());
+		for (Iterator i = temp.iterator(); i.hasNext();){  
+			Assess assess = (Assess)i.next();	
+			if(((Song)assess.getSong()).getId().equals(song_id))
+			{
+				System.out.println("已标记");
+				Session session = HibernateSessionFactory.getSession();
+				Transaction tst = session.beginTransaction();
+				assess.setLoveorhate("love");
+				assess.setLevel("9");
+				session.saveOrUpdate(assess);
+				tst.commit();
+				session.close();
+				return;
+			}
+		} 
+		System.out.println("新标记喜欢");
+		User tempuser = ud.findById(user_id);
+		Song tempsong = sd.findById(song_id);
+		Date date = new Date(System.currentTimeMillis()); 
+		//
+		Session session = HibernateSessionFactory.getSession();
+		Transaction tst = session.beginTransaction();
+		Assess newassess = new Assess(tempuser,tempsong,"love",null,"9",date.toLocaleString());
+		session.saveOrUpdate(newassess);
+		tst.commit();
+		session.close();
+	}
+
+	public List get_Friend(String user_id) {
+		// TODO Auto-generated method stub
+		UserDAO ud = new UserDAO();
+		User user = ud.findById(user_id);
+		List<Friendship> ships = new ArrayList<Friendship>(user.getFriendshipsForU1());
+		List<User> friends = new ArrayList<User>();
+		for(int i=0;i<ships.size();i++)
+		{
+			Friendship ship = ships.get(i);
+			friends.add(ship.getUserByU2());
+		}
+		
+		return friends;
+	}
 	
+	public List get_Notice(String user_id) {
+		// TODO Auto-generated method stub
+		UserDAO ud = new UserDAO();
+		User user = ud.findById(user_id);
+		List<Notice> notices = new ArrayList<Notice>();
+		List<Call> calls = new ArrayList<Call>(user.getCalls());
+		
+		for(int i=0;i<calls.size();i++)
+		{
+			Notice notice = calls.get(i).getNotice();
+			notices.add(notice);
+		}
+		
+		return notices;
+	}
 	
 }

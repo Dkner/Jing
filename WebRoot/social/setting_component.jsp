@@ -4,6 +4,9 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
+<%
+try{
+%>
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -94,3 +97,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
 </body>
 </html>
+<%}catch(NullPointerException e){
+ 
+  return;
+}catch(Exception e)
+{
+   
+   return;
+}
+%>

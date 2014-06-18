@@ -5,6 +5,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 
 <%
+try{
  HttpSession hs = request.getSession(true);
  if(hs.getAttribute("username") == null)
  {
@@ -78,9 +79,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<ul>
 					<li><a class="active" href="#" onclick="$('#wrap-board').load('social/timeline_component.jsp');"><span>主页</span></a></li>
 					<li><a href="#" onclick="$('#wrap-board').load('social/setting_component.jsp');"><span>个人信息</span></a></li>
-					<li><a href="#" onclick="$('#wrap-board').load('social/tab_component.jsp');"><span>标签</span></a></li>
+					<li><a href="#" onclick="$('#wrap-board').load('social/tab_component.jsp');"><span>我的标签</span></a></li>
 					<li><a href="#" onclick="$('#wrap-board').load('social/singer_component.jsp');"><span>收藏艺人</span></a></li>
 					<li><a href="#" onclick="$('#wrap-board').load('social/mymusic_component.jsp');"><span>我的音乐</span></a></li>
+					<li><a href="#" onClick="$('#wrap-board').load('social/myfriend_component.jsp');"><span>我的好友</span></a></li>
+					<li><a href="#" onClick="$('#wrap-board').load('social/notice_component.jsp');"><span>我的通知</span></a></li>
 					<li class="showmore">
 						<a class="more" href="javascript:;">
 							<span>更多</span>
@@ -112,7 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<li class="unstyled expanding-stream-item">
 						<div class="post-item">
 							<div class="post-header">
-								<a href="user_profile.html">
+								<a>
 									<img class="user-img" src="social/img/user-pic.jpeg"></img>
 									<strong><%=user.getName()%></strong>
 								</a>
@@ -121,7 +124,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<p class="post-text">
 								收听关键词: <%=record.getRecord()%>
 							</p>
-							<img src="img/post-pic.jpg">
+							<img src="social/img/post-pic.jpg">
 							<div class="post-item-footer">
 								<ul class="unstyle post-actions">
 									<li>
@@ -145,3 +148,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 </body>
 </html>
+<%}catch(NullPointerException e){
+ 
+  return;
+}catch(Exception e)
+{
+   
+   return;
+}
+%>

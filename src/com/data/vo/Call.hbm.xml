@@ -11,7 +11,7 @@
             <generator class="native" />
         </id>
         <many-to-one name="user" class="com.data.vo.User" fetch="select">
-            <column name="user_id" length="20" not-null="true" />
+            <column name="user_called" length="20" not-null="true" />
         </many-to-one>
         <many-to-one name="notice" class="com.data.vo.Notice" fetch="select">
             <column name="notice_id" not-null="true" />

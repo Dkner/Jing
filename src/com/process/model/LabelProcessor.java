@@ -348,6 +348,13 @@ public class LabelProcessor implements WebApiInterface,SearchService {
 	public Song find_song_by_id(int song_id) {
 		return bs.find_song_by_id(song_id);
 	}
+
+	public List find_songlist_by_input_Basic(String input) {
+		FilterChain chain = new FilterChain();
+		chain.AddFilter(new Filter(4));
+		chain.AddFilter(new Filter(5));
+		return this.find_songlist_by_input(0, input, chain, "");
+	}
 	
 	
 }

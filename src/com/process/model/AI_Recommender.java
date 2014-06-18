@@ -446,6 +446,8 @@ public class AI_Recommender implements WebApiInterface,RecommendService {
 		SingerDAO sd = new SingerDAO();
 		List<Integer> singeridlist = this.RecommendSinger(singername);
 		List singers = new ArrayList();
+		if(singeridlist == null)
+			return singers;
 		
 		for(int i=0; i<singeridlist.size(); i++)
 		{

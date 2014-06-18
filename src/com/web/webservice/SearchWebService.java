@@ -8,11 +8,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces; 
 
-import com.data.vo.Song;
-import com.process.model.Filter;
-import com.process.model.FilterChain;
 import com.process.service.SearchImplement;
 import com.sun.jersey.spi.resource.Singleton;
+import com.web.xmlfactory.XmlDataFactory;
 
 @Produces({"application/xml"})
 @Path("search")
@@ -32,12 +30,9 @@ public String testoutput() {
 public String SearchInput(@PathParam("input") String input) {
 	System.out.println("webservice 输入："+input);
 	
-	FilterChain chain = new FilterChain();
-	chain.AddFilter(new Filter(4));
-	chain.AddFilter(new Filter(5));
-	List result = ss.find_songlist_by_input(0, input, chain, "");
+	List result = ss.find_songlist_by_input_Basic(input);
 	
-	return factory.ProductXmlString_FromSourceData(Song.class.getSimpleName(), result);
+	return factory.ProductXmlString_FromSourceData("Song", result);
 }
 
 @POST

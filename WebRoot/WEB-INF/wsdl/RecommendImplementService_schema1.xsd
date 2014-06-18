@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.process.com/" targetNamespace="http://service.process.com/" version="1.0">
+
+  <xs:element name="GuessSong_ByPage" type="tns:GuessSong_ByPage"/>
+
+  <xs:element name="GuessSong_ByPageResponse" type="tns:GuessSong_ByPageResponse"/>
+
+  <xs:element name="RecommendSimilarSinger" type="tns:RecommendSimilarSinger"/>
+
+  <xs:element name="RecommendSimilarSingerResponse" type="tns:RecommendSimilarSingerResponse"/>
+
+  <xs:element name="RecommendSinger_ByPage" type="tns:RecommendSinger_ByPage"/>
+
+  <xs:element name="RecommendSinger_ByPageResponse" type="tns:RecommendSinger_ByPageResponse"/>
+
+  <xs:element name="RecommendSinger_BySinger" type="tns:RecommendSinger_BySinger"/>
+
+  <xs:element name="RecommendSinger_BySingerResponse" type="tns:RecommendSinger_BySingerResponse"/>
+
+  <xs:element name="RecommendSong_BySingers" type="tns:RecommendSong_BySingers"/>
+
+  <xs:element name="RecommendSong_BySingersResponse" type="tns:RecommendSong_BySingersResponse"/>
+
+  <xs:element name="RecommendSong_BySong" type="tns:RecommendSong_BySong"/>
+
+  <xs:element name="RecommendSong_BySongResponse" type="tns:RecommendSong_BySongResponse"/>
+
+  <xs:element name="Recommend_ByRanking" type="tns:Recommend_ByRanking"/>
+
+  <xs:element name="Recommend_ByRankingResponse" type="tns:Recommend_ByRankingResponse"/>
+
+  <xs:element name="create_randomlabel" type="tns:create_randomlabel"/>
+
+  <xs:element name="create_randomlabelResponse" type="tns:create_randomlabelResponse"/>
+
+  <xs:element name="get_currentlabel" type="tns:get_currentlabel"/>
+
+  <xs:element name="get_currentlabelResponse" type="tns:get_currentlabelResponse"/>
+
+  <xs:element name="hongxindiantai" type="tns:hongxindiantai"/>
+
+  <xs:element name="hongxindiantaiResponse" type="tns:hongxindiantaiResponse"/>
+
+  <xs:element name="suibiantingting" type="tns:suibiantingting"/>
+
+  <xs:element name="suibiantingtingResponse" type="tns:suibiantingtingResponse"/>
+
+  <xs:element name="zhinengtuijian" type="tns:zhinengtuijian"/>
+
+  <xs:element name="zhinengtuijianResponse" type="tns:zhinengtuijianResponse"/>
+
+  <xs:complexType name="hongxindiantai">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hongxindiantaiResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="get_currentlabel">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="get_currentlabelResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GuessSong_ByPage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="tns:page"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="page">
+    <xs:sequence>
+      <xs:element name="_pagenow" type="xs:int"/>
+      <xs:element name="_pagesize" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GuessSong_ByPageResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RecommendSinger_ByPage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="tns:page"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RecommendSinger_ByPageResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="create_randomlabel">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="create_randomlabelResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RecommendSong_BySong">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RecommendSong_BySongResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RecommendSong_BySingers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg1" type="tns:page"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RecommendSong_BySingersResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Recommend_ByRanking">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:page"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Recommend_ByRankingResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="zhinengtuijian">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="zhinengtuijianResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RecommendSinger_BySinger">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RecommendSinger_BySingerResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="suibiantingting">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="suibiantingtingResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RecommendSimilarSinger">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RecommendSimilarSingerResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

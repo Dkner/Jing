@@ -23,7 +23,7 @@ public class User implements java.io.Serializable {
 	private Set favors = new HashSet(0);
 	private Set usertags = new HashSet(0);
 	private Set notices = new HashSet(0);
-	private Set notices_1 = new HashSet(0);
+	private Set calls = new HashSet(0);
 	private Set friendshipsForU2 = new HashSet(0);
 	private Set friendshipsForU1 = new HashSet(0);
 	private Set assesses = new HashSet(0);
@@ -44,7 +44,7 @@ public class User implements java.io.Serializable {
 	/** full constructor */
 	public User(String userId, String name, String keyword, String sex,
 			String signature, String mail, String birth, Set tagrecords,
-			Set comments, Set favors, Set usertags, Set notices, Set notices_1,
+			Set comments, Set favors, Set usertags, Set notices, Set calls,
 			Set friendshipsForU2, Set friendshipsForU1, Set assesses) {
 		this.userId = userId;
 		this.name = name;
@@ -58,7 +58,7 @@ public class User implements java.io.Serializable {
 		this.favors = favors;
 		this.usertags = usertags;
 		this.notices = notices;
-		this.notices_1 = notices_1;
+		this.calls = calls;
 		this.friendshipsForU2 = friendshipsForU2;
 		this.friendshipsForU1 = friendshipsForU1;
 		this.assesses = assesses;
@@ -162,12 +162,12 @@ public class User implements java.io.Serializable {
 		this.notices = notices;
 	}
 
-	public Set getNotices_1() {
-		return this.notices_1;
+	public Set getCalls() {
+		return this.calls;
 	}
 
-	public void setNotices_1(Set notices_1) {
-		this.notices_1 = notices_1;
+	public void setCalls(Set calls) {
+		this.calls = calls;
 	}
 
 	public Set getFriendshipsForU2() {

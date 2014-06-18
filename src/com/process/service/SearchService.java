@@ -23,6 +23,13 @@ public interface SearchService {
 	   */
 	public List find_songlist_by_input(int match_degree_minus, String input, FilterChain chain, String user_id);
 	
+	/**
+	   * function 全智能搜索,基础形式,webservice专用
+	   * @param String Input
+	   * @return List Song
+	   */
+	public List find_songlist_by_input_Basic(String input);
+	
 	
 	public Song find_song_by_id(int song_id);
 	

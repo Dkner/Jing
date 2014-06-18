@@ -23,8 +23,8 @@ import org.slf4j.LoggerFactory;
 public class FriendshipDAO extends BaseHibernateDAO {
 	private static final Logger log = LoggerFactory
 			.getLogger(FriendshipDAO.class);
+
 	// property constants
-	public static final String RELATION = "relation";
 
 	public void save(Friendship transientInstance) {
 		log.debug("saving Friendship instance");
@@ -88,10 +88,6 @@ public class FriendshipDAO extends BaseHibernateDAO {
 			log.error("find by property name failed", re);
 			throw re;
 		}
-	}
-
-	public List findByRelation(Object relation) {
-		return findByProperty(RELATION, relation);
 	}
 
 	public List findAll() {

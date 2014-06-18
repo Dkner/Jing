@@ -129,12 +129,12 @@ public class User2UserRecommendation{
 		UsertagDAO utd = new UsertagDAO();
 		List<User> users = ud.findAll();
 		int USERNO = users.size();
-		List<Integer> sampleid = Toolkit.create_randomnumber(USERNO, 150);
+		List<Integer> sampleid = Toolkit.create_randomnumber(USERNO, 100);
 		User user = ud.findById(user_id);
 		List<Usertag> mytag = utd.findTopFeature(user_id, 4); 
 		
 		//遍历所有用户，算出与user的相似度
-		for(int i=0; i<150; i++){
+		for(int i=0; i<100; i++){
 			//System.out.println("扫描第"+(i+1)+"个用户。。。");
 			User otherone = users.get(sampleid.get(i));
 			List<Usertag> othertag = utd.findTopFeature(otherone.getUserId(), 4);

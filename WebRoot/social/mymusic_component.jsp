@@ -5,6 +5,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 
 <%
+try{
  HttpSession hs = request.getSession(true);
  if(hs.getAttribute("username") == null)
  {
@@ -70,3 +71,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	</div>
+	<%}catch(NullPointerException e){
+ 
+  return;
+}catch(Exception e)
+{
+   
+   return;
+}
+%>

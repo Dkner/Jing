@@ -13,9 +13,15 @@
             <key-many-to-one name="user_1" class="com.data.vo.User">
                 <column name="u2" length="20" />
             </key-many-to-one>
+            <key-property name="relation" type="java.lang.String">
+                <column name="relation" length="20" />
+            </key-property>
         </composite-id>
-        <property name="relation" type="java.lang.String">
-            <column name="relation" length="20" not-null="true" />
-        </property>
+        <many-to-one name="userByU2" class="com.data.vo.User" update="false" insert="false" fetch="select">
+            <column name="u2" length="20" not-null="true" />
+        </many-to-one>
+        <many-to-one name="userByU1" class="com.data.vo.User" update="false" insert="false" fetch="select">
+            <column name="u1" length="20" not-null="true" />
+        </many-to-one>
     </class>
 </hibernate-mapping>

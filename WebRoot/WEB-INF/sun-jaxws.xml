@@ -1,0 +1,15 @@
+<?xml version = "1.0"?>
+<endpoints version="2.0"
+	xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime">
+	<endpoint name="SearchImplementPort"
+		implementation="com.process.service.SearchImplementDelegate"
+		url-pattern="/SearchImplementPort">
+	</endpoint>
+	<endpoint name="RecommendImplementPort"
+		implementation="com.process.service.RecommendImplementDelegate"
+		url-pattern="/RecommendImplementPort">
+	</endpoint>
+	<endpoint name="AssessImplementPort"
+		implementation="com.process.service.AssessImplementDelegate"
+		url-pattern="/AssessImplementPort">
+	</endpoint></endpoints>

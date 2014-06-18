@@ -4,6 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
+<%try{ %>
 <!DOCTYPE HTML>
 <html>
   <head>
@@ -155,3 +156,12 @@ function giveComment()
      </div> 
    </body>
 </html>
+<%}catch(NullPointerException e){
+ 
+  return;
+}catch(Exception e)
+{
+   
+   return;
+}
+%>

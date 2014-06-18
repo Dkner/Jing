@@ -9,12 +9,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces; 
 
-import com.data.vo.Singer;
-import com.data.vo.Song;
 import com.process.model.Page;
 import com.process.service.RecommendImplement;
 
 import com.sun.jersey.spi.resource.Singleton;
+import com.web.xmlfactory.XmlDataFactory;
 
 @Produces({"application/xml"})
 @Path("recommend")
@@ -37,7 +36,7 @@ public String RandomRecommend() {
 	
 	List result = rs.suibiantingting();
 	
-	return factory.ProductXmlString_FromSourceData(Song.class.getSimpleName(), result);
+	return factory.ProductXmlString_FromSourceData("Song", result);
 }
 
 @GET
@@ -50,7 +49,7 @@ public String RankingRecommend() {
 	page.set_pagenow(1);
 	List result = rs.Recommend_ByRanking(page);
 	
-	return factory.ProductXmlString_FromSourceData(Song.class.getSimpleName(), result);
+	return factory.ProductXmlString_FromSourceData("Song", result);
 }
 
 @GET
@@ -60,7 +59,7 @@ public String SimilarSongRecommend(@PathParam("input") String input) {
 	
 	List result = rs.RecommendSong_BySong(input);
 	
-	return factory.ProductXmlString_FromSourceData(Song.class.getSimpleName(), result);
+	return factory.ProductXmlString_FromSourceData("Song", result);
 }
 
 @GET
@@ -70,7 +69,7 @@ public String SimilarSingerRecommend(@PathParam("input") String input) {
 	
 	List result = rs.RecommendSimilarSinger(input);
 	
-	return factory.ProductXmlString_FromSourceData(Singer.class.getSimpleName(), result);
+	return factory.ProductXmlString_FromSourceData("Singer", result);
 }
 
 @GET
@@ -82,7 +81,7 @@ public String LoveRecommend(@PathParam("userid") String id, @PathParam("password
 	{
 		List result = rs.hongxindiantai(id);
 	
-		return factory.ProductXmlString_FromSourceData(Song.class.getSimpleName(), result);
+		return factory.ProductXmlString_FromSourceData("Song", result);
 	}
 	else
 		return factory.ProductXmlString_NoUser();
@@ -97,7 +96,7 @@ public String AIRecommend(@PathParam("userid") String id, @PathParam("password")
 	{
 		List result = rs.zhinengtuijian(id);
 	
-		return factory.ProductXmlString_FromSourceData(Song.class.getSimpleName(), result);
+		return factory.ProductXmlString_FromSourceData("Song", result);
 	}
 	else
 		return factory.ProductXmlString_NoUser();
@@ -112,7 +111,7 @@ public String U2URecommend(@PathParam("userid") String id, @PathParam("password"
 	{
 		List result = rs.GuessSong_ByPage(id, new Page());
 	
-		return factory.ProductXmlString_FromSourceData(Song.class.getSimpleName(), result);
+		return factory.ProductXmlString_FromSourceData("Song", result);
 	}
 	else
 		return factory.ProductXmlString_NoUser();

@@ -4,6 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
+<%try{ %>
 <!doctype html>
 <html>
   <head>
@@ -157,6 +158,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        						<li><a id="similarsongBtn" onclick="searchsimilarsong()" tabindex="-1">相似歌曲</a></li>
                             <li class="divider"></li>
       				    	<li><a id="collectsingerBtn" onclick="collectsinger()" tabindex="-1">收藏艺人</a></li>
+      				    	<li class="divider"></li>
+      				    	<li><a id="collectsingerBtn" onclick="" tabindex="-1">分享好友</a></li>
                    	    </ul>
                         </div>
 					</div>
@@ -256,3 +259,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div> 
 </body>
 </html>
+<%}catch(NullPointerException e){
+ 
+  return;
+}catch(Exception e)
+{
+   
+   return;
+}
+%>

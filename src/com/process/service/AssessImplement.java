@@ -70,4 +70,19 @@ public class AssessImplement implements AssessService{
 		return ap.get_FavorSingerByPage(usr_id, page);
 	}
 
+	public void collect_song(String user_id, String songname) {
+		// TODO Auto-generated method stub
+		ap.collect_song(user_id, songname);
+	}
+
+	public List get_Friend(String user_id) {
+		// TODO Auto-generated method stub
+		return ap.get_Friend(user_id);
+	}
+
+	public List get_Notice(String user_id) {
+		// TODO Auto-generated method stub
+		return ap.get_Notice(user_id);
+	}
+
 }

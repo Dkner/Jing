@@ -26,6 +26,7 @@ public class NoticeDAO extends BaseHibernateDAO {
 	private static final Logger log = LoggerFactory.getLogger(NoticeDAO.class);
 	// property constants
 	public static final String CONTENT = "content";
+	public static final String TYPE = "type";
 
 	public void save(Notice transientInstance) {
 		log.debug("saving Notice instance");
@@ -92,6 +93,10 @@ public class NoticeDAO extends BaseHibernateDAO {
 
 	public List findByContent(Object content) {
 		return findByProperty(CONTENT, content);
+	}
+
+	public List findByType(Object type) {
+		return findByProperty(TYPE, type);
 	}
 
 	public List findAll() {
